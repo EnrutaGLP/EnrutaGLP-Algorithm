@@ -1,0 +1,29 @@
+{
+pedidos: [ { 
+		razonSocial:"IKEA",
+		ubicacion: "5,6",
+		fecha_max: 15/09/2021,
+		hora_max: 15:00,
+		cantidad: 100
+	   },
+	   { 
+		razonSocial:"SONY",
+		ubicacion: "10,18"
+		fecha_max: 14/09/2021,
+		hora_max: 16:00,
+		cantidad:50
+	   },
+	   { 
+		razonSocial:"SONY",
+		ubicacion: "4,3"
+		fecha_max: 13/09/2021,
+		hora_max: 18:00,
+		cantidad:30
+	   }
+		
+	]
+
+}
+
+
+IKEA,5,6,15/09/2021,hora_max,cantidad
