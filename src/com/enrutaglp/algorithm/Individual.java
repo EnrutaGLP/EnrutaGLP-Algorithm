@@ -1,4 +1,4 @@
-package enrutaglp.com.clases;
+package com.enrutaglp.algorithm;
 
 import java.util.Map;
 import java.util.Vector;
@@ -15,6 +15,9 @@ public class Individual {
 	private boolean isFeasible;
 	private double biasedFitness;
 	
+	public Individual() {
+		
+	}
 	
 	public Individual(int nbClients, int nbVehicles) {
 		this.succesors = new Vector<Integer>(nbClients + 1);
