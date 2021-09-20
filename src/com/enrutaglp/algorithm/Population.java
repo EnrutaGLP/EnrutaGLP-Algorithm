@@ -1,6 +1,8 @@
-package enrutaglp.com.clases;
+package com.enrutaglp.algorithm;
 
 import java.util.Vector;
+
+import com.enrutaglp.model.Pedido;
 
 public class Population {
 
@@ -18,12 +20,12 @@ public class Population {
 		for(int i=0; i<mu;i++) {
 			Individual individual = new Individual();
 		}
-		
 	}
 	
-	public void addIndividual(Individual individual) {
+	public boolean addIndividual(Individual individual) {
 		individuals.add(individual);
 		size++;
+		return false; 
 	}
 	
 	public Individual getBinaryTournament() {

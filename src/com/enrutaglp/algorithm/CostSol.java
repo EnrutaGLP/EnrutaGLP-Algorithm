@@ -1,4 +1,4 @@
-package enrutaglp.com.clases;
+package com.enrutaglp.algorithm;
 
 public class CostSol {
 	private double penalizedCost;
