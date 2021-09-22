@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Pedido {
+	private String codigo; 
 	private String cliente;
 	private double cantidadGLP;
 	private int ubicacionX;
@@ -12,9 +13,10 @@ public class Pedido {
 	private LocalDateTime fechaHoraLimite;
 	private LocalDateTime fechaHoraCompletado;
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+	private byte estado;
 	
-	
-	public Pedido(String cliente, double cantidadGLP, int ubicacionX, int ubicacionY, String fechaLimite, String horaLimite) {
+	public Pedido(String codigo, String cliente, double cantidadGLP, int ubicacionX, int ubicacionY, String fechaLimite, String horaLimite) {
+		this.codigo = codigo; 
 		this.cliente = cliente;
 		this.cantidadGLP = cantidadGLP;
 		this.ubicacionX = ubicacionX;
@@ -77,5 +79,23 @@ public class Pedido {
 	public void setFechaHoraCompletado(LocalDateTime fechaHoraCompletado) {
 		this.fechaHoraCompletado = fechaHoraCompletado;
 	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public byte getEstado() {
+		return estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
+	}
+	
+	
 
 }

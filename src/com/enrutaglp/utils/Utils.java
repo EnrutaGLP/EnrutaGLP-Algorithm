@@ -3,30 +3,71 @@ package com.enrutaglp.utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.enrutaglp.algorithm.Individual;
+import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
+import com.enrutaglp.model.TipoCamion;
 
 public class Utils {
 	
-	public static List<Pedido> leerPedidos() {
-		List<Pedido> pedidos = new ArrayList<Pedido>();
+	public static Map<String,Pedido> leerPedidos() {
+		Map<String,Pedido> pedidos = new HashMap<String,Pedido>();
 		
 		String filePath = new File("").getAbsolutePath().concat("\\parametros\\pedidos.txt"); 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			String line;
+			int i = 0; 
 			while((line = br.readLine()) != null) {
 				String[]values = line.split(",");
-				Pedido pedido = new Pedido(values[0],Double.parseDouble(values[5]),Integer.parseInt(values[1]),
+				Pedido pedido = new Pedido(String.valueOf(i),values[0],Double.parseDouble(values[5]),Integer.parseInt(values[1]),
 						Integer.parseInt(values[2]),values[3],values[4]);
-				pedidos.add(pedido);
+				pedidos.put(pedido.getCodigo(), pedido);
+				i++;
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return pedidos;
+	}
+	
+	public static String generarCodigoCamion(String tara, int numUnidad) {
+		DecimalFormat formatter = new DecimalFormat("00");
+		return tara + formatter.format(numUnidad);
+	}
+	
+	public static List<TipoCamion> generarTiposCamiones(){
+		List<TipoCamion>tipos = new ArrayList<TipoCamion>();
+		tipos.add(new TipoCamion("TA",2.5,25,12.5,25,50,2));
+		tipos.add(new TipoCamion("TB",2.0,15,7.5,25,50,2));
+		tipos.add(new TipoCamion("TC",1.5,10,5,25,50,2));
+		tipos.add(new TipoCamion("TD",1.0,5,2.5,25,50,2));
+		return tipos;
+	}
+	
+	
+	public static Map<String,Camion> generarFlota(List<TipoCamion>tipos,int plantaPrincipalX,int plantaPrincipalY){
+		Map<String,Camion>flota = new HashMap<String,Camion>();
+		for(int i=0;i<tipos.size();i++) {
+			for(int j=0;j<tipos.get(i).getUnidades();j++) {
+				String codigo = generarCodigoCamion(tipos.get(i).getTara(),j+1); 
+				flota.put(codigo,new Camion(codigo,
+						plantaPrincipalX,plantaPrincipalY,tipos.get(i).getCapacidadGLP(),
+						tipos.get(i).getCapacidadTanque()));
+			}
+		}
+		return flota;
+	}
+	
+	//Diego
+	public static void printSolution(int nbIter,Individual best) {
+		
 	}
 	
 }
