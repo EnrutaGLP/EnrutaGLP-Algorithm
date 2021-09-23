@@ -17,9 +17,9 @@ import com.enrutaglp.utils.Utils;
 public class Individual {
 	
 	private List<EntregaPedido>entregas;
-	private double consumoTotalPetroleo; //suma de consumo de todas las entregas
+	private double consumoTotalPetroleo = 0; //suma de consumo de todas las entregas
 	private byte seEstanEntregandoATiempo; //1 si todos se entregan a tiempo, 0 si no 
-	private int minutosAdicional;  //suma de minutos en los que no se entregan a tiempo los pedido
+	private int minutosAdicional = 0;  //suma de minutos en los que no se entregan a tiempo los pedido
 	
 	public Individual() {
 		
@@ -56,6 +56,20 @@ public class Individual {
 	//Stev
 	public double calcularFitness() {
 		double fitness = 0.0; 
+		
+		
+		for(int i=0;i<this.entregas.size();i++) {
+			//consumo total petroleo
+			consumoTotalPetroleo += this.entregas.get(i).getConsumoPetroleo();
+			
+			
+			
+			
+		}
+		
+		//se estan entregando a tiempo?
+		
+		
 		return fitness; 
 	}
 	

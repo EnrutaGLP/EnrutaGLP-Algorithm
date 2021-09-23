@@ -7,9 +7,21 @@ public class EntregaPedido {
 	private LocalDateTime horaEntregada; 
 	private LocalDateTime horaSalida; 
 	private double consumoPetroleo;
-	private String codigoCamion; 
-	private String codigoPedido; 
+	private Camion camion; 
+	private Pedido pedido; 
 	
+	public Camion getCamion() {
+		return this.camion;
+	}
+	public void setCamion(Camion camion) {
+		this.camion = camion;
+	}
+	public Pedido getPedido() {
+		return this.pedido;
+	}
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
 	public double getCantidadEntregada() {
 		return cantidadEntregada;
 	}
