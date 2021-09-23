@@ -26,9 +26,21 @@ public class Camion {
 		this.entregas = new ArrayList<EntregaPedido>();
 	}
 
-	public boolean verificarDisponibilidad(LocalDateTime dateTime, Pedido pedido) {
+	public Camion(String codigo, int ubicacionActualX,int ubicacionActualY, double cargaActualGLP, double cargaActualPetroleo,
+			TipoCamion tipo) {
+		this.codigo = codigo;
+		this.ubicacionActualX = ubicacionActualX;
+		this.ubicacionActualY = ubicacionActualY;
+		this.cargaActualGLP = cargaActualGLP;
+		this.cargaActualPetroleo = cargaActualPetroleo;
+		this.entregas = new ArrayList<EntregaPedido>();
+		this.tipo = tipo;
+	}
+	
+	public boolean verificarDisponibilidad(LocalDateTime horaSalida, Pedido pedido) {
+		//Verificar 
 		if(entregas.isEmpty()) {
-			return true;
+			
 		}
 		
 		
