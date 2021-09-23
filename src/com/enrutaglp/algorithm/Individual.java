@@ -2,7 +2,9 @@ package com.enrutaglp.algorithm;
 
 import java.time.LocalDateTime;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -17,17 +19,34 @@ import com.enrutaglp.utils.Utils;
 
 public class Individual {
 	
-	private List<EntregaPedido>entregas;
+	private Map<String, List<EntregaPedido>> entregas;
+	//private List<EntregaPedido>entregas;
 	private double consumoTotalPetroleo = 0; //suma de consumo de todas las entregas
 	private byte seEstanEntregandoATiempo = 1; //1 si todos se entregan a tiempo, 0 si no 
 	private int minutosAdicional = 0;  //suma de minutos en los que no se entregan a tiempo los pedido
 	
 	public Individual() {
-		
+		this.entregas = new HashMap<String, List<EntregaPedido>>();
 	}
 	
 	public Individual(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
+		this.entregas = new HashMap<String, List<EntregaPedido>>();
+		
 		this.generateRandomIndividual(pedidos,flota);
+	}
+	
+	public void insertarEntregaPedido(EntregaPedido entregaPedido) {
+		
+		List<EntregaPedido> entregasPedidos = this.entregas.get(entregaPedido.getPedido().getCodigo());
+		
+		if(entregasPedidos == null) {
+			entregasPedidos = new ArrayList<EntregaPedido>();
+			entregasPedidos.add(entregaPedido);
+			this.entregas.put(entregaPedido.getPedido().getCodigo(), entregasPedidos);
+		}
+		else {
+			this.entregas.get(entregaPedido.getPedido().getCodigo()).add(entregaPedido);
+		}
 	}
 	
 	public void generateRandomIndividual(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
@@ -78,6 +97,14 @@ public class Individual {
 		return fitness; 
 	}
 	
+	public List<EntregaPedido> getEntregas() {
+		return entregas;
+	}
+
+	public void setEntregas(List<EntregaPedido> entregas) {
+		this.entregas = entregas;
+	}
+
 	//Stev
 	public double getFitness(double wA, double wB, double wC) {
 		double fitness = wA*this.consumoTotalPetroleo + wB*(1-this.seEstanEntregandoATiempo) + wC*(1-this.seEstanEntregandoATiempo)*this.minutosAdicional;

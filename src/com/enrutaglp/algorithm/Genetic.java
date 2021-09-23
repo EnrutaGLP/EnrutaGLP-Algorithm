@@ -51,7 +51,9 @@ public class Genetic {
 	public Individual crossover(Individual ind1, Individual ind2) {
 		Individual childInd = new Individual(); 
 		
-		
+		for(int i=0;i<ind1.getEntregas().size();i++) {
+			
+		}
 		
 		//Hacer crossover
 		return childInd; 
