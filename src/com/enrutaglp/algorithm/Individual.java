@@ -77,20 +77,24 @@ public class Individual {
 	public double calcularFitness(double wA, double wB, double wC) {
 		double fitness = 0.0; 
 		
-		
-		for(int i=0;i<this.entregas.size();i++) {
-			//consumo total petroleo
-			EntregaPedido entregaPedido = this.entregas.get(i);
-			this.consumoTotalPetroleo += entregaPedido.getConsumoPetroleo();
-			
-			Duration duration = Duration.between(entregaPedido.getPedido().getFechaHoraLimite(), entregaPedido.getHoraEntregada());
-			
-			if(duration.toMinutes()>0) {
-				this.minutosAdicional += duration.toMinutes();
-				this.seEstanEntregandoATiempo = 0;
-			}
-			
+		for(List<EntregaPedido> entregasPedidos: this.entregas.values()) {
+			for(int i=0;i<entregasPedidos.size();i++) {
+				//consumo total petroleo
+				EntregaPedido entregaPedido = entregasPedidos.get(i);
+				this.consumoTotalPetroleo += entregaPedido.getConsumoPetroleo();
+				
+				Duration duration = Duration.between(entregaPedido.getPedido().getFechaHoraLimite(), entregaPedido.getHoraEntregada());
+				
+				if(duration.toMinutes()>0) {
+					this.minutosAdicional += duration.toMinutes();
+					this.seEstanEntregandoATiempo = 0;
+				}
+				
+			}	
 		}
+		
+		
+		
 		
 		fitness = wA*this.consumoTotalPetroleo + wB*(1-this.seEstanEntregandoATiempo) + wC*(1-this.seEstanEntregandoATiempo)*this.minutosAdicional;
 		
