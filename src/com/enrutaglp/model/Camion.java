@@ -51,10 +51,15 @@ public class Camion {
 			tiempo = distancia/(int)tipo.getVelocidadPromedio();
 			horaLlegada = horaSalida.plusHours(tiempo);
 			cantidadEntregada = (pedido.getCantidadGLP() > cargaActualGLP)? pedido.getCantidadGLP() : cargaActualGLP;
-			entregaPedido = new EntregaPedido(cantidadEntregada, horaLlegada, horaSalida, cantidadEntregada);
+			entregaPedido = new EntregaPedido(cantidadEntregada, horaLlegada, horaSalida, 
+					calcularConsumoPetroleo(distancia,tipo.getPesoCombinado()), this, pedido);
 			this.entregas.add(entregaPedido);
 		}
 		return entregaPedido;
+	}
+	
+	public double calcularConsumoPetroleo(int distancia,double peso) {
+		return distancia*peso/150;
 	}
 	
 	public String getCodigo() {
