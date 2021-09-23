@@ -1,8 +1,8 @@
-package com.enrutaglp.astarAlgorithm;
+package com.enrutaglp.algorithmstar;
 
 import java.util.ArrayList;
 
-public class Nodo implements Comparable<Nodo>{
+public class Nodo{
 	int x;
 	int y;
 	ArrayList<Nodo> neighborList;
@@ -151,10 +151,5 @@ public class Nodo implements Comparable<Nodo>{
 		}else {
 			return 1;
 		}
-	}
-	@Override
-	public int compareTo(Nodo o) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }
