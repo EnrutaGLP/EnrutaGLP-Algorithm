@@ -45,7 +45,7 @@ public class Population {
 	}
 	
 	//Stev
-	public Individual getBinaryTournament() {
+	public Individual getBinaryTournament(double wA, double wB, double wC) {
 		int place1, place2; 
 		while(true) {
 			place1 = ThreadLocalRandom.current().nextInt(0, size);
@@ -55,8 +55,10 @@ public class Population {
 		
 		Individual ind1 = individuals.get(place1); 
 		Individual ind2 = individuals.get(place2); 
-		//return the one with the highest fitness 
-		return ind1;
+		//return the one with the lowest fitness 
+		Individual ind3 = (ind1.calcularFitness(wA, wB, wC)>ind2.calcularFitness(wA, wB, wC) )? ind2 : ind1;
+		
+		return ind3;
 	}
 
 	public Individual getBest() {
