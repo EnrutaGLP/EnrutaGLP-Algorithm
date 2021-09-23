@@ -1,5 +1,9 @@
 package com.enrutaglp.model;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Camion {
 
 	private String codigo; 
@@ -10,7 +14,7 @@ public class Camion {
 	private double cargaActualPetroleo; 
 	private byte estado; 
 	private TipoCamion tipo;
-	
+	private List<EntregaPedido>entregas;
 	
 	
 	public Camion(String codigo, int ubicacionActualX,int ubicacionActualY, double cargaActualGLP, double cargaActualPetroleo) {
@@ -19,10 +23,18 @@ public class Camion {
 		this.ubicacionActualY = ubicacionActualY;
 		this.cargaActualGLP = cargaActualGLP;
 		this.cargaActualPetroleo = cargaActualPetroleo;
+		this.entregas = new ArrayList<EntregaPedido>();
 	}
 
-
-
+	public boolean verificarDisponibilidad(LocalDateTime dateTime, Pedido pedido) {
+		if(entregas.isEmpty()) {
+			return true;
+		}
+		
+		
+		return true;
+	}
+	
 	public String getCodigo() {
 		return codigo;
 	}

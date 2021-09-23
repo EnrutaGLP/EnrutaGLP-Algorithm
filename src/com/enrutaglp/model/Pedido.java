@@ -2,6 +2,8 @@ package com.enrutaglp.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pedido {
 	private String codigo; 
@@ -14,6 +16,7 @@ public class Pedido {
 	private LocalDateTime fechaHoraCompletado;
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 	private byte estado;
+	private List<EntregaPedido>entregas;
 	
 	public Pedido(String codigo, String cliente, double cantidadGLP, int ubicacionX, int ubicacionY, String fechaLimite, String horaLimite) {
 		this.codigo = codigo; 
@@ -22,6 +25,7 @@ public class Pedido {
 		this.ubicacionX = ubicacionX;
 		this.ubicacionY = ubicacionY;
 		this.fechaHoraLimite = LocalDateTime.parse(fechaLimite + " " + horaLimite,formatter);
+		this.entregas = new ArrayList<EntregaPedido>();
 	}
 
 	public String getCliente() {

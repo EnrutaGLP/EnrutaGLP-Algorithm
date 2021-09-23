@@ -1,14 +1,18 @@
 package com.enrutaglp.algorithm;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Vector;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
+import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.EntregaPedido;
 import com.enrutaglp.model.Pedido;
+import com.enrutaglp.utils.Utils;
 
 public class Individual {
 	
@@ -21,14 +25,25 @@ public class Individual {
 		
 	}
 	
-	public Individual(Map<String,Pedido>pedidos) {
-		this.generateRandomIndividual(pedidos);
+	public Individual(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
+		this.generateRandomIndividual(pedidos,flota);
 	}
 	
-	public void generateRandomIndividual(Map<String,Pedido>pedidos) {
+	public void generateRandomIndividual(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
 		List listaPedidos = pedidos.values().stream().collect(Collectors.toList());
+		List listaFlota = flota.values().stream().collect(Collectors.toList());
 		Collections.shuffle(listaPedidos,new Random());
+		
 		for(int i=0;i<pedidos.size();i++) {
+			
+			//Select a random Camion
+			int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
+			//Get a random localDateTime
+			LocalDateTime randomDateTime = Utils.getRandomDateTime(LocalDateTime.now(), 
+					((Pedido)listaPedidos.get(i)).getFechaHoraLimite()); 
+			
+			((Camion)listaFlota.get(randomCamionIndex)).verificarDisponibilidad(randomDateTime,
+					(Pedido)listaPedidos.get(i));;
 			
 		}
 	}
