@@ -26,7 +26,6 @@ public class Population {
 	public void generatePopulation(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
 		for(int i=0; i<mu;i++) {
 			Individual individual = new Individual(pedidos,flota);
-			
 		}
 	}
 

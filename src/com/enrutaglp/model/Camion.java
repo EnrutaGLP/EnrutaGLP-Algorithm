@@ -39,12 +39,20 @@ public class Camion {
 	
 	public boolean verificarDisponibilidad(LocalDateTime horaSalida, Pedido pedido) {
 		//Verificar 
+		int distancia, tiempo, horaLlegada;
+		double cantidadEntregada;
 		if(entregas.isEmpty()) {
-			
+			ubicacionActualX = 0; 
+			ubicacionActualY = 0;
+			distancia = Math.abs(pedido.getUbicacionX()-ubicacionActualX) + Math.abs(pedido.getUbicacionY()-ubicacionActualY);
+			tiempo = distancia/(int)tipo.getVelocidadPromedio();
+			horaLlegada = horaSalida.getYear()*1000000+horaSalida.getMonthValue()*10000+horaSalida.getDayOfMonth()*100+
+								horaSalida.getHour() + tiempo;
+			return true;
 		}
 		
 		
-		return true;
+		return false;
 	}
 	
 	public String getCodigo() {
