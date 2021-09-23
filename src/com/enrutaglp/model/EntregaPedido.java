@@ -10,6 +10,29 @@ public class EntregaPedido {
 	private Camion camion; 
 	private Pedido pedido; 
 	
+	
+	
+	public EntregaPedido(double cantidadEntregada, LocalDateTime horaEntregada, LocalDateTime horaSalida,
+			double consumoPetroleo, Camion camion, Pedido pedido) {
+		this.cantidadEntregada = cantidadEntregada;
+		this.horaEntregada = horaEntregada;
+		this.horaSalida = horaSalida;
+		this.consumoPetroleo = consumoPetroleo;
+		this.camion = camion;
+		this.pedido = pedido;
+	}
+	
+	
+	public EntregaPedido(double cantidadEntregada, LocalDateTime horaEntregada, LocalDateTime horaSalida,
+			double consumoPetroleo) {
+		this.cantidadEntregada = cantidadEntregada;
+		this.horaEntregada = horaEntregada;
+		this.horaSalida = horaSalida;
+		this.consumoPetroleo = consumoPetroleo;
+	}
+
+
+
 	public Camion getCamion() {
 		return this.camion;
 	}

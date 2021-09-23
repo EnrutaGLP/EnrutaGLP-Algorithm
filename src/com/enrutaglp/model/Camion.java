@@ -37,20 +37,29 @@ public class Camion {
 		this.tipo = tipo;
 	}
 	
-	public boolean verificarDisponibilidad(LocalDateTime horaSalida, Pedido pedido) {
+	public EntregaPedido addPedido(LocalDateTime horaSalida, Pedido pedido) {
 		//Verificar 
-		int distancia, tiempo, horaLlegada;
-		double cantidadEntregada;
+		int distancia, tiempo;
+		LocalDateTime horaLlegada;
+		double cantidadEntregada = 0.0;
+		EntregaPedido entregaPedido = null; 
 		if(entregas.isEmpty()) {
 			ubicacionActualX = 0; 
 			ubicacionActualY = 0;
+			cargaActualGLP	= tipo.getCapacidadGLP();
 			distancia = Math.abs(pedido.getUbicacionX()-ubicacionActualX) + Math.abs(pedido.getUbicacionY()-ubicacionActualY);
 			tiempo = distancia/(int)tipo.getVelocidadPromedio();
-			horaLlegada = horaSalida.getYear()*1000000+horaSalida.getMonthValue()*10000+horaSalida.getDayOfMonth()*100+
-								horaSalida.getHour() + tiempo;
-			return true;
+			horaLlegada = horaSalida.plusHours(tiempo);
+			cantidadEntregada = (pedido.getCantidadGLP() > cargaActualGLP)? pedido.getCantidadGLP() : cargaActualGLP;
+			entregaPedido = new EntregaPedido(cantidadEntregada, horaLlegada, horaSalida, 
+					calcularConsumoPetroleo(distancia,tipo.getPesoCombinado()), this, pedido);
+			this.entregas.add(entregaPedido);
 		}
-		return false;
+		return entregaPedido;
+	}
+	
+	public double calcularConsumoPetroleo(int distancia,double peso) {
+		return distancia*peso/150;
 	}
 	
 	public String getCodigo() {
