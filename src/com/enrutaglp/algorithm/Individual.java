@@ -1,6 +1,7 @@
 package com.enrutaglp.algorithm;
 
 import java.time.LocalDateTime;
+import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ public class Individual {
 	
 	private List<EntregaPedido>entregas;
 	private double consumoTotalPetroleo = 0; //suma de consumo de todas las entregas
-	private byte seEstanEntregandoATiempo; //1 si todos se entregan a tiempo, 0 si no 
+	private byte seEstanEntregandoATiempo = 1; //1 si todos se entregan a tiempo, 0 si no 
 	private int minutosAdicional = 0;  //suma de minutos en los que no se entregan a tiempo los pedido
 	
 	public Individual() {
@@ -54,28 +55,34 @@ public class Individual {
 	}
 	
 	//Stev
-	public double calcularFitness() {
+	public double calcularFitness(double wA, double wB, double wC) {
 		double fitness = 0.0; 
 		
 		
 		for(int i=0;i<this.entregas.size();i++) {
 			//consumo total petroleo
-			consumoTotalPetroleo += this.entregas.get(i).getConsumoPetroleo();
+			EntregaPedido entregaPedido = this.entregas.get(i);
+			this.consumoTotalPetroleo += entregaPedido.getConsumoPetroleo();
 			
+			Duration duration = Duration.between(entregaPedido.getPedido().getFechaHoraLimite(), entregaPedido.getHoraEntregada());
 			
-			
+			if(duration.toMinutes()>0) {
+				this.minutosAdicional += duration.toMinutes();
+				this.seEstanEntregandoATiempo = 0;
+			}
 			
 		}
 		
-		//se estan entregando a tiempo?
-		
+		fitness = wA*this.consumoTotalPetroleo + wB*(1-this.seEstanEntregandoATiempo) + wC*(1-this.seEstanEntregandoATiempo)*this.minutosAdicional;
 		
 		return fitness; 
 	}
 	
 	//Stev
-	public double getFitness() {
-		double fitness = 0.0; 
-		return fitness; 
+	public double getFitness(double wA, double wB, double wC) {
+		double fitness = wA*this.consumoTotalPetroleo + wB*(1-this.seEstanEntregandoATiempo) + wC*(1-this.seEstanEntregandoATiempo)*this.minutosAdicional;
+		
+		return fitness;  
+		
 	}
 }
