@@ -20,7 +20,6 @@ import com.enrutaglp.utils.Utils;
 public class Individual {
 	
 	private Map<String, List<EntregaPedido>> entregas;
-	//private List<EntregaPedido>entregas;
 	private double consumoTotalPetroleo = 0; //suma de consumo de todas las entregas
 	private byte seEstanEntregandoATiempo = 1; //1 si todos se entregan a tiempo, 0 si no 
 	private int minutosAdicional = 0;  //suma de minutos en los que no se entregan a tiempo los pedido
@@ -35,6 +34,39 @@ public class Individual {
 		this.generateRandomIndividual(pedidos,flota);
 	}
 	
+	
+	public Map<String, List<EntregaPedido>> getEntregas() {
+		return entregas;
+	}
+
+	public void setEntregas(Map<String, List<EntregaPedido>> entregas) {
+		this.entregas = entregas;
+	}
+
+	public double getConsumoTotalPetroleo() {
+		return consumoTotalPetroleo;
+	}
+
+	public void setConsumoTotalPetroleo(double consumoTotalPetroleo) {
+		this.consumoTotalPetroleo = consumoTotalPetroleo;
+	}
+
+	public byte getSeEstanEntregandoATiempo() {
+		return seEstanEntregandoATiempo;
+	}
+
+	public void setSeEstanEntregandoATiempo(byte seEstanEntregandoATiempo) {
+		this.seEstanEntregandoATiempo = seEstanEntregandoATiempo;
+	}
+
+	public int getMinutosAdicional() {
+		return minutosAdicional;
+	}
+
+	public void setMinutosAdicional(int minutosAdicional) {
+		this.minutosAdicional = minutosAdicional;
+	}
+
 	public void insertarEntregaPedido(EntregaPedido entregaPedido) {
 		
 		List<EntregaPedido> entregasPedidos = this.entregas.get(entregaPedido.getPedido().getCodigo());
@@ -97,13 +129,6 @@ public class Individual {
 		return fitness; 
 	}
 	
-	public List<EntregaPedido> getEntregas() {
-		return entregas;
-	}
-
-	public void setEntregas(List<EntregaPedido> entregas) {
-		this.entregas = entregas;
-	}
 
 	//Stev
 	public double getFitness(double wA, double wB, double wC) {
@@ -112,4 +137,6 @@ public class Individual {
 		return fitness;  
 		
 	}
+	
+	
 }

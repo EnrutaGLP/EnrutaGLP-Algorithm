@@ -50,8 +50,6 @@ public class Camion {
 								horaSalida.getHour() + tiempo;
 			return true;
 		}
-		
-		
 		return false;
 	}
 	
