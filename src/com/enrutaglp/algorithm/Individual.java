@@ -86,16 +86,18 @@ public class Individual {
 		List listaFlota = flota.values().stream().collect(Collectors.toList());
 		Collections.shuffle(listaPedidos,new Random());
 		
-		for(int i=0;i<pedidos.size();i++) {
-			
-			//Select a random Camion
-			int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
-			//Get a random localDateTime
-			LocalDateTime randomDateTime = Utils.getRandomDateTime(LocalDateTime.now(), 
-					((Pedido)listaPedidos.get(i)).getFechaHoraLimite()); 
-			
-			((Camion)listaFlota.get(randomCamionIndex)).verificarDisponibilidad(randomDateTime,
-					(Pedido)listaPedidos.get(i));;
+		for(int i=0;listaPedidos.size()!=0;i++) {
+			EntregaPedido entregaPedido;
+			do {
+				//Select a random Camion
+				int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
+				//Get a random localDateTime
+				LocalDateTime randomDateTime = Utils.getRandomDateTime(LocalDateTime.now(), 
+						((Pedido)listaPedidos.get(i)).getFechaHoraLimite()); 
+				entregaPedido = ((Camion)listaFlota.get(randomCamionIndex)).addPedido(randomDateTime,
+						(Pedido)listaPedidos.get(i));
+				
+			}while(entregaPedido==null);
 			
 		}
 	}
