@@ -82,21 +82,23 @@ public class Individual {
 	}
 	
 	public void generateRandomIndividual(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
-		List listaPedidos = pedidos.values().stream().collect(Collectors.toList());
-		List listaFlota = flota.values().stream().collect(Collectors.toList());
+		List<Pedido> listaPedidos = pedidos.values().stream().collect(Collectors.toList());
+		List<Camion> listaFlota = flota.values().stream().collect(Collectors.toList());
 		Collections.shuffle(listaPedidos,new Random());
 		
-		for(int i=0;i<pedidos.size();i++) {
-			
-			//Select a random Camion
-			int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
-			//Get a random localDateTime
-			LocalDateTime randomDateTime = Utils.getRandomDateTime(LocalDateTime.now(), 
-					((Pedido)listaPedidos.get(i)).getFechaHoraLimite()); 
-			
-			((Camion)listaFlota.get(randomCamionIndex)).verificarDisponibilidad(randomDateTime,
-					(Pedido)listaPedidos.get(i));;
-			
+		for(int i=0;listaPedidos.size()!=0;i++) {
+			Pedido pedido = listaPedidos.get(i);
+			EntregaPedido entregaPedido;
+			do {
+				//Select a random Camion
+				int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
+				//Get a random localDateTime
+				LocalDateTime randomDateTime = Utils.getRandomDateTime(LocalDateTime.now(), 
+						pedido.getFechaHoraLimite()); 
+				entregaPedido = (listaFlota.get(randomCamionIndex)).addPedido(randomDateTime,
+						pedido);
+			}while(entregaPedido==null);
+			insertarEntregaPedido(entregaPedido);
 		}
 	}
 	
