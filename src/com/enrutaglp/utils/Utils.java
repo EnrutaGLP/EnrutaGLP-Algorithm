@@ -62,7 +62,7 @@ public class Utils {
 				String codigo = generarCodigoCamion(tipos.get(i).getTara(),j+1); 
 				flota.put(codigo,new Camion(codigo,
 						plantaPrincipalX,plantaPrincipalY,tipos.get(i).getCapacidadGLP(),
-						tipos.get(i).getCapacidadTanque()));
+						tipos.get(i).getCapacidadTanque(),tipos.get(i)));
 			}
 		}
 		return flota;

@@ -3,6 +3,7 @@ package com.enrutaglp.algorithm;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
@@ -48,8 +49,8 @@ public class Population {
 	public Individual getBinaryTournament() {
 		int place1, place2; 
 		while(true) {
-			place1 = (int)(Math.random()*size);
-			place2 = (int)(Math.random()*size);
+			place1 = ThreadLocalRandom.current().nextInt(0, size);
+			place2 = ThreadLocalRandom.current().nextInt(0, size);
 			if(place1!=place2)break; 
 		}
 		
