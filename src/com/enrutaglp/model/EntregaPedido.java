@@ -46,4 +46,7 @@ public class EntregaPedido {
 	public void setHoraSalida(LocalDateTime horaSalida) {
 		this.horaSalida = horaSalida;
 	}
+	public void recalcularVariables() {
+		
+	}
 }
