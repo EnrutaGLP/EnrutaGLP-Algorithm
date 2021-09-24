@@ -1,6 +1,7 @@
 package com.enrutaglp.model;
 
 public class Planta {
+	
 	private int ubicacionX;
 	private int ubicacionY;
 	private double capacidadPetroleo;

@@ -1,13 +1,13 @@
 package com.enrutaglp.enums;
 
-public enum EstadoCamion {
-	INICIAL((byte) 1) , 
-	EN_PROCESO ((byte) 2), 
-	COMPLETADO ((byte) 3);
+public enum TipoBloqueo {
+	HORIZONTAL((byte) 1) , 
+	VERTICAL ((byte) 2), 
+	EN_L ((byte) 3);
 
 	private byte value; 
 	
-	private EstadoCamion(byte value) {
+	private TipoBloqueo(byte value) {
 		this.value = value;
 	}
 	
@@ -15,5 +15,4 @@ public enum EstadoCamion {
 	private byte getValue() {
 		return this.value; 
 	}
-	
 }

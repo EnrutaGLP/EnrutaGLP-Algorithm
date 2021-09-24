@@ -7,7 +7,8 @@ public class Mapa {
 	private int dimY;
 	private List<Bloqueo> bloqueos;
 	private List<Planta> plantas;
-	
+	private List<Pedido> pedidos; 
+	private List<TipoCamion> tiposCamiones;
 	
 	public Mapa(int dimX, int dimY) {
 		this.dimX = dimX; 

@@ -11,6 +11,7 @@ public enum EstadoPedido {
 		this.value = value;
 	}
 	
+	@SuppressWarnings("unused")
 	private byte getValue() {
 		return this.value; 
 	}
