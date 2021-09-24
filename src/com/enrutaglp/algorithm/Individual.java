@@ -103,8 +103,25 @@ public class Individual {
 	}
 	
 	//Los 2
-	public void mutate() {
+	public void mutate(Map<String,Camion>flota) {
+		List<Camion> listaFlota = flota.values().stream().collect(Collectors.toList());
 		
+		for(String key: this.entregas.keySet()) {
+			List<EntregaPedido> entregasPedido = this.entregas.get(key);
+			Camion nuevoCamion;
+			while(true) {
+				int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
+				nuevoCamion = listaFlota.get(randomCamionIndex);
+				if(entregasPedido.get(0).getCamion().getCodigo()!= nuevoCamion.getCodigo()) {
+					break;
+				}
+			}
+			for(int i=0;i<entregasPedido.size();i++) {
+
+				EntregaPedido nuevaEntregaPedido = nuevoCamion.addPedido(entregasPedido.get(0).getHoraSalida(), entregasPedido.get(i).getPedido());
+				
+			}
+		}
 	}
 	
 	//Stev
