@@ -118,8 +118,8 @@ public class Individual {
 			}
 			for(int i=0;i<entregasPedido.size();i++) {
 
-				entregasPedido.get(i).setCamion(nuevoCamion);
-				entregasPedido.get(i).recalcularVariables();
+				EntregaPedido nuevaEntregaPedido = nuevoCamion.addPedido(entregasPedido.get(0).getHoraSalida(), entregasPedido.get(i).getPedido());
+				
 			}
 		}
 	}
