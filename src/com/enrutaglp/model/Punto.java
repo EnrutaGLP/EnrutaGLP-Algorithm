@@ -3,10 +3,11 @@ package com.enrutaglp.model;
 public class Punto {
 	private int ubicacionX;
 	private int ubicacionY;
-
-	public Punto(int ubicacionX, int ubicacionY) {
+	private int orden; 
+	public Punto(int ubicacionX, int ubicacionY, int orden) {
 		this.ubicacionX = ubicacionX;
 		this.ubicacionY = ubicacionY;
+		this.orden = orden;
 	}
 
 	public int getUbicacionX() {
