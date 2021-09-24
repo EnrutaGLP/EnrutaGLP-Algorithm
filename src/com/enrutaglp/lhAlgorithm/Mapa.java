@@ -1,4 +1,4 @@
-package com.enrutaglp.algorithmstar;
+package com.enrutaglp.astarAlgorithm;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,31 @@ public class Mapa{
 		this.anchoMapa=ancho;
 		this.alturaMapa=alto;
 		this.mapaObstaculos=new int[ancho+1][alto+1];
-		//this.mapaObstaculos=obstaculoMapa
+		this.mapaObstaculos[20][0]=1;
+		this.mapaObstaculos[20][1]=1;
+		this.mapaObstaculos[20][11]=1;
+		this.mapaObstaculos[20][12]=1;
+		this.mapaObstaculos[20][13]=1;
+		this.mapaObstaculos[20][14]=1;
+		this.mapaObstaculos[20][15]=1;
+		this.mapaObstaculos[20][16]=1;
+		this.mapaObstaculos[20][17]=1;
+		this.mapaObstaculos[20][18]=1;
+		this.mapaObstaculos[20][19]=1;
+		this.mapaObstaculos[20][20]=1;
+		this.mapaObstaculos[20][21]=1;
+		this.mapaObstaculos[20][22]=1;
+		this.mapaObstaculos[20][23]=1;
+		this.mapaObstaculos[20][24]=1;
+		this.mapaObstaculos[20][25]=1;
+		this.mapaObstaculos[20][26]=1;
+		this.mapaObstaculos[20][27]=1;
+		this.mapaObstaculos[20][28]=1;
+		this.mapaObstaculos[20][29]=1;
+		this.mapaObstaculos[20][30]=1;
+		this.mapaObstaculos[20][31]=1;
+		this.mapaObstaculos[20][32]=1;
+		this.mapaObstaculos[20][33]=1;
 		crearMapa();
 		bordeMapa();
 	}
@@ -37,7 +61,7 @@ public class Mapa{
 	}
 	private void bordeMapa() {
 		for(int x=0;x<anchoMapa;x++) {
-			for(int y=0;x<alturaMapa;x++) {
+			for(int y=0;y<alturaMapa;y++) {
 				Nodo node=mapa.get(x).get(y);
 				if(!(y==0)) {
 					node.setNorte(mapa.get(x).get(y-1));
@@ -109,13 +133,16 @@ public class Mapa{
 	public int getAlturaMapa() {
 		return alturaMapa;
 	}
-	public void clear(/*int [][]obstaculoMapa*/) {
+	public int[][] getMapaObstaculos(){
+		return mapaObstaculos;
+	}
+	public void clear(int [][]obstaculoMapa) {
 		posIniX=0;
 		posIniY=0;
 		posFinX=0;
 		posFinY=0;
 		crearMapa();
 		bordeMapa();
-		//this.mapaObstaculos=obstaculoMapa
+		this.mapaObstaculos=obstaculoMapa;
 	}
 }

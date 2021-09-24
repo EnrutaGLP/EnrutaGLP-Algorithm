@@ -1,4 +1,4 @@
-package com.enrutaglp.algorithmstar;
+package com.enrutaglp.astarAlgorithm;
 
 import java.util.ArrayList;
 
