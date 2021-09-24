@@ -17,8 +17,10 @@ public class Main {
 		int posEstacionPrincipalX=0;
 		int posEstacionPrincipalY=0;
 		Astar astar = new Astar(70,50,pedidos,flota);
-		astar.calcularCaminoMasCorto(4,23,27,28);
-		//astar.resolverPedidos();
+		//astar.calcularCaminoMasCorto(5,5,20,41);
+		astar.resolverPedidos();
+		//astar.pintarCamino();
+		//astar.calcularCaminoMasCorto(15,15,20,49);
 		astar.pintarCamino();
 	}
 }

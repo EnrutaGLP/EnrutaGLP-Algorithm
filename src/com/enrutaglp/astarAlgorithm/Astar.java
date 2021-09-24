@@ -2,6 +2,7 @@ package com.enrutaglp.astarAlgorithm;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Iterator;
 import java.util.Collections;
 
 import com.enrutaglp.model.Camion;
@@ -29,21 +30,73 @@ public class Astar {
 		
 		int lenPedidos=this.pedidos.size();
 		int tamCamino=0;
-		//Map<String,Camion>camionesEnMovimiento;
-		for(int i=0;i<lenPedidos;i++) {
-			caminoMasCorto=new Camino();
-			tamCamino=calcularCaminoMasCorto(0,0,this.pedidos.get(i).getUbicacionX(),this.pedidos.get(i).getUbicacionY());
+		ArrayList<Nodo> camionesEnMovimiento;
+		camionesEnMovimiento=new ArrayList<Nodo>();
+		Iterator<Map.Entry<String,Pedido>> entries = pedidos.entrySet().iterator();
+		int lenCamMov=0;
+		float heuristica=Float.MAX_VALUE;
+		float heuristica2=0;
+		float heuristicaDesdeIni=0;
+		Nodo camionMasCerca=new Nodo(0,0);
+		int tamCam=0;
+		int j=-1;
+		boolean usoCamionMov=false;
+		while(entries.hasNext()) {
+			Map.Entry<String,Pedido> entry=entries.next();
+			/*lenCamMov=camionesEnMovimiento.size();
+			if(lenCamMov>0) {
+				heuristicaDesdeIni=calcularHeuristica(0,0,entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
+				for(int i=0;i<lenCamMov;i++) {//camion más cercano
+					heuristica2=calcularHeuristica(camionesEnMovimiento.get(i).getX(), camionesEnMovimiento.get(i).getY(), entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
+					if(heuristica2<heuristica) {
+						heuristica=heuristica2;
+						camionMasCerca=camionesEnMovimiento.get(i);
+						j=i;
+					}
+				}
+				if(heuristica<heuristicaDesdeIni) {//si el camión en mov está más cerca que uno en la planta principal					
+					Camino cam=calcularCaminoMasCorto(camionMasCerca.getX(),camionMasCerca.getY(),
+							entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
+					camionesEnMovimiento.get(j).setX(entry.getValue().getUbicacionX());
+					camionesEnMovimiento.get(j).setY(entry.getValue().getUbicacionY());
+					usoCamionMov=true;
+					tamCam=cam.getTamano();
+					System.out.println();
+					System.out.print(tamCam);
+					System.out.println();
+					pintarCamino();
+				}
+			}
+			if(!usoCamionMov) {
+				Camino cam=calcularCaminoMasCorto(0,0,entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
+				Nodo camionSalio=new Nodo(entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
+				camionesEnMovimiento.add(camionSalio);
+				tamCam=cam.getTamano();
+				System.out.println();
+				System.out.print(tamCam);
+				System.out.println();
+				pintarCamino();
+			}*/
+			Camino cam=calcularCaminoMasCorto(0,0,entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
+			Nodo camionSalio=new Nodo(entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
+			camionesEnMovimiento.add(camionSalio);
+			tamCam=cam.getTamano();
+			System.out.println();
+			System.out.print(tamCam);
+			System.out.println();
 			pintarCamino();
+			usoCamionMov=false;
+			
 		}
 	}
-	public int calcularCaminoMasCorto(int posIniX, int posIniY, int posFinX, int posFinY/*, int[][]mapaObstaculo*/) {
+	public Camino calcularCaminoMasCorto(int posIniX, int posIniY, int posFinX, int posFinY/*, int[][]mapaObstaculo*/) {
 		mapa.setPosicionInicial(posIniX, posIniY);
 		mapa.setPosicionMeta(posFinX, posFinY);
 		
 		listaCerrada=new ArrayList<Nodo>();
 		listaAbierta=new ListaNodosOrdenadas();
 		if(mapa.getNodo(posFinX,posFinY).getEsObstaculo()) {
-			return 0;
+			return null;
 		}
 		mapa.getNodoInicial().setDistanciaDesdePrincipio(0);
 		listaCerrada.clear();
@@ -53,7 +106,7 @@ public class Astar {
 		while(listaAbierta.tamano()!=0) {
 			Nodo actual=listaAbierta.getPrimero();
 			if(actual.getX()==mapa.getPosFinX() && actual.getY()==mapa.getPosFinY()) {
-				return reconstruirCamino(actual).getTamano();
+				return reconstruirCamino(actual);
 			}
 			listaAbierta.remover(actual);
 			listaCerrada.add(actual);
@@ -80,7 +133,7 @@ public class Astar {
 				}
 			}
 		}
-		return -1;
+		return caminoMasCorto;
 	}
 	public void pintarCamino() {
 		Nodo nodo;

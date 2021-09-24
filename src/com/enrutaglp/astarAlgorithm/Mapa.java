@@ -16,6 +16,8 @@ public class Mapa{
 		this.anchoMapa=ancho;
 		this.alturaMapa=alto;
 		this.mapaObstaculos=new int[ancho+1][alto+1];
+		this.mapaObstaculos[20][0]=1;
+		this.mapaObstaculos[20][1]=1;
 		this.mapaObstaculos[20][11]=1;
 		this.mapaObstaculos[20][12]=1;
 		this.mapaObstaculos[20][13]=1;
@@ -130,6 +132,9 @@ public class Mapa{
 	}
 	public int getAlturaMapa() {
 		return alturaMapa;
+	}
+	public int[][] getMapaObstaculos(){
+		return mapaObstaculos;
 	}
 	public void clear(int [][]obstaculoMapa) {
 		posIniX=0;
