@@ -50,5 +50,7 @@ int main(int argc, char *argv[]){
     for(int i=0;i<numPedidos;i++){
         generarPedido(arch);
     }
+    
+
     fclose(arch);
 }
