@@ -37,7 +37,7 @@ public class Genetic {
 				//Parent selection and crossover 
 				childInd = crossover(population.getBinaryTournament(wA, wB, wC),population.getBinaryTournament(wA, wB, wC));
 				//Apply mutation
-				childInd.mutate();
+				//childInd.mutate();
 				//Evaluate new individual
 				boolean isNewBest = population.addIndividual(childInd);
 				genNewBest = (isNewBest)? isNewBest:genNewBest;
