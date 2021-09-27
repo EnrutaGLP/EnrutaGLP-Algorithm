@@ -135,6 +135,9 @@ public class Astar {
 		}
 		return caminoMasCorto;
 	}
+	public void resetearMapa() {
+		this.mapa.clear(null);
+	}
 	public void pintarCamino() {
 		Nodo nodo;
 		for(int x=0;x<mapa.getAnchoMapa();x++) {

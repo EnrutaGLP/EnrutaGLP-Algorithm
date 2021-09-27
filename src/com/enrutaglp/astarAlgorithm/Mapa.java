@@ -122,7 +122,11 @@ public class Mapa{
 	}
 	public float distanciaEntreNodos(Nodo nod1, Nodo nod2) {
 		if(nod1.getX()==nod2.getX() || nod1.getY()==nod2.getY()) {
-			return 1*(alturaMapa+anchoMapa);//en duda
+			if(nod1.getX()==nod2.getX()) {
+				return (float) Math.abs(nod2.getX()-nod1.getX()); 
+			}else {
+				return (float) Math.abs(nod2.getY()-nod1.getY());
+			}
 		}else {
 			return (float)1.7*(alturaMapa+anchoMapa);//en duda
 		}
@@ -143,6 +147,6 @@ public class Mapa{
 		posFinY=0;
 		crearMapa();
 		bordeMapa();
-		this.mapaObstaculos=obstaculoMapa;
+		//this.mapaObstaculos=obstaculoMapa;
 	}
 }

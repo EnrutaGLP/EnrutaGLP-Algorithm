@@ -14,13 +14,13 @@ public class Main {
 		Map<String,Pedido>pedidos = Utils.leerPedidos();
 		List<TipoCamion>tiposCamiones = Utils.generarTiposCamiones();
 		Map<String,Camion>flota = Utils.generarFlota(tiposCamiones,0,0);
-		int posEstacionPrincipalX=0;
-		int posEstacionPrincipalY=0;
 		Astar astar = new Astar(70,50,pedidos,flota);
-		//astar.calcularCaminoMasCorto(5,5,20,41);
-		astar.resolverPedidos();
-		//astar.pintarCamino();
-		//astar.calcularCaminoMasCorto(15,15,20,49);
+		astar.calcularCaminoMasCorto(5,5,20,41);
+		//astar.resolverPedidos();
 		astar.pintarCamino();
+		astar.resetearMapa();
+		astar.calcularCaminoMasCorto(15,15,20,45);
+		astar.pintarCamino();
+		astar.resetearMapa();
 	}
 }
