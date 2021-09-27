@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
@@ -20,12 +19,15 @@ import com.enrutaglp.utils.Utils;
 public class Individual {
 	
 	private Map<String, List<EntregaPedido>> entregas;
+	private Map<String,Map<String,Integer>> chromosome;
+	private List<Camion>camiones;
 	private double consumoTotalPetroleo = 0; //suma de consumo de todas las entregas
 	private byte seEstanEntregandoATiempo = 1; //1 si todos se entregan a tiempo, 0 si no 
 	private int minutosAdicional = 0;  //suma de minutos en los que no se entregan a tiempo los pedido
 	
 	public Individual() {
 		this.entregas = new HashMap<String, List<EntregaPedido>>();
+		this.chromosome = new HashMap<String, Map<String,Integer>>();
 	}
 	
 	public Individual(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
@@ -103,25 +105,8 @@ public class Individual {
 	}
 	
 	//Los 2
-	public void mutate(Map<String,Camion>flota) {
-		List<Camion> listaFlota = flota.values().stream().collect(Collectors.toList());
-		
-		for(String key: this.entregas.keySet()) {
-			List<EntregaPedido> entregasPedido = this.entregas.get(key);
-			Camion nuevoCamion;
-			while(true) {
-				int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
-				nuevoCamion = listaFlota.get(randomCamionIndex);
-				if(entregasPedido.get(0).getCamion().getCodigo()!= nuevoCamion.getCodigo()) {
-					break;
-				}
-			}
-			for(int i=0;i<entregasPedido.size();i++) {
-
-				EntregaPedido nuevaEntregaPedido = nuevoCamion.addPedido(entregasPedido.get(0).getHoraSalida(), entregasPedido.get(i).getPedido());
-				
-			}
-		}
+	public Individual mutate() {
+		return this;
 	}
 	
 	//Stev
