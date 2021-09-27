@@ -11,7 +11,6 @@ public class EntregaPedido {
 	private double consumoPetroleo;
 	private Camion camion;
 	private Pedido pedido;
-	private List<Punto> puntos;
 
 	public EntregaPedido(double cantidadEntregada, LocalDateTime horaEntregada, LocalDateTime horaSalida,
 			double consumoPetroleo, Camion camion, Pedido pedido) {
@@ -21,7 +20,6 @@ public class EntregaPedido {
 		this.consumoPetroleo = consumoPetroleo;
 		this.camion = camion;
 		this.pedido = pedido;
-		this.puntos = new ArrayList<Punto>();
 	}
 
 	public EntregaPedido(double cantidadEntregada, LocalDateTime horaEntregada, LocalDateTime horaSalida,
@@ -30,7 +28,6 @@ public class EntregaPedido {
 		this.horaEntregada = horaEntregada;
 		this.horaSalida = horaSalida;
 		this.consumoPetroleo = consumoPetroleo;
-		this.puntos = new ArrayList<Punto>();
 	}
 
 	public Camion getCamion() {
