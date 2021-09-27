@@ -15,7 +15,7 @@ public class Camion {
 	private byte estado; 
 	private TipoCamion tipo;
 	private List<EntregaPedido>entregas;
-	
+	private List<Punto>ruta;
 	
 	public Camion(String codigo, int ubicacionActualX,int ubicacionActualY, double cargaActualGLP, double cargaActualPetroleo) {
 		this.codigo = codigo;
@@ -24,6 +24,7 @@ public class Camion {
 		this.cargaActualGLP = cargaActualGLP;
 		this.cargaActualPetroleo = cargaActualPetroleo;
 		this.entregas = new ArrayList<EntregaPedido>();
+		this.ruta = new ArrayList<Punto>();
 	}
 
 	public Camion(String codigo, int ubicacionActualX,int ubicacionActualY, double cargaActualGLP, double cargaActualPetroleo,
@@ -34,6 +35,7 @@ public class Camion {
 		this.cargaActualGLP = cargaActualGLP;
 		this.cargaActualPetroleo = cargaActualPetroleo;
 		this.entregas = new ArrayList<EntregaPedido>();
+		this.ruta = new ArrayList<Punto>();
 		this.tipo = tipo;
 	}
 	
