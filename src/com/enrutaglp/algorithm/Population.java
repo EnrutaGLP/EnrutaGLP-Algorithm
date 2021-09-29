@@ -1,5 +1,6 @@
 package com.enrutaglp.algorithm;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -22,19 +23,19 @@ public class Population {
 		generatePopulation(pedidos,flota);
 	}
 	
-	//Diego
 	public void generatePopulation(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
+		this.individuals = new ArrayList<Individual>();
 		for(int i=0; i<mu;i++) {
 			Individual individual = new Individual(pedidos,flota);
+			individuals.add(individual);
 		}
+		this.size = mu;
 	}
 
-	//Diego
 	public void applySurvivorSelection() {
 		
 	}
 	
-	//Diego
 	public boolean addIndividual(Individual individual) {
 		individuals.add(individual);
 		size++;
@@ -44,7 +45,6 @@ public class Population {
 		return false; 
 	}
 	
-	//Stev
 	public Individual getBinaryTournament(double wA, double wB, double wC) {
 		int place1, place2; 
 		while(true) {
@@ -57,7 +57,6 @@ public class Population {
 		Individual ind2 = individuals.get(place2); 
 		//return the one with the lowest fitness 
 		Individual ind3 = (ind1.calcularFitness(wA, wB, wC)>ind2.calcularFitness(wA, wB, wC) )? ind2 : ind1;
-		
 		return ind3;
 	}
 

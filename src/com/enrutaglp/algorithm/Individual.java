@@ -32,7 +32,7 @@ public class Individual {
 	
 	public Individual(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
 		this.entregas = new HashMap<String, List<EntregaPedido>>();
-		
+		this.chromosome = new HashMap<String, Map<String,Integer>>();
 		this.generateRandomIndividual(pedidos,flota);
 	}
 	
@@ -69,6 +69,23 @@ public class Individual {
 		this.minutosAdicional = minutosAdicional;
 	}
 
+	
+	public Map<String, Map<String, Integer>> getChromosome() {
+		return chromosome;
+	}
+
+	public void setChromosome(Map<String, Map<String, Integer>> chromosome) {
+		this.chromosome = chromosome;
+	}
+
+	public List<Camion> getCamiones() {
+		return camiones;
+	}
+
+	public void setCamiones(List<Camion> camiones) {
+		this.camiones = camiones;
+	}
+
 	public void insertarEntregaPedido(EntregaPedido entregaPedido) {
 		
 		List<EntregaPedido> entregasPedidos = this.entregas.get(entregaPedido.getPedido().getCodigo());
@@ -86,30 +103,25 @@ public class Individual {
 	public void generateRandomIndividual(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
 		List<Pedido> listaPedidos = pedidos.values().stream().collect(Collectors.toList());
 		List<Camion> listaFlota = flota.values().stream().collect(Collectors.toList());
-		Collections.shuffle(listaPedidos,new Random());
 		
-		for(int i=0;listaPedidos.size()!=0;i++) {
-			Pedido pedido = listaPedidos.get(i);
-			EntregaPedido entregaPedido;
-			do {
-				//Select a random Camion
-				int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
-				//Get a random localDateTime
-				LocalDateTime randomDateTime = Utils.getRandomDateTime(LocalDateTime.now(), 
-						pedido.getFechaHoraLimite()); 
-				entregaPedido = (listaFlota.get(randomCamionIndex)).addPedido(randomDateTime,
-						pedido);
-			}while(entregaPedido==null);
-			insertarEntregaPedido(entregaPedido);
+		for(int i=0;i<listaPedidos.size();i++) {
+			String key = listaPedidos.get(i).getCodigo();
+			int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
+			Map<String,Integer> value = new HashMap<String, Integer>();
+			value.put(listaFlota.get(randomCamionIndex).getCodigo(), 0);
+			chromosome.put(key, value);
 		}
 	}
 	
-	//Los 2
-	public Individual mutate() {
-		return this;
+	public void addGene(String key, Map<String,Integer> value) {
+		chromosome.put(key, value);
 	}
 	
-	//Stev
+	public int getSize() {
+		return chromosome.keySet().size();
+	}
+	
+	
 	public double calcularFitness(double wA, double wB, double wC) {
 		double fitness = 0.0; 
 		
@@ -138,7 +150,6 @@ public class Individual {
 	}
 	
 
-	//Stev
 	public double getFitness(double wA, double wB, double wC) {
 		double fitness = wA*this.consumoTotalPetroleo + wB*(1-this.seEstanEntregandoATiempo) + wC*(1-this.seEstanEntregandoATiempo)*this.minutosAdicional;
 		
