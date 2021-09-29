@@ -54,13 +54,14 @@ public class Camion {
 			horaLlegada = horaSalida.plusHours(tiempo);
 			cantidadEntregada = (pedido.getCantidadGLP() > cargaActualGLP)? pedido.getCantidadGLP() : cargaActualGLP;
 			entregaPedido = new EntregaPedido(cantidadEntregada, horaLlegada, horaSalida, 
-					calcularConsumoPetroleo(distancia,tipo.getPesoCombinado()), this, pedido);
+					calcularConsumoPetroleo(distancia));
 			this.entregas.add(entregaPedido);
 		}
 		return entregaPedido;
 	}
 	
-	public double calcularConsumoPetroleo(int distancia,double peso) {
+	public double calcularConsumoPetroleo(double distancia) {
+		double peso = this.tipo.getPesoBruto() + this.cargaActualGLP*0.5;
 		return distancia*peso/150;
 	}
 	
