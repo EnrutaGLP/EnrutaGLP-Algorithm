@@ -6,10 +6,20 @@ public class Punto {
 	private int orden; 
 	private boolean planta;
 	
+	
+	
 	public int getOrden() {
 		return orden;
 	}
 
+	public Punto clone() {
+		Punto p = new Punto(); 
+		p.ubicacionX = this.ubicacionX; 
+		p.ubicacionY = this.ubicacionY; 
+		p.orden = this.orden; 
+		p.planta = this.planta; 
+		return p; 
+	}
 	public void setOrden(int orden) {
 		this.orden = orden;
 	}
@@ -22,6 +32,10 @@ public class Punto {
 		this.planta = planta;
 	}
 
+	public Punto() {
+		
+	}
+	
 	public Punto(int ubicacionX, int ubicacionY, int orden) {
 		this.ubicacionX = ubicacionX;
 		this.ubicacionY = ubicacionY;

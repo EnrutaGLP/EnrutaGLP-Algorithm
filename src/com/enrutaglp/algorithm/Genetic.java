@@ -1,5 +1,7 @@
 package com.enrutaglp.algorithm;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
@@ -27,10 +29,19 @@ public class Genetic {
 	}
 	
 	public void run(int maxIterNoImp, int numChildrenToGenerate, double wA, double wB, double wC) {
+		FileWriter fileWriter = null; 
+		PrintWriter printWriter = null;
+		try {
+			fileWriter = new FileWriter("reporteSolucion.txt");
+		    printWriter = new PrintWriter(fileWriter);
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 		int nbIterNoImp = 1; 
 		double percentGenesToMutate = 0.3;
 		Individual childInd1,childInd2; 
+		//Initialize population
 		population = new Population(10,20,pedidos,flota,wA,wB,wC);
 		boolean genNewBest; 
 		for(int nbIter = 0; nbIterNoImp <= maxIterNoImp; nbIter++) {
@@ -41,17 +52,16 @@ public class Genetic {
 				//Apply mutation
 				childInd2 = mutate(childInd1,percentGenesToMutate);
 				//Evaluate new individuals
-				childInd1.calcularFitness(wA, wB, wC);
-				childInd2.calcularFitness(wA, wB, wC);
+				childInd1.calcularFitness(wA, wB, wC,flota);
+				childInd2.calcularFitness(wA, wB, wC,flota);
 				boolean isNewBest = population.addIndividual(childInd1) || population.addIndividual(childInd2);
 				genNewBest = (isNewBest)? isNewBest:genNewBest;
 			}
-			Utils.printSolution(nbIter, population.getBest());
-			
+			Utils.printSolution(nbIter, population.getBest(),printWriter);
 			if(genNewBest) nbIterNoImp = 1; 
 			else nbIterNoImp++; 
 		}
-		
+	    printWriter.close();
 	}
 	
 	public Individual crossover(Individual ind1, Individual ind2) {
@@ -61,9 +71,9 @@ public class Genetic {
 			String codigo = listaPedidos.get(i).getCodigo();
 			int choice = ThreadLocalRandom.current().nextInt(0, 2);
 			if(choice==0) {
-				childInd.addGene(codigo,ind1.getChromosome().get(codigo));
+				childInd.addGene(codigo,ind1.getChromosome().get(codigo),listaPedidos.get(i));
 			} else if(choice == 1) {
-				childInd.addGene(codigo,ind2.getChromosome().get(codigo));
+				childInd.addGene(codigo,ind2.getChromosome().get(codigo),listaPedidos.get(i));
 			}
 		}
 		
@@ -75,7 +85,7 @@ public class Genetic {
 		
 		for(int i=0;i<listaPedidos.size();i++) {
 			String codigo = listaPedidos.get(i).getCodigo();
-			mutatedInd.addGene(codigo, individual.getChromosome().get(codigo));
+			mutatedInd.addGene(codigo, individual.getChromosome().get(codigo),listaPedidos.get(i));
 		}
 		int numGenesToChange = (int)(listaPedidos.size()*percentGenesToMutate);
 		for(int i=0;i<numGenesToChange;i++) {
@@ -83,9 +93,7 @@ public class Genetic {
 					.getCodigo();
 			String pedido2 = listaPedidos.get(ThreadLocalRandom.current().nextInt(0, listaPedidos.size()))
 					.getCodigo();
-			Map<String,Integer> valueAux = mutatedInd.getChromosome().get(pedido1);
-			mutatedInd.getChromosome().replace(pedido1, mutatedInd.getChromosome().get(pedido2));
-			mutatedInd.getChromosome().replace(pedido2,valueAux);
+			mutatedInd.swap(pedido1,pedido2);
 		}
 		return mutatedInd;
 	}

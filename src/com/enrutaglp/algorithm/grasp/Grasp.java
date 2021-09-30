@@ -2,9 +2,11 @@ package com.enrutaglp.algorithm.grasp;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
@@ -29,7 +31,7 @@ public class Grasp {
 		this.fechaActual = fechaActual;
 		this.horaActual = horaActual;
 		this.numCandidatos = this.pedidos.size();
-		this.k = (int) (0.45*this.numCandidatos);
+		this.k = (int) Math.ceil(0.45*this.numCandidatos);
 		this.wa = wa;
 		this.wb = wb;
 		this.wc = wc;
@@ -39,7 +41,7 @@ public class Grasp {
 		
 		Ruta ruta = new Ruta(this.camion, fechaActual, horaActual);
 		
-		Map<String, Pedido> pedidosSolucion = pedidos;
+		Map<String, Pedido> pedidosSolucion = generarCopia(pedidos);
 		
 		while(true) {
 			
@@ -105,7 +107,11 @@ public class Grasp {
 		}	
 	}
 		
-	
+	public Map<String,Pedido> generarCopia(Map <String,Pedido> mapa){
+		Map<String,Pedido> copia = new HashMap<String, Pedido>(); 
+		copia.putAll(mapa);
+		return copia;
+	}
 	
 	public List<Ruta> generarCandidatos(Ruta ruta, Map<String, Pedido> pedidosCand){
 		
@@ -116,8 +122,8 @@ public class Grasp {
 			Ruta rutaGenerada = new Ruta(ruta.getCamion(), this.fechaActual, this.horaActual);
 			
 			rutaGenerada.copiarRuta(ruta);
-			
-			Map<String, Pedido> pedidosSolucion = pedidosCand;
+
+			Map<String, Pedido> pedidosSolucion = generarCopia(pedidosCand);
 			int j = 0;
 			for(String key: pedidosSolucion.keySet()) {
 				boolean esFactible = rutaGenerada.esFactible(pedidosSolucion.get(key));
@@ -125,7 +131,7 @@ public class Grasp {
 				if(esFactible) {
 					rutaGenerada.insertarPedido(pedidosSolucion.get(key));
 					pedidosCand.remove(key);
-					
+					j++;
 					break;
 				}
 				else {
@@ -150,9 +156,12 @@ public class Grasp {
 		Collections.sort(rutasCandidatos); 
 		
 		int longitud = rutasCandidatos.size()>this.k? this.k : rutasCandidatos.size(); 
-		
-		
-		int random = ThreadLocalRandom.current().nextInt(0, longitud);
+		int random = 0;
+		try {
+			random = ThreadLocalRandom.current().nextInt(0, longitud);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 		Ruta rutaElegida = rutasCandidatos.get(random);
 		
@@ -160,12 +169,12 @@ public class Grasp {
 	}
 	
 
-	public void run(int maxIterNoImp) {
+	public Ruta run(int maxIterNoImp) {
 		
 		double mejorCosto = 1000000000;
 		
 		int nbIterNoImp = 1; 
-		
+		Ruta mejorRuta = null; 
 		while(nbIterNoImp<=maxIterNoImp) {
 			Ruta rutaSolucion = this.construirSolucion();
 			//rutaSolucion = this.busquedaLocal(rutaSolucion);
@@ -173,12 +182,13 @@ public class Grasp {
 			
 			if(costoSolucion<mejorCosto) {
 				mejorCosto = costoSolucion;
+				mejorRuta = rutaSolucion; 
 			}
 			else {
 				nbIterNoImp ++;
 			}
 		}
-		
+		return mejorRuta;
 	}
 	
 

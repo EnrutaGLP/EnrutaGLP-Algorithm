@@ -16,6 +16,7 @@ public class Population {
 	private int size;
 	private int mu; 
 	private int epsilon; 
+	private Map<String,Camion>flota;
 	private double wA; 
 	private double wB; 
 	private double wC; 
@@ -27,10 +28,12 @@ public class Population {
 		this.wA = wA; 
 		this.wB = wB; 
 		this.wC = wC;
-		generatePopulation(pedidos,flota);
+		this.best = null;
+		this.flota = flota;
+		generatePopulation(pedidos);
 	}
 	
-	public void generatePopulation(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
+	public void generatePopulation(Map<String,Pedido>pedidos) {
 		this.individuals = new ArrayList<Individual>();
 		for(int i=0; i<mu;i++) {
 			Individual individual = new Individual(pedidos,flota);
@@ -49,7 +52,7 @@ public class Population {
 		if(size>(mu+epsilon)) {
 			applySurvivorSelection();
 		}
-		if(best.getFitness(wA, wB, wC) < individual.getFitness(wA, wB, wC)) {
+		if(best == null || best.getFitness() < individual.getFitness()) {
 			best = individual;
 			return true; 
 		}
@@ -67,7 +70,7 @@ public class Population {
 		Individual ind1 = individuals.get(place1); 
 		Individual ind2 = individuals.get(place2); 
 		//return the one with the lowest fitness 
-		Individual ind3 = (ind1.calcularFitness(wA, wB, wC)>ind2.calcularFitness(wA, wB, wC) )? ind2 : ind1;
+		Individual ind3 = (ind1.calcularFitness(wA, wB, wC,flota)>ind2.calcularFitness(wA, wB, wC,flota) )? ind2 : ind1;
 		return ind3;
 	}
 
