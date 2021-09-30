@@ -1,7 +1,6 @@
 package com.enrutaglp.algorithm.grasp;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -161,20 +160,22 @@ public class Grasp {
 	}
 	
 
-	public void run() {
+	public void run(int maxIterNoImp) {
 		
 		double mejorCosto = 1000000000;
 		
-		while(true) {
+		int nbIterNoImp = 1; 
+		
+		while(nbIterNoImp<=maxIterNoImp) {
 			Ruta rutaSolucion = this.construirSolucion();
 			//rutaSolucion = this.busquedaLocal(rutaSolucion);
-			double costoSolucion = rutaSolucion.getCostoRuta();
+			double costoSolucion = rutaSolucion.calcularCostoRuta(this.pedidos, this.wa, this.wb, this.wc);
 			
 			if(costoSolucion<mejorCosto) {
 				mejorCosto = costoSolucion;
 			}
 			else {
-				break;
+				nbIterNoImp ++;
 			}
 		}
 		

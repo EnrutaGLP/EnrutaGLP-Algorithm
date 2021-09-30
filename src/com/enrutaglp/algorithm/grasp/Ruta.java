@@ -41,7 +41,7 @@ public class Ruta implements Comparable<Ruta> {
 		this.costoRuta = costoRuta;
 	}
 
-	public void calcularCostoRuta(Map<String, Pedido> pedidosOriginales,double wa, double wb, double wc) {
+	public double calcularCostoRuta(Map<String, Pedido> pedidosOriginales,double wa, double wb, double wc) {
 		
 		double consumoPetroleo = 0;
 		for (int i = 1; i < this.nodos.size(); i++) {
@@ -60,7 +60,7 @@ public class Ruta implements Comparable<Ruta> {
 		}
 		
 		this.costoRuta = wa*consumoPetroleo + wb*noEntregaATiempo + wc*tiempoAdicional;
-		
+		return this.costoRuta;
 	}
 	
 	public Camion getCamion() {
@@ -102,25 +102,6 @@ public class Ruta implements Comparable<Ruta> {
 
 	public void setPedidos(Map<String, Pedido> pedidos) {
 		this.pedidos = pedidos;
-		/*
-		for (int i = 0; i < this.pedidos.size(); i++) {
-			Punto punto = new Punto(this.pedidos.get(i).getUbicacionX(),
-									this.pedidos.get(i).getUbicacionY(), i);
-			
-			this.nodos.add(punto);
-			
-			if(punto.isPlanta()) {
-				this.camion.setCargaActualGLP(this.camion.getTipo().getCapacidadGLP());
-				this.camion.setCargaActualPetroleo(this.camion.getTipo().getCapacidadTanque());
-			}
-			else {
-				this.camion.setCargaActualGLP(this.camion.getCargaActualGLP() - this.pedidos.get(i).getCantidadGLP());	
-				double distanciaPuntos = this.calcularDistanciaPuntos(this.nodos.get(i-1),this.nodos.get(i));				
-				this.camion.setCargaActualPetroleo(this.camion.getCargaActualPetroleo()-this.camion.calcularConsumoPetroleo(distanciaPuntos));
-			}
-			
-		}
-		*/
 	}
 
 
@@ -177,7 +158,7 @@ public class Ruta implements Comparable<Ruta> {
 		
 		LocalDateTime fechaHoraEntrega = this.fechaHoraTranscurrida.plusHours(tiempo);
 		
-		if((this.camion.getCargaActualGLP()>=pedido.getCantidadGLP()) & (this.camion.getCargaActualPetroleo()>=consumoPetroleo) & (fechaHoraEntrega.isAfter(pedido.getFechaHoraLimite()))) {
+		if((this.camion.getCargaActualGLP()>=pedido.getCantidadGLP()) & (this.camion.getCargaActualPetroleo()>=consumoPetroleo) & (fechaHoraEntrega.isBefore(pedido.getFechaHoraLimite()))) {
 			return true;
 		}
 		
