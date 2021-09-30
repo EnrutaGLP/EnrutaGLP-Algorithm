@@ -18,6 +18,7 @@ public class Astar {
 	ArrayList<Nodo> listaCerrada;
 	ListaNodosOrdenadas listaAbierta;
 	LocalDateTime fechaIniSimulacion;
+	CamionesImportantes camionesImportantes;
 		
 	public Astar(int mapX, int mapY, Map<String,Pedido>pedidos, Map<String,Camion>flota) {
 		this.mapa= new Mapa(mapX,mapY);
@@ -26,12 +27,14 @@ public class Astar {
 		listaCerrada=new ArrayList<Nodo>();
 		listaAbierta=new ListaNodosOrdenadas();
 		caminoMasCorto= new Camino();
+		camionesImportantes=new CamionesImportantes();
 	}
 	public Astar(int mapX, int mapY) {
 		this.mapa= new Mapa(mapX,mapY);
 		listaCerrada=new ArrayList<Nodo>();
 		listaAbierta=new ListaNodosOrdenadas();
 		caminoMasCorto= new Camino();
+		camionesImportantes=new CamionesImportantes();
 	}
 	public Astar(int mapX, int mapY, Map<String,Pedido>pedidos, Map<String,Camion>flota, LocalDateTime fechaYHoraIni) {
 		this.mapa= new Mapa(mapX,mapY);
@@ -40,39 +43,43 @@ public class Astar {
 		listaCerrada=new ArrayList<Nodo>();
 		listaAbierta=new ListaNodosOrdenadas();
 		caminoMasCorto= new Camino();
+		camionesImportantes=new CamionesImportantes();
 		fechaIniSimulacion=fechaYHoraIni;
 	}
-	public Camion hallarCamionMasLento() {
+	public CamionesImportantes hallarCamionesImportantes() {
 		double velocidadMinima=9999999;
+		double capacidadMaxima=-1;
 		Iterator<Map.Entry<String,Camion>> entries = flota.entrySet().iterator();
-		Camion camionMasLento=null;
+		Camion camionLento=null;
+		Camion camionCapacidad=null;
 		while(entries.hasNext()) {
 			Map.Entry<String,Camion> entry=entries.next();
 			if(entry.getValue().getTipo().getVelocidadPromedio()<velocidadMinima) {
 				velocidadMinima=entry.getValue().getTipo().getVelocidadPromedio();
-				camionMasLento=entry.getValue();
+				camionLento=entry.getValue();
+			}
+			if(entry.getValue().getTipo().getCapacidadGLP()>capacidadMaxima) {
+				capacidadMaxima=entry.getValue().getTipo().getCapacidadGLP();
+				camionCapacidad=entry.getValue();
 			}
 		}
-		return camionMasLento;
+		CamionesImportantes camImp=new CamionesImportantes();
+		camImp.setCamionConMasCapacidad(camionCapacidad);
+		camImp.setCamionMasLento(camionLento);
+		return camImp;
+	}
+	public void validarPedidos() {//si un pedido supera la capacidad del camion máximo se debe separar en 2
+		
 	}
 	public void resolverPedidos() {
-		Camion camionMasLento=hallarCamionMasLento();
-		float velocidadMasBaja=(float)camionMasLento.getTipo().getVelocidadPromedio();
-		if(camionMasLento==null) {
+		camionesImportantes=hallarCamionesImportantes();
+		float velocidadMasBaja=(float)camionesImportantes.getCamionMasLento().getTipo().getVelocidadPromedio();
+		if(camionesImportantes.getCamionMasLento()==null) {
 			return;
 		}
-		int lenPedidos=this.pedidos.size();
+		validarPedidos();
+		
 		int tamCamino=0;
-		ArrayList<Nodo> camionesEnMovimiento;
-		camionesEnMovimiento=new ArrayList<Nodo>();
-		int lenCamMov=0;
-		double heuristica=Float.MAX_VALUE;
-		double heuristica2=0;
-		double heuristicaDesdeIni=0;
-		Nodo camionMasCerca=new Nodo(0,0);
-		int tamCam=0;
-		int j=-1;
-		boolean usoCamionMov=false;
 		float horasParaLlegar=0;
 		int horasInt=0;
 		float horasDecimal=0;
@@ -101,14 +108,23 @@ public class Astar {
 			pedidosPreEnrutados.add(pedidoPreEnruta);
 			
 			System.out.println();
-			System.out.print(tamCam);
+			System.out.print(tamCamino);
 			System.out.println();
 			pintarCamino();
 			resetearMapa();
-			usoCamionMov=false;
-			
 		}
 		Collections.sort(pedidosPreEnrutados);
+		
+		//ArrayList<Nodo> camionesEnMovimiento;
+		//camionesEnMovimiento=new ArrayList<Nodo>();
+		double heuristica=Float.MAX_VALUE;
+		double heuristica2=0;
+		double heuristicaDesdeIni=0;
+		Nodo camionMasCerca=new Nodo(0,0);
+		boolean usoCamionMov=false;
+		for(PedidoPreEnrutado pedidoEnru:pedidosPreEnrutados) {
+			
+		}
 	}
 	public Camino calcularCaminoMasCorto(int posIniX, int posIniY, int posFinX, int posFinY/*, int[][]mapaObstaculo*/) {
 		mapa.setPosicionInicial(posIniX, posIniY);
@@ -206,6 +222,27 @@ public class Astar {
 		float difX=finX-iniX;
 		float difY=finY-iniY;
 		return (float)Math.sqrt((difX*difX)+(difY*difY));
+	}
+	static class CamionesImportantes{
+		Camion camionMasLento;
+		Camion camionConMasCapacidad;
+		
+		public CamionesImportantes() {
+			camionMasLento=null;
+			camionConMasCapacidad=null;
+		}
+		public void setCamionMasLento(Camion camion) {
+			camionMasLento=camion;
+		}
+		public Camion getCamionMasLento() {
+			return camionMasLento;
+		}
+		public void setCamionConMasCapacidad(Camion camion) {
+			camionConMasCapacidad=camion;
+		}
+		public Camion getCamionConMasCapacidad() {
+			return camionConMasCapacidad;
+		}
 	}
 	static class PedidoPreEnrutado implements Comparable<PedidoPreEnrutado>{
 		private Pedido pedido;
