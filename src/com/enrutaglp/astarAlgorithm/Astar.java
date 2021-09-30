@@ -1,6 +1,7 @@
 package com.enrutaglp.astarAlgorithm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Iterator;
 import java.util.Collections;
@@ -26,68 +27,88 @@ public class Astar {
 		listaAbierta=new ListaNodosOrdenadas();
 		caminoMasCorto= new Camino();
 	}
+	public Astar(int mapX, int mapY) {
+		this.mapa= new Mapa(mapX,mapY);
+		listaCerrada=new ArrayList<Nodo>();
+		listaAbierta=new ListaNodosOrdenadas();
+		caminoMasCorto= new Camino();
+	}
+	public Astar(int mapX, int mapY, Map<String,Pedido>pedidos, Map<String,Camion>flota, LocalDateTime fechaYHoraIni) {
+		this.mapa= new Mapa(mapX,mapY);
+		this.pedidos = pedidos; 
+		this.flota = flota;
+		listaCerrada=new ArrayList<Nodo>();
+		listaAbierta=new ListaNodosOrdenadas();
+		caminoMasCorto= new Camino();
+		fechaIniSimulacion=fechaYHoraIni;
+	}
+	public Camion hallarCamionMasLento() {
+		double velocidadMinima=9999999;
+		Iterator<Map.Entry<String,Camion>> entries = flota.entrySet().iterator();
+		Camion camionMasLento=null;
+		while(entries.hasNext()) {
+			Map.Entry<String,Camion> entry=entries.next();
+			if(entry.getValue().getTipo().getVelocidadPromedio()<velocidadMinima) {
+				velocidadMinima=entry.getValue().getTipo().getVelocidadPromedio();
+				camionMasLento=entry.getValue();
+			}
+		}
+		return camionMasLento;
+	}
 	public void resolverPedidos() {
-		
+		Camion camionMasLento=hallarCamionMasLento();
+		float velocidadMasBaja=(float)camionMasLento.getTipo().getVelocidadPromedio();
+		if(camionMasLento==null) {
+			return;
+		}
 		int lenPedidos=this.pedidos.size();
 		int tamCamino=0;
 		ArrayList<Nodo> camionesEnMovimiento;
 		camionesEnMovimiento=new ArrayList<Nodo>();
-		Iterator<Map.Entry<String,Pedido>> entries = pedidos.entrySet().iterator();
 		int lenCamMov=0;
-		float heuristica=Float.MAX_VALUE;
-		float heuristica2=0;
-		float heuristicaDesdeIni=0;
+		double heuristica=Float.MAX_VALUE;
+		double heuristica2=0;
+		double heuristicaDesdeIni=0;
 		Nodo camionMasCerca=new Nodo(0,0);
 		int tamCam=0;
 		int j=-1;
 		boolean usoCamionMov=false;
+		float horasParaLlegar=0;
+		int horasInt=0;
+		float horasDecimal=0;
+		int minInt=0;
+		LocalDateTime horaMaximaEntrega;
+		
+		Iterator<Map.Entry<String,Pedido>> entries = pedidos.entrySet().iterator();
+		ArrayList<PedidoPreEnrutado> pedidosPreEnrutados=new ArrayList<PedidoPreEnrutado>();
 		while(entries.hasNext()) {
 			Map.Entry<String,Pedido> entry=entries.next();
-			/*lenCamMov=camionesEnMovimiento.size();
-			if(lenCamMov>0) {
-				heuristicaDesdeIni=calcularHeuristica(0,0,entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
-				for(int i=0;i<lenCamMov;i++) {//camion más cercano
-					heuristica2=calcularHeuristica(camionesEnMovimiento.get(i).getX(), camionesEnMovimiento.get(i).getY(), entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
-					if(heuristica2<heuristica) {
-						heuristica=heuristica2;
-						camionMasCerca=camionesEnMovimiento.get(i);
-						j=i;
-					}
-				}
-				if(heuristica<heuristicaDesdeIni) {//si el camión en mov está más cerca que uno en la planta principal					
-					Camino cam=calcularCaminoMasCorto(camionMasCerca.getX(),camionMasCerca.getY(),
-							entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
-					camionesEnMovimiento.get(j).setX(entry.getValue().getUbicacionX());
-					camionesEnMovimiento.get(j).setY(entry.getValue().getUbicacionY());
-					usoCamionMov=true;
-					tamCam=cam.getTamano();
-					System.out.println();
-					System.out.print(tamCam);
-					System.out.println();
-					pintarCamino();
-				}
-			}
-			if(!usoCamionMov) {
-				Camino cam=calcularCaminoMasCorto(0,0,entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
-				Nodo camionSalio=new Nodo(entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
-				camionesEnMovimiento.add(camionSalio);
-				tamCam=cam.getTamano();
-				System.out.println();
-				System.out.print(tamCam);
-				System.out.println();
-				pintarCamino();
-			}*/
-			Camino cam=calcularCaminoMasCorto(0,0,entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
-			Nodo camionSalio=new Nodo(entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
-			camionesEnMovimiento.add(camionSalio);
-			tamCam=cam.getTamano();
+			Camino camino=calcularCaminoMasCorto(0,0,entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
+			//Nodo camionSalio=new Nodo(entry.getValue().getUbicacionX(),entry.getValue().getUbicacionY());
+			//camionesEnMovimiento.add(camionSalio);
+			
+			PedidoPreEnrutado pedidoPreEnruta=new PedidoPreEnrutado(entry.getValue(), camino);
+			tamCamino=camino.getTamano();
+			horasParaLlegar=tamCamino/velocidadMasBaja;
+			horasInt=Math.round(horasParaLlegar);
+			horasDecimal=horasParaLlegar-horasInt;
+			minInt=(int)Math.ceil(horasDecimal*60);
+			
+			horaMaximaEntrega=entry.getValue().getFechaHoraLimite().minusHours(horasInt);
+			horaMaximaEntrega=horaMaximaEntrega.minusMinutes(minInt);
+			pedidoPreEnruta.setFechaMaximaEntrega(horaMaximaEntrega);
+			
+			pedidosPreEnrutados.add(pedidoPreEnruta);
+			
 			System.out.println();
 			System.out.print(tamCam);
 			System.out.println();
 			pintarCamino();
+			resetearMapa();
 			usoCamionMov=false;
 			
 		}
+		Collections.sort(pedidosPreEnrutados);
 	}
 	public Camino calcularCaminoMasCorto(int posIniX, int posIniY, int posFinX, int posFinY/*, int[][]mapaObstaculo*/) {
 		mapa.setPosicionInicial(posIniX, posIniY);
@@ -185,6 +206,45 @@ public class Astar {
 		float difX=finX-iniX;
 		float difY=finY-iniY;
 		return (float)Math.sqrt((difX*difX)+(difY*difY));
+	}
+	static class PedidoPreEnrutado implements Comparable<PedidoPreEnrutado>{
+		private Pedido pedido;
+		LocalDateTime fechaMaximaEntrega;
+		Camino camino;
+		
+		public PedidoPreEnrutado(Pedido ped, Camino cam){
+			pedido=ped;
+			camino=cam;
+		}
+		
+		public void setCamino(Camino cam) {
+			camino=cam;
+		}
+		public Camino getCamino() {
+			return camino;
+		}
+		public void setPedido(Pedido ped) {
+			pedido=ped;
+		}
+		public Pedido getPedido() {
+			return pedido;
+		}
+		public void setFechaMaximaEntrega(LocalDateTime fecha) {
+			fechaMaximaEntrega=fecha;
+		}
+		public LocalDateTime getFechaMaximaEntrega() {
+			return fechaMaximaEntrega;
+		}
+		@Override
+		public int compareTo(PedidoPreEnrutado ped) {
+			if(fechaMaximaEntrega.isBefore(ped.getFechaMaximaEntrega())) {
+				return -1;
+			}
+			if(fechaMaximaEntrega.isEqual(ped.getFechaMaximaEntrega())) {
+				return 0;
+			}
+			return 1;
+		}
 	}
 	private class ListaNodosOrdenadas {
 		private ArrayList<Nodo> lista = new ArrayList<Nodo>();
