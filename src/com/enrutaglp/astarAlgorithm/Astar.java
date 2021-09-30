@@ -8,6 +8,7 @@ import java.util.Collections;
 
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
+import com.enrutaglp.model.Planta;
 import java.time.LocalDateTime;
 
 public class Astar { 
@@ -19,7 +20,8 @@ public class Astar {
 	ListaNodosOrdenadas listaAbierta;
 	LocalDateTime fechaIniSimulacion;
 	CamionesImportantes camionesImportantes;
-		
+	Planta plantaPrincipal;
+	
 	public Astar(int mapX, int mapY, Map<String,Pedido>pedidos, Map<String,Camion>flota) {
 		this.mapa= new Mapa(mapX,mapY);
 		this.pedidos = pedidos; 
@@ -36,7 +38,7 @@ public class Astar {
 		caminoMasCorto= new Camino();
 		camionesImportantes=new CamionesImportantes();
 	}
-	public Astar(int mapX, int mapY, Map<String,Pedido>pedidos, Map<String,Camion>flota, LocalDateTime fechaYHoraIni) {
+	public Astar(int mapX, int mapY, Map<String,Pedido>pedidos, Map<String,Camion>flota, LocalDateTime fechaYHoraIni, Planta planta) {
 		this.mapa= new Mapa(mapX,mapY);
 		this.pedidos = pedidos; 
 		this.flota = flota;
@@ -45,6 +47,7 @@ public class Astar {
 		caminoMasCorto= new Camino();
 		camionesImportantes=new CamionesImportantes();
 		fechaIniSimulacion=fechaYHoraIni;
+		plantaPrincipal=planta;
 	}
 	public CamionesImportantes hallarCamionesImportantes() {
 		double velocidadMinima=9999999;
@@ -69,6 +72,9 @@ public class Astar {
 		return camImp;
 	}
 	public void validarPedidos() {//si un pedido supera la capacidad del camion máximo se debe separar en 2
+		
+	}
+	public void ordenarCamionesPorCapacidadGLP() {
 		
 	}
 	public void resolverPedidos() {
@@ -117,14 +123,28 @@ public class Astar {
 		
 		//ArrayList<Nodo> camionesEnMovimiento;
 		//camionesEnMovimiento=new ArrayList<Nodo>();
+		ArrayList<String> hashCamionesMovimiento=new ArrayList<String>();
 		double heuristica=Float.MAX_VALUE;
 		double heuristica2=0;
 		double heuristicaDesdeIni=0;
 		Nodo camionMasCerca=new Nodo(0,0);
 		boolean usoCamionMov=false;
-		for(PedidoPreEnrutado pedidoEnru:pedidosPreEnrutados) {
+		String hashCamion;
+		for(PedidoPreEnrutado pedidoEnrutado:pedidosPreEnrutados) {			
+			if(hashCamionesMovimiento.size()>0) {
+				
+			}else {
+				
+			}
+		}
+	}
+	public String obtenerCamionBestFit(double cargaGLP) {//suponiendo que ya está ordenado ascendentemente
+		Iterator<Map.Entry<String,Camion>> entries = flota.entrySet().iterator();
+		while(entries.hasNext()) {
+			Map.Entry<String,Camion> entry=entries.next();
 			
 		}
+		return "a";
 	}
 	public Camino calcularCaminoMasCorto(int posIniX, int posIniY, int posFinX, int posFinY/*, int[][]mapaObstaculo*/) {
 		mapa.setPosicionInicial(posIniX, posIniY);
