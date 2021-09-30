@@ -1,21 +1,37 @@
 package com.enrutaglp.algorithm.grasp;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
 import com.enrutaglp.model.Punto;
 
 public class Ruta implements Comparable<Ruta> {
-	private List<Pedido> pedidos;
+	private Map<String, Pedido> pedidos;
 	private List<Punto> nodos;
 	private Camion camion;
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 	private LocalDateTime fechaHoraTranscurrida; //inicializar con la fechahoraactual
 	private double costoRuta;
+	
+	
+	public Ruta(Camion camion, String fechaActual, String horaActual) {
+		this.pedidos = new HashMap<String, Pedido>();
+		this.nodos = new ArrayList<Punto>();
+		this.costoRuta = 0;
+		Punto planta = new Punto(0, 0, 0);
+		this.nodos.add(planta);
+		
+		this.camion = camion;
+		this.fechaHoraTranscurrida = LocalDateTime.parse(fechaActual + " " + horaActual,formatter);
+	}
+	
 	
 	public double getCostoRuta() {
 		return costoRuta;
@@ -25,6 +41,28 @@ public class Ruta implements Comparable<Ruta> {
 		this.costoRuta = costoRuta;
 	}
 
+	public void calcularCostoRuta(Map<String, Pedido> pedidosOriginales,double wa, double wb, double wc) {
+		
+		double consumoPetroleo = 0;
+		for (int i = 1; i < this.nodos.size(); i++) {
+			double distanciaPuntos = this.calcularDistanciaPuntos(this.nodos.get(i),this.nodos.get(i-1));
+			consumoPetroleo += this.camion.calcularConsumoPetroleo(distanciaPuntos);
+		}
+		
+		double noEntregaATiempo = 0;
+		double tiempoAdicional = 0;
+		for(String key: pedidosOriginales.keySet()) {
+			if(!pedidos.containsKey(key)) {
+				noEntregaATiempo += 1;
+				double duracion = Duration.between(this.fechaHoraTranscurrida, pedidosOriginales.get(key).getFechaHoraLimite() ).toHours();
+				tiempoAdicional += duracion;
+			}
+		}
+		
+		this.costoRuta = wa*consumoPetroleo + wb*noEntregaATiempo + wc*tiempoAdicional;
+		
+	}
+	
 	public Camion getCamion() {
 		return camion;
 	}
@@ -56,22 +94,13 @@ public class Ruta implements Comparable<Ruta> {
 		this.nodos = nodos;
 	}
 
-	public Ruta(Camion camion, String fechaActual, String horaActual) {
-		this.pedidos = new ArrayList<Pedido>();
-		this.nodos = new ArrayList<Punto>();
-		this.costoRuta = 0;
-		Punto planta = new Punto(0, 0, 0);
-		this.nodos.add(planta);
-		
-		this.camion = camion;
-		this.fechaHoraTranscurrida = LocalDateTime.parse(fechaActual + " " + horaActual,formatter);
-	}
+
 	
-	public List<Pedido> getPedidos() {
+	public Map<String, Pedido> getPedidos() {
 		return pedidos;
 	}
 
-	public void setPedidos(List<Pedido> pedidos) {
+	public void setPedidos(Map<String, Pedido> pedidos) {
 		this.pedidos = pedidos;
 		/*
 		for (int i = 0; i < this.pedidos.size(); i++) {
@@ -97,7 +126,7 @@ public class Ruta implements Comparable<Ruta> {
 
 	
 	public void insertarPedido(Pedido pedido) {
-		pedidos.add(pedido);
+		pedidos.put(pedido.getCodigo(), pedido);
 		Punto punto = new Punto(pedido.getUbicacionX(),
 							pedido.getUbicacionY(), this.nodos.size());
 		this.nodos.add(punto);
