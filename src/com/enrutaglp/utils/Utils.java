@@ -87,7 +87,6 @@ public class Utils {
 									decimalFormatter.format(randYear) + " " + decimalFormatter.format(randHour) + ":00",datetimeFormatter);
 	}
 	
-	//Diego
 	public static void printSolution(int nbIter,Individual best) {
 		
 	}

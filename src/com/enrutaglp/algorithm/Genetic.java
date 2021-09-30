@@ -31,7 +31,7 @@ public class Genetic {
 		int nbIterNoImp = 1; 
 		double percentGenesToMutate = 0.3;
 		Individual childInd1,childInd2; 
-		population = new Population(10,20,pedidos,flota);
+		population = new Population(10,20,pedidos,flota,wA,wB,wC);
 		boolean genNewBest; 
 		for(int nbIter = 0; nbIterNoImp <= maxIterNoImp; nbIter++) {
 			genNewBest = false;

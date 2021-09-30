@@ -16,10 +16,17 @@ public class Population {
 	private int size;
 	private int mu; 
 	private int epsilon; 
+	private double wA; 
+	private double wB; 
+	private double wC; 
 	
-	public Population(int mu, int epsilon, Map<String,Pedido>pedidos, Map<String,Camion>flota) {
+	public Population(int mu, int epsilon, Map<String,Pedido>pedidos, Map<String,Camion>flota,
+			double wA,double wB, double wC) {
 		this.mu = mu; 
 		this.epsilon = epsilon;
+		this.wA = wA; 
+		this.wB = wB; 
+		this.wC = wC;
 		generatePopulation(pedidos,flota);
 	}
 	
@@ -42,7 +49,11 @@ public class Population {
 		if(size>(mu+epsilon)) {
 			applySurvivorSelection();
 		}
-		return false; 
+		if(best.getFitness(wA, wB, wC) < individual.getFitness(wA, wB, wC)) {
+			best = individual;
+			return true; 
+		}
+		return false;
 	}
 	
 	public Individual getBinaryTournament(double wA, double wB, double wC) {
