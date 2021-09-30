@@ -12,6 +12,7 @@ public class Main {
 	
 	public static void main(String args[]) {
 		Map<String,Pedido>pedidos = Utils.leerPedidos();
+		pedidos = Utils.particionarPedidos(pedidos);
 		List<TipoCamion>tiposCamiones = Utils.generarTiposCamiones();
 		Map<String,Camion>flota = Utils.generarFlota(tiposCamiones,0,0);
 		Genetic genetic = new Genetic(70,50,pedidos,flota);

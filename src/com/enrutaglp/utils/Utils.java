@@ -19,6 +19,8 @@ import com.enrutaglp.model.TipoCamion;
 
 public class Utils {
 	
+	public static int maxCapacidadCamion = 25;
+	
 	public static Map<String,Pedido> leerPedidos() {
 		Map<String,Pedido> pedidos = new HashMap<String,Pedido>();
 		
@@ -40,6 +42,10 @@ public class Utils {
 		return pedidos;
 	}
 	
+	public static Map<String,Pedido> particionarPedidos(Map<String,Pedido>pedidos){
+		
+		return pedidos;
+	}
 	public static String generarCodigoCamion(String tara, int numUnidad) {
 		DecimalFormat formatter = new DecimalFormat("00");
 		return tara + formatter.format(numUnidad);
