@@ -16,6 +16,6 @@ public class Main {
 		List<TipoCamion>tiposCamiones = Utils.generarTiposCamiones();
 		Map<String,Camion>flota = Utils.generarFlota(tiposCamiones,0,0);
 		Genetic genetic = new Genetic(70,50,pedidos,flota);
-		//genetic.run(50,1);
+		genetic.run(50,1,30,30,30);
 	}
 }

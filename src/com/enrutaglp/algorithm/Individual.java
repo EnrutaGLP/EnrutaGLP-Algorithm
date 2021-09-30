@@ -11,32 +11,40 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
+import com.enrutaglp.algorithm.grasp.Grasp;
+import com.enrutaglp.algorithm.grasp.Ruta;
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.EntregaPedido;
 import com.enrutaglp.model.Pedido;
 import com.enrutaglp.utils.Utils;
 
 public class Individual {
-	
+
 	private Map<String, List<EntregaPedido>> entregas;
-	private Map<String,Map<String,Integer>> chromosome;
-	private List<Camion>camiones;
-	private double consumoTotalPetroleo = 0; //suma de consumo de todas las entregas
-	private byte seEstanEntregandoATiempo = 1; //1 si todos se entregan a tiempo, 0 si no 
-	private int minutosAdicional = 0;  //suma de minutos en los que no se entregan a tiempo los pedido
-	
+	private Map<String, Map<String, Integer>> chromosome;
+	private Map<String, Ruta> rutas;
+	private Map<String, Map<String, Pedido>> asignacionesCamiones;
+	private List<Camion> camiones;
+	private double consumoTotalPetroleo = 0; // suma de consumo de todas las entregas
+	private byte seEstanEntregandoATiempo = 1; // 1 si todos se entregan a tiempo, 0 si no
+	private int minutosAdicional = 0; // suma de minutos en los que no se entregan a tiempo los pedido
+	private double fitness;
+
 	public Individual() {
 		this.entregas = new HashMap<String, List<EntregaPedido>>();
-		this.chromosome = new HashMap<String, Map<String,Integer>>();
+		this.chromosome = new HashMap<String, Map<String, Integer>>();
+		this.asignacionesCamiones = new HashMap<String, Map<String, Pedido>>();
+		this.rutas = new HashMap<String, Ruta>();
 	}
-	
-	public Individual(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
+
+	public Individual(Map<String, Pedido> pedidos, Map<String, Camion> flota) {
 		this.entregas = new HashMap<String, List<EntregaPedido>>();
-		
-		this.generateRandomIndividual(pedidos,flota);
+		this.chromosome = new HashMap<String, Map<String, Integer>>();
+		this.asignacionesCamiones = new HashMap<String, Map<String, Pedido>>();
+		this.rutas = new HashMap<String, Ruta>();
+		this.generateRandomIndividual(pedidos, flota);
 	}
-	
-	
+
 	public Map<String, List<EntregaPedido>> getEntregas() {
 		return entregas;
 	}
@@ -69,82 +77,124 @@ public class Individual {
 		this.minutosAdicional = minutosAdicional;
 	}
 
+	public Map<String, Map<String, Integer>> getChromosome() {
+		return chromosome;
+	}
+
+	public void setChromosome(Map<String, Map<String, Integer>> chromosome) {
+		this.chromosome = chromosome;
+	}
+
+	public List<Camion> getCamiones() {
+		return camiones;
+	}
+
+	public void setCamiones(List<Camion> camiones) {
+		this.camiones = camiones;
+	}
+
+	public Map<String, Ruta> getRutas() {
+		return rutas;
+	}
+
+	public void setRutas(Map<String, Ruta> rutas) {
+		this.rutas = rutas;
+	}
+
+	public Map<String, Map<String, Pedido>> getAsignacionesCamiones() {
+		return asignacionesCamiones;
+	}
+
+	public void setAsignacionesCamiones(Map<String, Map<String, Pedido>> asignacionesCamiones) {
+		this.asignacionesCamiones = asignacionesCamiones;
+	}
+
+	public double getFitness() {
+		return fitness;
+	}
+
+	public void setFitness(double fitness) {
+		this.fitness = fitness;
+	}
+
 	public void insertarEntregaPedido(EntregaPedido entregaPedido) {
-		
+
 		List<EntregaPedido> entregasPedidos = this.entregas.get(entregaPedido.getPedido().getCodigo());
-		
-		if(entregasPedidos == null) {
+
+		if (entregasPedidos == null) {
 			entregasPedidos = new ArrayList<EntregaPedido>();
 			entregasPedidos.add(entregaPedido);
 			this.entregas.put(entregaPedido.getPedido().getCodigo(), entregasPedidos);
-		}
-		else {
+		} else {
 			this.entregas.get(entregaPedido.getPedido().getCodigo()).add(entregaPedido);
 		}
 	}
-	
-	public void generateRandomIndividual(Map<String,Pedido>pedidos, Map<String,Camion>flota) {
+
+	public void generateRandomIndividual(Map<String, Pedido> pedidos, Map<String, Camion> flota) {
 		List<Pedido> listaPedidos = pedidos.values().stream().collect(Collectors.toList());
 		List<Camion> listaFlota = flota.values().stream().collect(Collectors.toList());
-		Collections.shuffle(listaPedidos,new Random());
-		
-		for(int i=0;listaPedidos.size()!=0;i++) {
-			Pedido pedido = listaPedidos.get(i);
-			EntregaPedido entregaPedido;
-			do {
-				//Select a random Camion
-				int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
-				//Get a random localDateTime
-				LocalDateTime randomDateTime = Utils.getRandomDateTime(LocalDateTime.now(), 
-						pedido.getFechaHoraLimite()); 
-				entregaPedido = (listaFlota.get(randomCamionIndex)).addPedido(randomDateTime,
-						pedido);
-			}while(entregaPedido==null);
-			insertarEntregaPedido(entregaPedido);
-		}
-	}
-	
-	//Los 2
-	public Individual mutate() {
-		return this;
-	}
-	
-	//Stev
-	public double calcularFitness(double wA, double wB, double wC) {
-		double fitness = 0.0; 
-		
-		for(List<EntregaPedido> entregasPedidos: this.entregas.values()) {
-			for(int i=0;i<entregasPedidos.size();i++) {
-				//consumo total petroleo
-				EntregaPedido entregaPedido = entregasPedidos.get(i);
-				this.consumoTotalPetroleo += entregaPedido.getConsumoPetroleo();
-				
-				Duration duration = Duration.between(entregaPedido.getPedido().getFechaHoraLimite(), entregaPedido.getHoraEntregada());
-				
-				if(duration.toMinutes()>0) {
-					this.minutosAdicional += duration.toMinutes();
-					this.seEstanEntregandoATiempo = 0;
-				}
-				
-			}	
-		}
-		
-		
-		
-		
-		fitness = wA*this.consumoTotalPetroleo + wB*(1-this.seEstanEntregandoATiempo) + wC*(1-this.seEstanEntregandoATiempo)*this.minutosAdicional;
-		
-		return fitness; 
-	}
-	
 
-	//Stev
-	public double getFitness(double wA, double wB, double wC) {
-		double fitness = wA*this.consumoTotalPetroleo + wB*(1-this.seEstanEntregandoATiempo) + wC*(1-this.seEstanEntregandoATiempo)*this.minutosAdicional;
-		
-		return fitness;  
-		
+		for (int i = 0; i < listaPedidos.size(); i++) {
+			String key = listaPedidos.get(i).getCodigo();
+			int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
+			Map<String, Integer> value = new HashMap<String, Integer>();
+			String codigoCamion = listaFlota.get(randomCamionIndex).getCodigo();
+			value.put(codigoCamion, 0);
+			if (!asignacionesCamiones.containsKey(codigoCamion)) {
+				Map<String, Pedido> mapCamion = new HashMap<String, Pedido>();
+				asignacionesCamiones.put(codigoCamion, mapCamion);
+			}
+			asignacionesCamiones.get(codigoCamion).put(key, listaPedidos.get(i));
+			chromosome.put(key, value);
+		}
 	}
-	
-	
+
+	public void addGene(String key, Map<String, Integer> value, Pedido pedido) {
+		String codigoCamion = (String) value.keySet().stream().findFirst().get();
+		if (!asignacionesCamiones.containsKey(codigoCamion)) {
+			Map<String, Pedido> mapCamion = new HashMap<String, Pedido>();
+			asignacionesCamiones.put(codigoCamion, mapCamion);
+		}
+		asignacionesCamiones.get(codigoCamion).put(key, pedido);
+		chromosome.put(key, value);
+	}
+
+	public int getSize() {
+		return chromosome.keySet().size();
+	}
+
+	public void swap(String codigoPedido1, String codigoPedido2) {
+
+		Map<String, Integer> valuePedido1 = chromosome.get(codigoPedido1);
+		Map<String, Integer> valuePedido2 = chromosome.get(codigoPedido2);
+
+		String codigoCamion1 = valuePedido1.keySet().stream().findFirst().get();
+		String codigoCamion2 = valuePedido2.keySet().stream().findFirst().get();
+
+		Pedido pedido1 = asignacionesCamiones.get(codigoCamion1).get(codigoPedido1);
+		Pedido pedido2 = asignacionesCamiones.get(codigoCamion2).get(codigoPedido2);
+
+		chromosome.replace(codigoPedido1, valuePedido2);
+		chromosome.replace(codigoPedido2, valuePedido1);
+
+		asignacionesCamiones.get(codigoCamion1).remove(codigoPedido1);
+		asignacionesCamiones.get(codigoCamion1).put(codigoPedido2, pedido2);
+
+		asignacionesCamiones.get(codigoCamion2).remove(codigoPedido2);
+		asignacionesCamiones.get(codigoCamion2).put(codigoPedido1, pedido1);
+
+	}
+
+	public double calcularFitness(double wA, double wB, double wC, Map<String, Camion> flota) {
+		fitness = 0.0;
+		rutas = new HashMap<String, Ruta>();
+		for (Map.Entry<String, Map<String, Pedido>> entry : asignacionesCamiones.entrySet()) {
+			Grasp grasp = new Grasp(entry.getValue(), flota.get(entry.getKey()), "12/09/2021", "20:00", wA, wB, wC);
+			Ruta ruta = grasp.run(10);
+			rutas.put(entry.getKey(), ruta);
+			fitness += ruta.getCostoRuta();
+		}
+		return fitness;
+	}
+
 }
