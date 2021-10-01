@@ -146,6 +146,18 @@ public class Astar {
 		}
 		return "a";
 	}
+	public String obtenerCamionBestFit2(double cargaGLP) 
+		//Retorna codigo de camion que mejor satisface la cargaGLP necesaria
+		double bestCargaGLP = 9999; //Variable auxiliar para guardar en cada iteración la mejor cargaGLP encontrada
+		Map.Entry<String, Camion> bestBook = null; //VAriable auxiliar para guardar mejor entrada(String, Camion)
+		for (Map.Entry<String, Camion> book: flota.entrySet()) {
+			double cargaGLPofBook = book.getValue().getTipo().getPesoGLP();
+			if (cargaGLPofBook >= cargaGLP && bestCargaGLP > cargaGLPofBook) {
+				bestBook = book;
+			}
+		}
+		return bestBook.getKey();
+	}
 	public Camino calcularCaminoMasCorto(int posIniX, int posIniY, int posFinX, int posFinY/*, int[][]mapaObstaculo*/) {
 		mapa.setPosicionInicial(posIniX, posIniY);
 		mapa.setPosicionMeta(posFinX, posFinY);
