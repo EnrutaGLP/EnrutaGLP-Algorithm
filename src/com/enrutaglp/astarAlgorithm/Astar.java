@@ -74,7 +74,7 @@ public class Astar {
 	}
 	public void validarPedidos() {//si un pedido supera la capacidad del camion máximo se debe separar en 2
 		double MaxGLPofCamiones = Astar.this.camionesImportantes.camionConMasCapacidad.getCargaActualGLP();
-		Map<String,Pedido> pedidosDivididos = new HashMap<String,Pedido>(); //Map para guardar pedidos divididos
+		
 		int cod = pedidos.size() + 1;//Codigo que recibiran los pedidos divididos: Ultimo codigo más uno 
 		for (Map.Entry<String, Pedido> pedido: pedidos.entrySet()) {
 			double cantidadGLPPedido = pedido.getValue().getCantidadGLP();
