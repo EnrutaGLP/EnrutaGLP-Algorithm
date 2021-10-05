@@ -4,6 +4,7 @@ public class Punto {
 	private int ubicacionX;
 	private int ubicacionY;
 	private int orden; 
+	private String codigoPedido;
 	private boolean planta;
 	
 	
@@ -18,6 +19,7 @@ public class Punto {
 		p.ubicacionY = this.ubicacionY; 
 		p.orden = this.orden; 
 		p.planta = this.planta; 
+		p.codigoPedido = this.codigoPedido;
 		return p; 
 	}
 	public void setOrden(int orden) {
@@ -33,7 +35,7 @@ public class Punto {
 	}
 
 	public Punto() {
-		
+		codigoPedido = null;
 	}
 	
 	public Punto(int ubicacionX, int ubicacionY, int orden) {
@@ -47,7 +49,21 @@ public class Punto {
 		else {
 			this.setPlanta(false);
 		}
+		this.codigoPedido = null;
+	}
+
+	public Punto(int ubicacionX, int ubicacionY, int orden, String codigoPedido) {
+		this.ubicacionX = ubicacionX;
+		this.ubicacionY = ubicacionY;
+		this.orden = orden;
 		
+		if((this.ubicacionX==0)&(this.ubicacionY==0)) {
+			this.setPlanta(true);
+		}
+		else {
+			this.setPlanta(false);
+			this.codigoPedido = codigoPedido; 
+		}
 	}
 
 	public int getUbicacionX() {
@@ -81,4 +97,14 @@ public class Punto {
 		}
 		
 	}
+
+	public String getCodigoPedido() {
+		return codigoPedido;
+	}
+
+	public void setCodigoPedido(String codigoPedido) {
+		this.codigoPedido = codigoPedido;
+	}
+	
+	
 }

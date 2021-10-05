@@ -144,38 +144,51 @@ public class Individual {
 				Map<String, Pedido> mapCamion = new HashMap<String, Pedido>();
 				asignacionesCamiones.put(codigoCamion, mapCamion);
 			}
-			asignacionesCamiones.get(codigoCamion).put(key, listaPedidos.get(i));
+			asignacionesCamiones.get(codigoCamion).put(key, new Pedido(listaPedidos.get(i)));
 			chromosome.put(key, value);
 		}
 	}
-
+	
 	public void addGene(String key, Map<String, Integer> value, Pedido pedido) {
 		String codigoCamion = (String) value.keySet().stream().findFirst().get();
 		if (!asignacionesCamiones.containsKey(codigoCamion)) {
 			Map<String, Pedido> mapCamion = new HashMap<String, Pedido>();
 			asignacionesCamiones.put(codigoCamion, mapCamion);
 		}
-		asignacionesCamiones.get(codigoCamion).put(key, pedido);
-		chromosome.put(key, value);
+		asignacionesCamiones.get(codigoCamion).put(key, new Pedido(pedido));
+		//hacer una copia de value
+		Map<String, Integer> copia = copiarGen(value);
+		chromosome.put(key, copia);
 	}
 
+	public Map<String, Integer> copiarGen(Map<String,Integer> genOriginal){
+		Map<String, Integer> copia = new HashMap<String, Integer>();
+		copia.put(genOriginal.keySet().stream().findFirst().get(),
+				genOriginal.get(genOriginal.keySet().stream().findFirst().get()));
+		return copia; 
+		
+	}
 	public int getSize() {
 		return chromosome.keySet().size();
 	}
 
 	public void swap(String codigoPedido1, String codigoPedido2) {
-
+		if(codigoPedido1==codigoPedido2){
+			return; 
+		}
 		Map<String, Integer> valuePedido1 = chromosome.get(codigoPedido1);
 		Map<String, Integer> valuePedido2 = chromosome.get(codigoPedido2);
 
 		String codigoCamion1 = valuePedido1.keySet().stream().findFirst().get();
 		String codigoCamion2 = valuePedido2.keySet().stream().findFirst().get();
+		if(codigoCamion1==codigoCamion2) {
+			return;
+		}
+		Pedido pedido1 = new Pedido(asignacionesCamiones.get(codigoCamion1).get(codigoPedido1));
+		Pedido pedido2 = new Pedido(asignacionesCamiones.get(codigoCamion2).get(codigoPedido2));
 
-		Pedido pedido1 = asignacionesCamiones.get(codigoCamion1).get(codigoPedido1);
-		Pedido pedido2 = asignacionesCamiones.get(codigoCamion2).get(codigoPedido2);
-
-		chromosome.replace(codigoPedido1, valuePedido2);
-		chromosome.replace(codigoPedido2, valuePedido1);
+		chromosome.replace(codigoPedido1, copiarGen(valuePedido2));
+		chromosome.replace(codigoPedido2, copiarGen(valuePedido1));
 
 		asignacionesCamiones.get(codigoCamion1).remove(codigoPedido1);
 		asignacionesCamiones.get(codigoCamion1).put(codigoPedido2, pedido2);

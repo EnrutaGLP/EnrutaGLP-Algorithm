@@ -29,7 +29,7 @@ public class Ruta implements Comparable<Ruta> {
 		Punto planta = new Punto(0, 0, 0);
 		this.nodos.add(planta);
 		
-		this.camion = camion;
+		this.camion = new Camion(camion);
 		this.fechaHoraTranscurrida = LocalDateTime.parse(fechaActual + " " + horaActual,formatter);
 	}
 	
@@ -77,7 +77,7 @@ public class Ruta implements Comparable<Ruta> {
 	}
 
 	public void copiarRuta(Ruta ruta) {
-		this.camion = ruta.getCamion();
+		this.camion = new Camion(ruta.getCamion());
 		this.fechaHoraTranscurrida = ruta.getFechaHoraTranscurrida();
 		this.setPedidos(ruta.getPedidos());
 		this.setNodos(ruta.getNodos());
@@ -113,16 +113,18 @@ public class Ruta implements Comparable<Ruta> {
 
 	public void setPedidos(Map<String, Pedido> pedidos) {
 		Map<String,Pedido> copia = new HashMap<String, Pedido>(); 
-		copia.putAll(pedidos);
+		for(String key: pedidos.keySet()) {
+			copia.put(key,new Pedido(pedidos.get(key)));
+		}
 		this.pedidos = copia;
 	}
 
 
 	
 	public void insertarPedido(Pedido pedido) {
-		pedidos.put(pedido.getCodigo(), pedido);
+		pedidos.put(pedido.getCodigo(), new Pedido(pedido));
 		Punto punto = new Punto(pedido.getUbicacionX(),
-							pedido.getUbicacionY(), this.nodos.size());
+							pedido.getUbicacionY(), this.nodos.size(),pedido.getCodigo());
 		this.nodos.add(punto);
 		
 		this.camion.setCargaActualGLP(this.camion.getCargaActualGLP() - pedido.getCantidadGLP());	
@@ -153,7 +155,7 @@ public class Ruta implements Comparable<Ruta> {
 		//el camion debe entregar antes de la hora maxima
 		try {
 			Punto punto = new Punto(pedido.getUbicacionX(),
-					pedido.getUbicacionY(), this.nodos.size());
+					pedido.getUbicacionY(), this.nodos.size(),pedido.getCodigo());
 			
 			Punto planta = new Punto(0, 0, 5000);
 			

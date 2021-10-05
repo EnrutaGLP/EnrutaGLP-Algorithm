@@ -17,6 +17,19 @@ public class Camion {
 	private List<EntregaPedido>entregas;
 	private List<Punto>ruta;
 	
+	public Camion(Camion camion) {
+		this.codigo = camion.getCodigo(); 
+		this.placa = camion.getPlaca(); 
+		this.ubicacionActualX = camion.getUbicacionActualX();
+		this.ubicacionActualY = camion.getUbicacionActualY(); 
+		this.cargaActualGLP = camion.getCargaActualGLP();
+		this.cargaActualPetroleo = camion.getCargaActualPetroleo(); 
+		this.estado = camion.getEstado(); 
+		this.tipo = camion.getTipo(); 
+		this.entregas = new ArrayList<EntregaPedido>();
+		this.ruta = new ArrayList<Punto>();
+	}
+	
 	public Camion(String codigo, int ubicacionActualX,int ubicacionActualY, double cargaActualGLP, double cargaActualPetroleo) {
 		this.codigo = codigo;
 		this.ubicacionActualX = ubicacionActualX;

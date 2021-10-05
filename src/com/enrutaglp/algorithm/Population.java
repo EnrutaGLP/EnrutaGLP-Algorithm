@@ -52,7 +52,7 @@ public class Population {
 		if(size>(mu+epsilon)) {
 			applySurvivorSelection();
 		}
-		if(best == null || best.getFitness() < individual.getFitness()) {
+		if(best == null || best.getFitness() > individual.getFitness()) {
 			best = individual;
 			return true; 
 		}

@@ -5,8 +5,8 @@
 #define NUM_EMPRESAS 5
 #define MES 9
 #define ANHO 2021
-#define DIA_INI 13
-#define DIA_FIN 15
+#define DIA_INI 24
+#define DIA_FIN 27
 #define CANT_MIN 1
 #define CANT_MAX 5
 const char NOMBRES_EMPRESAS[NUM_EMPRESAS][20] = {

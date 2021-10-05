@@ -29,14 +29,18 @@ public class Pedido {
 	}
 
 	public Pedido(Pedido pedido) {
-		this.codigo = pedido.codigo; 
-		this.cliente = pedido.cliente; 
-		this.cantidadGLP = pedido.cantidadGLP; 
-		this.ubicacionX = pedido.ubicacionX; 
-		this.ubicacionY = pedido.ubicacionY; 
-		this.fechaHoraLimite = pedido.fechaHoraLimite;
+		/*if(pedido==null) {
+			return;
+		}*/
+		this.codigo = pedido.getCodigo(); 
+		this.cliente = pedido.getCliente(); 
+		this.cantidadGLP = pedido.getCantidadGLP(); 
+		this.ubicacionX = pedido.getUbicacionX(); 
+		this.ubicacionY = pedido.getUbicacionY(); 
+		this.fechaHoraLimite = pedido.getFechaHoraLimite();
 		this.entregas = new ArrayList<EntregaPedido>();
 	}
+	
 	public String getCliente() {
 		return cliente;
 	}
