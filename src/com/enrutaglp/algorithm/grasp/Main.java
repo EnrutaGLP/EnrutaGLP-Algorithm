@@ -1,12 +1,13 @@
-package com.enrutaglp.algorithm;
+package com.enrutaglp.algorithm.grasp;
 
 import java.util.List;
 import java.util.Map;
+
+import com.enrutaglp.algorithm.Genetic;
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
 import com.enrutaglp.model.TipoCamion;
 import com.enrutaglp.utils.Utils;
-
 
 public class Main {
 	
@@ -15,7 +16,7 @@ public class Main {
 		pedidos = Utils.particionarPedidos(pedidos);
 		List<TipoCamion>tiposCamiones = Utils.generarTiposCamiones();
 		Map<String,Camion>flota = Utils.generarFlota(tiposCamiones,0,0);
-		Genetic genetic = new Genetic(10,50,pedidos,flota);
-		genetic.run(50,50,1,1000,1000);
+		Grasp grasp = new Grasp(pedidos,flota.get("TA01"),"12/09/2021", "20:00",1,1000,1000);
+		Ruta ruta = grasp.run(10);
 	}
 }

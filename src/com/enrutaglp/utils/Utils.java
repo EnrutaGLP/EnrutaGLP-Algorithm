@@ -56,10 +56,10 @@ public class Utils {
 	
 	public static List<TipoCamion> generarTiposCamiones(){
 		List<TipoCamion>tipos = new ArrayList<TipoCamion>();
-		tipos.add(new TipoCamion("TA",2.5,25,12.5,25,5,1));
-		tipos.add(new TipoCamion("TB",2.0,15,7.5,25,5,1));
-		tipos.add(new TipoCamion("TC",1.5,10,5,25,5,1));
-		tipos.add(new TipoCamion("TD",1.0,5,2.5,25,5,1));
+		tipos.add(new TipoCamion("TA",2.5,25,12.5,25,50,2));
+		tipos.add(new TipoCamion("TB",2.0,15,7.5,25,50,4));
+		tipos.add(new TipoCamion("TC",1.5,10,5,25,50,4));
+		tipos.add(new TipoCamion("TD",1.0,5,2.5,25,50,10));
 		return tipos;
 	}
 	
@@ -80,7 +80,6 @@ public class Utils {
 	public static LocalDateTime getRandomDateTime(LocalDateTime lowerDateTime,LocalDateTime upperDateTime) {
 		DateTimeFormatter datetimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		DecimalFormat decimalFormatter = new DecimalFormat("00");
-		
 		int randYear = ThreadLocalRandom.current().nextInt(lowerDateTime.getYear(), upperDateTime.getYear() + 1);
 		int randMonth = ThreadLocalRandom.current().nextInt(lowerDateTime.getMonthValue(), upperDateTime.getMonthValue() + 1);
 		int randDay = ThreadLocalRandom.current().nextInt(lowerDateTime.getDayOfMonth(), upperDateTime.getDayOfMonth() + 1);
@@ -101,7 +100,7 @@ public class Utils {
 			}
 			printWriter.println();
 		}
-		printWriter.println("------------------------------------------------------------\n");		
+		printWriter.println("------------------------------------------------------------\n");
 	}
 	
 }

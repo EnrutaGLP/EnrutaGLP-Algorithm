@@ -26,8 +26,8 @@ public class Grasp {
 	double wc;
 	
 	public Grasp(Map<String, Pedido> pedidos, Camion camion, String fechaActual, String horaActual, double wa, double wb, double wc) {
-		this.pedidos = pedidos;
-		this.camion = camion;
+		this.pedidos = generarCopia(pedidos);
+		this.camion = new Camion(camion);
 		this.fechaActual = fechaActual;
 		this.horaActual = horaActual;
 		this.numCandidatos = this.pedidos.size();
@@ -55,20 +55,13 @@ public class Grasp {
 			if((rutaSeleccionada.getNodos().get(rutaSeleccionada.getNodos().size()-1).isPlanta()) &&
                     (ruta.getNodos().get(ruta.getNodos().size()-1).isPlanta())){
                         return ruta;
-                    }
+           }
 			//para este punto hay 3 opciones P-NP, NP-P o NP-NP
 			
 			//si la sigueinte ruta no es planta, entonces se remueve el ultimo pedido ingresado a la lista 
 			if(!(rutaSeleccionada.getNodos().get(rutaSeleccionada.getNodos().size()-1).isPlanta())) {
-				
-				String keyRemover = "llavevacia";
-				for(String key: rutaSeleccionada.getPedidos().keySet()) {
-					keyRemover = key;
-				}
-				
-				if(pedidosSolucion.containsKey(keyRemover)) {
-					pedidosSolucion.remove(keyRemover);		
-				}
+				String ultimoPedido = rutaSeleccionada.getNodos().get(rutaSeleccionada.getNodos().size()-1).getCodigoPedido();
+				pedidosSolucion.remove(ultimoPedido);		
 				
 			}
 			
@@ -109,15 +102,16 @@ public class Grasp {
 		
 	public Map<String,Pedido> generarCopia(Map <String,Pedido> mapa){
 		Map<String,Pedido> copia = new HashMap<String, Pedido>(); 
-		copia.putAll(mapa);
+		for(String key: mapa.keySet()) {
+			copia.put(key,new Pedido(mapa.get(key)));
+		}
 		return copia;
 	}
 	
-	public List<Ruta> generarCandidatos(Ruta ruta, Map<String, Pedido> pedidosCand){
-		
+	public List<Ruta> generarCandidatos(Ruta ruta, Map<String, Pedido> pedidosCandidtos){
 		List<Ruta> rutasCandidatos = new ArrayList<Ruta>();
-		
-		
+		Map<String,Pedido> pedidosCand = generarCopia(pedidosCandidtos);
+		 
 		for(int i=0; i<this.numCandidatos; i++) {
 			Ruta rutaGenerada = new Ruta(ruta.getCamion(), this.fechaActual, this.horaActual);
 			
@@ -129,7 +123,7 @@ public class Grasp {
 				boolean esFactible = rutaGenerada.esFactible(pedidosSolucion.get(key));
 				
 				if(esFactible) {
-					rutaGenerada.insertarPedido(pedidosSolucion.get(key));
+					rutaGenerada.insertarPedido(new Pedido(pedidosSolucion.get(key)));
 					pedidosCand.remove(key);
 					j++;
 					break;
@@ -144,6 +138,9 @@ public class Grasp {
 					}
 				}
 				j++;
+			}
+			if(j==0 && pedidosSolucion.size()==0) {
+				rutaGenerada.insertarPuntoPlanta();		
 			}
 			rutaGenerada.calcularCostoRuta(this.pedidos, this.wa, this.wb, this.wc);
 			rutasCandidatos.add(rutaGenerada);
@@ -183,6 +180,7 @@ public class Grasp {
 			if(costoSolucion<mejorCosto) {
 				mejorCosto = costoSolucion;
 				mejorRuta = rutaSolucion; 
+				nbIterNoImp = 1; 
 			}
 			else {
 				nbIterNoImp ++;
