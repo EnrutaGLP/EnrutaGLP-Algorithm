@@ -74,6 +74,7 @@ public class Grasp {
 				//ssi no es planta entonces se inserta un punto planta al final
 				if(!(ruta.getNodos().get(ruta.getNodos().size()-1).isPlanta())) {
 					ruta.insertarPuntoPlanta();
+					ruta.calcularCostoRuta(this.pedidos, this.wa, this.wb, this.wc);
 				}
 				return ruta;
 			}
