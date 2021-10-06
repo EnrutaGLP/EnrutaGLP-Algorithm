@@ -45,6 +45,7 @@ public class Genetic {
 		population = new Population(10,20,pedidos,flota,wA,wB,wC);
 		boolean genNewBest; 
 		for(int nbIter = 0; nbIterNoImp <= maxIterNoImp; nbIter++) {
+ 			System.out.println("Generacion " + nbIter);
 			genNewBest = false;
 			for(int i=0;i<numChildrenToGenerate;i++) {
 				//Parent selection and crossover 
