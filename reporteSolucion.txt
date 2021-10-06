@@ -1,450 +1,706 @@
-Generacion 0 Fitness: 2.3333333333333335
+Generacion 0 Fitness: 61.57333333333333
 ------------------------------------------------------------
 
-TD07: (0,0) (2,3) (0,0) (17,8) (15,18) (0,0) 
-TD10: (0,0) (5,5) (0,0) 
+TD07: (cantidad de pedidos asignados 2)(0,0) (22,19) (0,0) (8,38) (0,0) 
+TD06: (cantidad de pedidos asignados 2)(0,0) (27,43) (60,25) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TD03: (cantidad de pedidos asignados 2)(0,0) (25,49) (51,34) (0,0) 
+TD02: (cantidad de pedidos asignados 2)(0,0) (68,44) (43,5) (0,0) 
+TC03: (cantidad de pedidos asignados 2)(0,0) (6,46) (39,29) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TB01: (cantidad de pedidos asignados 2)(0,0) (34,46) (36,18) (0,0) 
+TD10: (cantidad de pedidos asignados 2)(0,0) (56,37) (32,46) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (57,46) (0,0) 
+TD08: (cantidad de pedidos asignados 2)(0,0) (57,49) (11,24) (0,0) 
 ------------------------------------------------------------
 
-Generacion 1 Fitness: 2.3333333333333335
+Generacion 1 Fitness: -912.3599999999999
 ------------------------------------------------------------
 
-TD07: (0,0) (2,3) (0,0) (15,18) (17,8) (0,0) 
-TD10: (0,0) (5,5) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (28,40) (0,0) (68,44) (0,0) (11,24) (57,46) (0,0) (8,38) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC04: (cantidad de pedidos asignados 3)(0,0) (22,19) (66,34) (56,37) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TB04: (cantidad de pedidos asignados 1)(0,0) (36,18) (0,0) 
+TC02: (cantidad de pedidos asignados 4)(0,0) (57,49) (25,49) (31,27) (43,5) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TA02: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TA01: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (34,46) (0,0) 
 ------------------------------------------------------------
 
-Generacion 2 Fitness: 2.3333333333333335
+Generacion 2 Fitness: -3918.2333333333336
 ------------------------------------------------------------
 
-TD07: (0,0) (2,3) (0,0) (15,18) (17,8) (0,0) 
-TD10: (0,0) (5,5) (0,0) 
-------------------------------------------------------------
-
-Generacion 3 Fitness: 2.3333333333333335
-------------------------------------------------------------
-
-TD07: (0,0) (15,18) (17,8) (0,0) (2,3) (0,0) 
-TD10: (0,0) (5,5) (0,0) 
-------------------------------------------------------------
-
-Generacion 4 Fitness: 2.3333333333333335
-------------------------------------------------------------
-
-TD07: (0,0) (2,3) (0,0) (15,18) (17,8) (0,0) 
-TD10: (0,0) (5,5) (0,0) 
-------------------------------------------------------------
-
-Generacion 5 Fitness: 2.3333333333333335
-------------------------------------------------------------
-
-TD07: (0,0) (2,3) (0,0) (15,18) (17,8) (0,0) 
-TD10: (0,0) (5,5) (0,0) 
-------------------------------------------------------------
-
-Generacion 6 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 7 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 8 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 9 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 10 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 11 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 12 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 13 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 14 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 15 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 16 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 17 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 18 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 19 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 20 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 21 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 22 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 23 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 24 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 25 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 26 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 27 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 28 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 29 Fitness: 2.333333333333333
-------------------------------------------------------------
-
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
-------------------------------------------------------------
-
-Generacion 30 Fitness: 2.333333333333333
-------------------------------------------------------------
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (25,49) (0,0) (68,44) (0,0) (8,38) (0,0) (28,40) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TB04: (cantidad de pedidos asignados 1)(0,0) (36,18) (0,0) 
+TC02: (cantidad de pedidos asignados 5)(0,0) (43,5) (57,49) (31,27) (32,46) (11,24) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB01: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD10: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TA01: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (34,46) (51,34) (0,0) 
+------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 3 Fitness: -5926.1
 ------------------------------------------------------------
 
-Generacion 31 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 6)(0,0) (56,37) (22,19) (0,0) (66,34) (0,0) (57,46) (0,0) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TD04: (cantidad de pedidos asignados 2)(0,0) (28,40) (0,0) (11,24) (0,0) 
+TC04: (cantidad de pedidos asignados 2)(0,0) (34,46) (31,27) (0,0) 
+TC03: (cantidad de pedidos asignados 2)(0,0) (6,46) (51,34) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (68,44) (0,0) 
+TC02: (cantidad de pedidos asignados 3)(0,0) (43,5) (25,49) (8,38) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (36,18) (32,46) (0,0) 
+TA01: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+------------------------------------------------------------
+
+Generacion 4 Fitness: -5926.1
+------------------------------------------------------------
+
+TD07: (cantidad de pedidos asignados 6)(0,0) (56,37) (22,19) (0,0) (66,34) (0,0) (57,46) (0,0) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TD04: (cantidad de pedidos asignados 2)(0,0) (28,40) (0,0) (11,24) (0,0) 
+TC04: (cantidad de pedidos asignados 2)(0,0) (34,46) (31,27) (0,0) 
+TC03: (cantidad de pedidos asignados 2)(0,0) (6,46) (51,34) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (68,44) (0,0) 
+TC02: (cantidad de pedidos asignados 3)(0,0) (43,5) (25,49) (8,38) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (36,18) (32,46) (0,0) 
+TA01: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+------------------------------------------------------------
+
+Generacion 5 Fitness: -5924.626666666667
+------------------------------------------------------------
+
+TD07: (cantidad de pedidos asignados 6)(0,0) (56,37) (22,19) (0,0) (57,46) (0,0) (66,34) (0,0) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TD04: (cantidad de pedidos asignados 2)(0,0) (28,40) (0,0) (11,24) (0,0) 
+TC04: (cantidad de pedidos asignados 2)(0,0) (34,46) (31,27) (0,0) 
+TC03: (cantidad de pedidos asignados 2)(0,0) (6,46) (51,34) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (68,44) (0,0) 
+TC02: (cantidad de pedidos asignados 3)(0,0) (43,5) (8,38) (25,49) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (36,18) (32,46) (0,0) 
+TA01: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+------------------------------------------------------------
+
+Generacion 6 Fitness: -2929.186666666667
+------------------------------------------------------------
+
+TD07: (cantidad de pedidos asignados 5)(0,0) (57,49) (0,0) (22,19) (57,46) (0,0) (68,44) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 2)(0,0) (51,34) (66,34) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD03: (cantidad de pedidos asignados 2)(0,0) (25,49) (31,27) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TB04: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (8,38) (0,0) 
+TB01: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD08: (cantidad de pedidos asignados 2)(0,0) (34,46) (32,46) (0,0) 
+------------------------------------------------------------
+
+Generacion 7 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 8 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 9 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 10 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 11 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 12 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 13 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 14 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 15 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 16 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 17 Fitness: -6913.633333333334
+------------------------------------------------------------
+
+TA01: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD07: (cantidad de pedidos asignados 6)(0,0) (57,46) (0,0) (57,49) (34,46) (0,0) (68,44) (0,0) (66,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TB03: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 1)(0,0) (43,5) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+------------------------------------------------------------
+
+Generacion 18 Fitness: -6923.599999999999
+------------------------------------------------------------
+
+TD07: (cantidad de pedidos asignados 7)(0,0) (60,25) (43,5) (0,0) (57,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (34,46) (0,0) 
+TA02: (cantidad de pedidos asignados 1)(0,0) (36,18) (0,0) 
+TD09: (cantidad de pedidos asignados 3)(0,0) (25,49) (56,37) (66,34) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+------------------------------------------------------------
+
+Generacion 19 Fitness: -6923.599999999999
+------------------------------------------------------------
+
+TD07: (cantidad de pedidos asignados 7)(0,0) (60,25) (43,5) (0,0) (57,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (34,46) (0,0) 
+TA02: (cantidad de pedidos asignados 1)(0,0) (36,18) (0,0) 
+TD09: (cantidad de pedidos asignados 3)(0,0) (25,49) (56,37) (66,34) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+------------------------------------------------------------
+
+Generacion 20 Fitness: -6923.599999999999
+------------------------------------------------------------
+
+TD07: (cantidad de pedidos asignados 7)(0,0) (60,25) (43,5) (0,0) (57,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (27,43) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (28,40) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (34,46) (0,0) 
+TA02: (cantidad de pedidos asignados 1)(0,0) (36,18) (0,0) 
+TD09: (cantidad de pedidos asignados 3)(0,0) (25,49) (56,37) (66,34) (0,0) 
+TD08: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 21 Fitness: -6941.486666666666
 ------------------------------------------------------------
 
-Generacion 32 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (57,46) (34,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (60,25) (0,0) (28,40) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD01: (cantidad de pedidos asignados 4)(0,0) (22,19) (31,27) (6,46) (0,0) (8,38) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (43,5) (0,0) 
+TD10: (cantidad de pedidos asignados 3)(0,0) (25,49) (27,43) (0,0) (11,24) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 22 Fitness: -6941.486666666666
 ------------------------------------------------------------
 
-Generacion 33 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (57,46) (34,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (60,25) (0,0) (28,40) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD01: (cantidad de pedidos asignados 4)(0,0) (22,19) (31,27) (6,46) (0,0) (8,38) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (43,5) (0,0) 
+TD10: (cantidad de pedidos asignados 3)(0,0) (25,49) (27,43) (0,0) (11,24) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 23 Fitness: -6941.486666666666
 ------------------------------------------------------------
 
-Generacion 34 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (57,46) (34,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (60,25) (0,0) (28,40) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD01: (cantidad de pedidos asignados 4)(0,0) (22,19) (31,27) (6,46) (0,0) (8,38) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (43,5) (0,0) 
+TD10: (cantidad de pedidos asignados 3)(0,0) (25,49) (27,43) (0,0) (11,24) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 24 Fitness: -6941.486666666666
 ------------------------------------------------------------
 
-Generacion 35 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (57,46) (34,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (60,25) (0,0) (28,40) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD01: (cantidad de pedidos asignados 4)(0,0) (22,19) (31,27) (6,46) (0,0) (8,38) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (43,5) (0,0) 
+TD10: (cantidad de pedidos asignados 3)(0,0) (25,49) (27,43) (0,0) (11,24) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 25 Fitness: -6941.486666666666
 ------------------------------------------------------------
 
-Generacion 36 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (57,46) (34,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (60,25) (0,0) (28,40) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD01: (cantidad de pedidos asignados 4)(0,0) (22,19) (31,27) (6,46) (0,0) (8,38) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (43,5) (0,0) 
+TD10: (cantidad de pedidos asignados 3)(0,0) (25,49) (27,43) (0,0) (11,24) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 26 Fitness: -6941.486666666666
 ------------------------------------------------------------
 
-Generacion 37 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (57,46) (34,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (60,25) (0,0) (28,40) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD01: (cantidad de pedidos asignados 4)(0,0) (22,19) (31,27) (6,46) (0,0) (8,38) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (43,5) (0,0) 
+TD10: (cantidad de pedidos asignados 3)(0,0) (25,49) (27,43) (0,0) (11,24) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 27 Fitness: -6941.486666666666
 ------------------------------------------------------------
 
-Generacion 38 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (57,46) (34,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (60,25) (0,0) (28,40) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD01: (cantidad de pedidos asignados 4)(0,0) (22,19) (31,27) (6,46) (0,0) (8,38) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (43,5) (0,0) 
+TD10: (cantidad de pedidos asignados 3)(0,0) (25,49) (27,43) (0,0) (11,24) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 28 Fitness: -6941.486666666666
 ------------------------------------------------------------
 
-Generacion 39 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (57,46) (34,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (60,25) (0,0) (28,40) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD01: (cantidad de pedidos asignados 4)(0,0) (22,19) (31,27) (6,46) (0,0) (8,38) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (43,5) (0,0) 
+TD10: (cantidad de pedidos asignados 3)(0,0) (25,49) (27,43) (0,0) (11,24) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 29 Fitness: -6941.486666666666
 ------------------------------------------------------------
 
-Generacion 40 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (57,46) (34,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (60,25) (0,0) (28,40) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD01: (cantidad de pedidos asignados 4)(0,0) (22,19) (31,27) (6,46) (0,0) (8,38) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (43,5) (0,0) 
+TD10: (cantidad de pedidos asignados 3)(0,0) (25,49) (27,43) (0,0) (11,24) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 30 Fitness: -6941.486666666666
 ------------------------------------------------------------
 
-Generacion 41 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (57,46) (34,46) (0,0) (57,49) (0,0) (68,44) (0,0) (51,34) (60,25) (0,0) (28,40) (0,0) 
+TD05: (cantidad de pedidos asignados 1)(0,0) (56,37) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (32,46) (0,0) 
+TC03: (cantidad de pedidos asignados 1)(0,0) (66,34) (0,0) 
+TD01: (cantidad de pedidos asignados 4)(0,0) (22,19) (31,27) (6,46) (0,0) (8,38) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (36,18) (43,5) (0,0) 
+TD10: (cantidad de pedidos asignados 3)(0,0) (25,49) (27,43) (0,0) (11,24) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 31 Fitness: -7928.320000000001
 ------------------------------------------------------------
 
-Generacion 42 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (43,5) (11,24) (66,34) (0,0) (57,46) (0,0) (68,44) (0,0) (51,34) (0,0) (28,40) (0,0) 
+TD06: (cantidad de pedidos asignados 2)(0,0) (27,43) (0,0) (8,38) (0,0) 
+TD05: (cantidad de pedidos asignados 3)(0,0) (56,37) (6,46) (32,46) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (34,46) (0,0) 
+TC03: (cantidad de pedidos asignados 2)(0,0) (57,49) (22,19) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TB01: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 32 Fitness: -7928.320000000001
 ------------------------------------------------------------
 
-Generacion 43 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (43,5) (11,24) (66,34) (0,0) (57,46) (0,0) (68,44) (0,0) (51,34) (0,0) (28,40) (0,0) 
+TD06: (cantidad de pedidos asignados 2)(0,0) (27,43) (0,0) (8,38) (0,0) 
+TD05: (cantidad de pedidos asignados 3)(0,0) (56,37) (6,46) (32,46) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (34,46) (0,0) 
+TC03: (cantidad de pedidos asignados 2)(0,0) (57,49) (22,19) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TB01: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 33 Fitness: -7928.320000000001
 ------------------------------------------------------------
 
-Generacion 44 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 8)(0,0) (43,5) (11,24) (66,34) (0,0) (57,46) (0,0) (68,44) (0,0) (51,34) (0,0) (28,40) (0,0) 
+TD06: (cantidad de pedidos asignados 2)(0,0) (27,43) (0,0) (8,38) (0,0) 
+TD05: (cantidad de pedidos asignados 3)(0,0) (56,37) (6,46) (32,46) (0,0) 
+TC04: (cantidad de pedidos asignados 1)(0,0) (34,46) (0,0) 
+TC03: (cantidad de pedidos asignados 2)(0,0) (57,49) (22,19) (0,0) 
+TC02: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD01: (cantidad de pedidos asignados 1)(0,0) (31,27) (0,0) 
+TB01: (cantidad de pedidos asignados 1)(0,0) (60,25) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 34 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 45 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 35 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 46 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 36 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 47 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 37 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 48 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 38 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 49 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 39 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 50 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 40 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 51 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 41 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 52 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 42 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 53 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 43 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 54 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 44 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 55 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 45 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
-Generacion 56 Fitness: 2.333333333333333
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
 ------------------------------------------------------------
 
-TD07: (0,0) (5,5) (0,0) 
-TD01: (0,0) (2,3) (0,0) 
-TD09: (0,0) (15,18) (17,8) (0,0) 
+Generacion 46 Fitness: -13941.886666666665
 ------------------------------------------------------------
 
+TD07: (cantidad de pedidos asignados 9)(0,0) (57,46) (0,0) (56,37) (68,44) (0,0) (28,40) (0,0) (66,34) (0,0) (34,46) (57,49) (0,0) 
+TD06: (cantidad de pedidos asignados 1)(0,0) (22,19) (0,0) 
+TD04: (cantidad de pedidos asignados 1)(0,0) (8,38) (0,0) 
+TB04: (cantidad de pedidos asignados 2)(0,0) (25,49) (36,18) (0,0) 
+TD02: (cantidad de pedidos asignados 1)(0,0) (51,34) (0,0) 
+TC02: (cantidad de pedidos asignados 1)(0,0) (6,46) (0,0) 
+TD01: (cantidad de pedidos asignados 2)(0,0) (60,25) (32,46) (0,0) 
+TC01: (cantidad de pedidos asignados 1)(0,0) (11,24) (0,0) 
+TD09: (cantidad de pedidos asignados 2)(0,0) (27,43) (43,5) (0,0) 
+------------

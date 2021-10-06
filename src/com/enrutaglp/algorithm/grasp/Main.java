@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.enrutaglp.algorithm.Genetic;
+import com.enrutaglp.model.Bloqueo;
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
 import com.enrutaglp.model.TipoCamion;
@@ -16,6 +17,7 @@ public class Main {
 		pedidos = Utils.particionarPedidos(pedidos);
 		List<TipoCamion>tiposCamiones = Utils.generarTiposCamiones();
 		Map<String,Camion>flota = Utils.generarFlota(tiposCamiones,0,0);
+		List<Bloqueo> bloqueos = Utils.leerBloqueos();
 		Grasp grasp = new Grasp(pedidos,flota.get("TA01"),"12/09/2021", "20:00",1,1000,1000);
 		Ruta ruta = grasp.run(10);
 	}
