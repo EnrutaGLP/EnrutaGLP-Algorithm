@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.enrutaglp.algorithm.Individual;
+import com.enrutaglp.model.Bloqueo;
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
 import com.enrutaglp.model.Punto;
@@ -96,6 +97,38 @@ public class Utils {
 		return flota;
 	}
 	
+	public static List<Bloqueo>leerBloqueos(){
+		List<Bloqueo>bloqueos = new ArrayList<>(); 
+		/*String filePath = new File("").getAbsolutePath().concat("\\parametros\\bloqueos.txt"); 
+		String mes = "10";
+		String anho = "2021";
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			String line;
+			int i = 0; 
+			while((line = br.readLine()) != null) {
+				String[]values = line.split(",");
+				String[]fechas = values[0].split("-");
+				int j = 2; 
+				int orden = 1;
+				if()
+				Bloqueo bloqueo = new Bloqueo()
+				while(j<values.length) {
+					Punto punto = new Punto(Integer.parseInt(values[j]),
+							Integer.parseInt(values[j+1]),orden);
+					
+					orden++;
+					j+=2;
+				}
+				
+				i++;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}*/
+		return bloqueos; 
+	}
+	
 	public static LocalDateTime getRandomDateTime(LocalDateTime lowerDateTime,LocalDateTime upperDateTime) {
 		DateTimeFormatter datetimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		DecimalFormat decimalFormatter = new DecimalFormat("00");
@@ -113,7 +146,7 @@ public class Utils {
 		printWriter.println("------------------------------------------------------------\n");
 		
 		for(String camion : individual.getRutas().keySet()) {
-			printWriter.print(camion + ": ");
+			printWriter.print(camion + ": (cantidad de pedidos asignados " + individual.getAsignacionesCamiones().get(camion).size() + ")");
 			for(Punto punto : individual.getRutas().get(camion).getNodos()) {
 				printWriter.print("("+punto.getUbicacionX()+","+punto.getUbicacionY()+") ");
 			}
