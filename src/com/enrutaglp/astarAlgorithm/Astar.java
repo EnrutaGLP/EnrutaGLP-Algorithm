@@ -158,10 +158,10 @@ public class Astar {
 			
 			pedidosPreEnrutados.add(pedidoPreEnruta);
 			
-			System.out.println();
-			System.out.print(tamCamino);
-			System.out.println();
-			pintarCamino();
+			//System.out.println();
+			//System.out.print(tamCamino);
+			//System.out.println();
+			//pintarCamino();
 			resetearMapa();
 		}
 		Collections.sort(pedidosPreEnrutados);
@@ -175,6 +175,7 @@ public class Astar {
 		float velocidadCamion;
 		double consumoPetroleo=0;
 		LocalDateTime horaEntrega;
+		boolean esColapso=false;
 
 		
 		//Se supone que ningún camión se va a desviar de su ruta original hasta entregar su pedido
@@ -190,40 +191,53 @@ public class Astar {
 					}
 				}
 				for(int j=indiceCamionesADejarMover.size()-1;j>=0;j--) {//se quita de la lista los camiones que ya llegaron a la planta principal
-					hashCamionesMovimiento.remove(j);
+					hashCamionesMovimiento.remove(indiceCamionesADejarMover.get(j));
 				}
 				indiceCamionesADejarMover.clear();
-			}else {
-				hashCamion=obtenerCamionBestFit(pedidoEnrutado.getPedido().getCantidadGLP());
-				hashCamionesMovimiento.add(hashCamion);
-				
-				consumoPetroleo=flota.get(hashCamion).calcularConsumoPetroleo(tamCamino-1);
-				if((consumoPetroleo+consumoPetroleo)>flota.get(hashCamion).getCargaActualPetroleo()) {
-					continue;//se debe añadir como pedido imposible
-					//para luego validad si los camiones con más capacidad pueden manejar el pedido
-				}
-				
-				velocidadCamion=(float)flota.get(hashCamion).getTipo().getVelocidadPromedio();
-				tamCamino=pedidoEnrutado.getCamino().getTamano();
-				horasParaLlegar=tamCamino/velocidadCamion;
-				horasInt=Math.round(horasParaLlegar);
-				horasDecimal=horasParaLlegar-horasInt;
-				minInt=(int)Math.ceil(horasDecimal*60);
-				
-				horaEntrega=pedidoEnrutado.getFechaMaximaEntrega().plusHours(horasInt);
-				horaEntrega=horaEntrega.plusMinutes(minInt);
-				
-				flota.get(hashCamion).setCargaActualPetroleo(flota.get(hashCamion).getCargaActualPetroleo()-consumoPetroleo);
-				flota.get(hashCamion).setCargaActualGLP(flota.get(hashCamion).getCargaActualGLP()-pedidoEnrutado.getPedido().getCantidadGLP());
-				
-				
-				
-				EntregaPedido entregaPed=new EntregaPedido(pedidoEnrutado.getPedido().getCantidadGLP(),
-						horaEntrega,pedidoEnrutado.getFechaMaximaEntrega(),consumoPetroleo,flota.get(hashCamion),
-						pedidoEnrutado.getPedido());
-				entregaPedidos.put(hashCamion, entregaPed);
 			}
+			hashCamion=obtenerCamionBestFit2(pedidoEnrutado.getPedido().getCantidadGLP(),hashCamionesMovimiento);
+			if(hashCamion==" ") {//colapso logistico
+				esColapso=true;
+				break;
+			}
+			hashCamionesMovimiento.add(hashCamion);
+			
+			consumoPetroleo=flota.get(hashCamion).calcularConsumoPetroleo(tamCamino-1);
+			if((consumoPetroleo+consumoPetroleo)>flota.get(hashCamion).getCargaActualPetroleo()) {
+				continue;//se debe añadir como pedido imposible
+				//para luego validad si los camiones con más capacidad pueden manejar el pedido
+			}
+			
+			velocidadCamion=(float)flota.get(hashCamion).getTipo().getVelocidadPromedio();
+			tamCamino=pedidoEnrutado.getCamino().getTamano();
+			horasParaLlegar=tamCamino/velocidadCamion;
+			horasInt=Math.round(horasParaLlegar);
+			horasDecimal=horasParaLlegar-horasInt;
+			minInt=(int)Math.ceil(horasDecimal*60);
+			
+			horaEntrega=pedidoEnrutado.getFechaMaximaEntrega().plusHours(horasInt);
+			horaEntrega=horaEntrega.plusMinutes(minInt);
+			
+			flota.get(hashCamion).setCargaActualPetroleo(flota.get(hashCamion).getCargaActualPetroleo()-consumoPetroleo);
+			flota.get(hashCamion).setCargaActualGLP(flota.get(hashCamion).getCargaActualGLP()-pedidoEnrutado.getPedido().getCantidadGLP());
+			
+			
+			EntregaPedido entregaPed=new EntregaPedido(pedidoEnrutado.getPedido().getCantidadGLP(),
+					horaEntrega,pedidoEnrutado.getFechaMaximaEntrega(),consumoPetroleo,flota.get(hashCamion),
+					pedidoEnrutado.getPedido());
+			entregaPedidos.put(hashCamion, entregaPed);
 		}
+		
+		Iterator<Map.Entry<String,EntregaPedido>> entriesEntregaPedido = entregaPedidos.entrySet().iterator();
+		
+		while(entriesEntregaPedido.hasNext()) {
+			Map.Entry<String,EntregaPedido> entryEntPed=entriesEntregaPedido.next();
+			System.out.println(entryEntPed.getValue().getPedido().getCliente());
+			System.out.println(entryEntPed.getValue().getCantidadEntregada());
+			System.out.println(entryEntPed.getValue().getCamion().getCodigo());
+		}
+		System.out.print(esColapso);
+		
 	}
 	public String obtenerCamionBestFit(double cargaGLP) {//suponiendo que ya está ordenado ascendentemente
 		Iterator<Map.Entry<String,Camion>> entries = flota.entrySet().iterator();
@@ -256,18 +270,21 @@ public class Astar {
 			return -1;
 		}
 	}
-	public String obtenerCamionBestFit2(double cargaGLP) {
-		//Retorna codigo de camion que mejor satisface la cargaGLP necesaria
-		double bestCargaGLP = 9999; //Variable auxiliar para guardar en cada iteración la mejor cargaGLP encontrada
-		Map.Entry<String, Camion> bestBook = null; //VAriable auxiliar para guardar mejor entrada(String, Camion)
-		for (Map.Entry<String, Camion> book: flota.entrySet()) {
-			double cargaGLPofBook = book.getValue().getTipo().getPesoGLP();
-			if (cargaGLPofBook >= cargaGLP && bestCargaGLP > cargaGLPofBook) {
-				bestBook = book;
-			}
-		}
-		return bestBook.getKey();
-	}
+	public String obtenerCamionBestFit2(double cargaGLP, ArrayList<String> camionesEnMovimiento) {
+        //Retorna codigo de camion que mejor satisface la cargaGLP necesaria
+        double bestCargaGLP = 9999; //Variable auxiliar para guardar en cada iteración la mejor cargaGLP encontrada
+        Map.Entry<String, Camion> bestBook = null; //VAriable auxiliar para guardar mejor entrada(String, Camion)
+        for (Map.Entry<String, Camion> book: flota.entrySet()) {
+            double cargaGLPofBook = book.getValue().getTipo().getPesoGLP();
+            if (cargaGLPofBook >= cargaGLP && bestCargaGLP > cargaGLPofBook
+                    && !camionesEnMovimiento.contains(book.getKey())) {
+                bestBook = book;
+            }
+        }
+        if (bestBook == null)
+            return " ";
+        return bestBook.getKey();
+    }
 	public Camino calcularCaminoMasCorto(int posIniX, int posIniY, int posFinX, int posFinY/*, int[][]mapaObstaculo*/) {
 		mapa.setPosicionInicial(posIniX, posIniY);
 		mapa.setPosicionMeta(posFinX, posFinY);

@@ -19,10 +19,10 @@ public class Main {
 		List<TipoCamion>tiposCamiones = Utils.generarTiposCamiones();
 		Map<String,Camion>flota = Utils.generarFlota(tiposCamiones,0,0);
 		String fechaIni="12/09/2021";
-		String horaIni="00:00";
+		String horaIni="20:00";
 		DateTimeFormatter formato=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		LocalDateTime fechaIniFormato=LocalDateTime.parse(fechaIni+" "+horaIni,formato);
-		Planta planta= new Planta(0,0,1000,1000,1000,1000,true);
+		Planta planta= new Planta(12,8,1000,1000,1000,1000,true);
 		Astar astar = new Astar(70,70,pedidos,flota, fechaIniFormato, planta);
 		astar.resolverPedidos();
 		/*astar.calcularCaminoMasCorto(5,5,20,41);
