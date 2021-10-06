@@ -171,11 +171,13 @@ public class Astar {
 		Map<String,EntregaPedido> entregaPedidos=new HashMap<String, EntregaPedido>();
 		ArrayList<String> hashCamionesMovimiento=new ArrayList<String>();
 		ArrayList<Integer> indiceCamionesADejarMover=new ArrayList<Integer>();
+		ArrayList<EntregaPedido> entregaPedidosImprimir=new ArrayList<EntregaPedido>();
 		String hashCamion;
 		float velocidadCamion;
 		double consumoPetroleo=0;
 		LocalDateTime horaEntrega;
 		boolean esColapso=false;
+		int numPedAtendidos=0;
 
 		
 		//Se supone que ningún camión se va a desviar de su ruta original hasta entregar su pedido
@@ -185,13 +187,14 @@ public class Astar {
 					int estaEnMovimiento=posicionCamion(pedidoEnrutado.getFechaMaximaEntrega(),
 							entregaPedidos.get(hashCamionesMovimiento.get(i)));
 					if(estaEnMovimiento==0) {//redirigir un camion que está regresando
-						
+						indiceCamionesADejarMover.add(i);
 					}else if(estaEnMovimiento==1) {
 						indiceCamionesADejarMover.add(i);
 					}
 				}
 				for(int j=indiceCamionesADejarMover.size()-1;j>=0;j--) {//se quita de la lista los camiones que ya llegaron a la planta principal
-					hashCamionesMovimiento.remove(indiceCamionesADejarMover.get(j));
+					int indexABorrar=indiceCamionesADejarMover.get(j);
+					hashCamionesMovimiento.remove(indexABorrar);
 				}
 				indiceCamionesADejarMover.clear();
 			}
@@ -199,44 +202,51 @@ public class Astar {
 			if(hashCamion==" ") {//colapso logistico
 				esColapso=true;
 				break;
+			}else {
+				hashCamionesMovimiento.add(hashCamion);
+				
+				consumoPetroleo=flota.get(hashCamion).calcularConsumoPetroleo(tamCamino-1);
+				if((consumoPetroleo+consumoPetroleo)>flota.get(hashCamion).getCargaActualPetroleo()) {
+					continue;//se debe añadir como pedido imposible
+					//para luego validad si los camiones con más capacidad pueden manejar el pedido
+				}
+				
+				velocidadCamion=(float)flota.get(hashCamion).getTipo().getVelocidadPromedio();
+				tamCamino=pedidoEnrutado.getCamino().getTamano();
+				horasParaLlegar=tamCamino/velocidadCamion;
+				horasInt=Math.round(horasParaLlegar);
+				horasDecimal=horasParaLlegar-horasInt;
+				minInt=(int)Math.ceil(horasDecimal*60);
+				
+				horaEntrega=pedidoEnrutado.getFechaMaximaEntrega().plusHours(horasInt);
+				horaEntrega=horaEntrega.plusMinutes(minInt);
+				
+				flota.get(hashCamion).setCargaActualPetroleo(flota.get(hashCamion).getCargaActualPetroleo()-consumoPetroleo);
+				flota.get(hashCamion).setCargaActualGLP(flota.get(hashCamion).getCargaActualGLP()-pedidoEnrutado.getPedido().getCantidadGLP());
+				
+				
+				EntregaPedido entregaPed=new EntregaPedido(pedidoEnrutado.getPedido().getCantidadGLP(),
+						horaEntrega,pedidoEnrutado.getFechaMaximaEntrega(),consumoPetroleo,flota.get(hashCamion),
+						pedidoEnrutado.getPedido());
+				//hashCamion=hashCamion+"numPedAtendidos";
+				entregaPedidos.put(hashCamion, entregaPed);
+				entregaPedidosImprimir.add(entregaPed);
+				numPedAtendidos++;
 			}
-			hashCamionesMovimiento.add(hashCamion);
-			
-			consumoPetroleo=flota.get(hashCamion).calcularConsumoPetroleo(tamCamino-1);
-			if((consumoPetroleo+consumoPetroleo)>flota.get(hashCamion).getCargaActualPetroleo()) {
-				continue;//se debe añadir como pedido imposible
-				//para luego validad si los camiones con más capacidad pueden manejar el pedido
-			}
-			
-			velocidadCamion=(float)flota.get(hashCamion).getTipo().getVelocidadPromedio();
-			tamCamino=pedidoEnrutado.getCamino().getTamano();
-			horasParaLlegar=tamCamino/velocidadCamion;
-			horasInt=Math.round(horasParaLlegar);
-			horasDecimal=horasParaLlegar-horasInt;
-			minInt=(int)Math.ceil(horasDecimal*60);
-			
-			horaEntrega=pedidoEnrutado.getFechaMaximaEntrega().plusHours(horasInt);
-			horaEntrega=horaEntrega.plusMinutes(minInt);
-			
-			flota.get(hashCamion).setCargaActualPetroleo(flota.get(hashCamion).getCargaActualPetroleo()-consumoPetroleo);
-			flota.get(hashCamion).setCargaActualGLP(flota.get(hashCamion).getCargaActualGLP()-pedidoEnrutado.getPedido().getCantidadGLP());
-			
-			
-			EntregaPedido entregaPed=new EntregaPedido(pedidoEnrutado.getPedido().getCantidadGLP(),
-					horaEntrega,pedidoEnrutado.getFechaMaximaEntrega(),consumoPetroleo,flota.get(hashCamion),
-					pedidoEnrutado.getPedido());
-			entregaPedidos.put(hashCamion, entregaPed);
 		}
 		
 		Iterator<Map.Entry<String,EntregaPedido>> entriesEntregaPedido = entregaPedidos.entrySet().iterator();
 		
-		while(entriesEntregaPedido.hasNext()) {
-			Map.Entry<String,EntregaPedido> entryEntPed=entriesEntregaPedido.next();
-			System.out.println(entryEntPed.getValue().getPedido().getCliente());
-			System.out.println(entryEntPed.getValue().getCantidadEntregada());
-			System.out.println(entryEntPed.getValue().getCamion().getCodigo());
+		for(EntregaPedido ep:entregaPedidosImprimir) {
+			System.out.println("------------------");
+			System.out.println(ep.getHoraSalida());
+			System.out.println(ep.getHoraEntregada());
+			System.out.println(ep.getPedido().getCliente());
+			System.out.println(ep.getCantidadEntregada());
+			System.out.println(ep.getCamion().getCodigo());
 		}
-		System.out.print(esColapso);
+		System.out.println(esColapso);
+		System.out.println(entregaPedidosImprimir.size());
 		
 	}
 	public String obtenerCamionBestFit(double cargaGLP) {//suponiendo que ya está ordenado ascendentemente
