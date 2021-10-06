@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Iterator;
 import java.util.Collections;
+import java.util.HashMap;
 
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
@@ -72,6 +73,47 @@ public class Astar {
 		return camImp;
 	}
 	public void validarPedidos() {//si un pedido supera la capacidad del camion máximo se debe separar en 2
+		double MaxGLPofCamiones = Astar.this.camionesImportantes.camionConMasCapacidad.getCargaActualGLP();
+		
+		int cod = pedidos.size() + 1;//Codigo que recibiran los pedidos divididos: Ultimo codigo más uno 
+		for (Map.Entry<String, Pedido> pedido: pedidos.entrySet()) {
+			double cantidadGLPPedido = pedido.getValue().getCantidadGLP();
+			if (cantidadGLPPedido > MaxGLPofCamiones) {
+				
+				while (cantidadGLPPedido > 0) {
+					// CREO PEDIDO DIVIDIDO 
+					String[]fechaHoraLimiteStr = pedido.getValue().getFechaHoraLimite().toString().split(" ");
+					String fechaLimite = fechaHoraLimiteStr[0];
+					String horaLimite = fechaHoraLimiteStr[1];
+					Pedido pedidoDividido = new Pedido(String.valueOf(cod), pedido.getValue().getCliente(),
+							0, pedido.getValue().getUbicacionX(), pedido.getValue().getUbicacionY(),
+							fechaLimite, horaLimite);
+						//El pedido tiene una cantidad de GLP de 0 inicialmente, se cambia a continuación
+					pedidoDividido.setFechaHoraPedido(pedido.getValue().getFechaHoraPedido());
+						//Por analizar si es correcto la asignación de este valor en cada pedido dividido
+					pedidoDividido.setFechaHoraCompletado(pedido.getValue().getFechaHoraCompletado());
+						//Por analizar si es correcto la asignación de este valor en cada pedido dividido
+					pedidoDividido.setEstado(pedido.getValue().getEstado());
+						//Por analizar si es correcto la asignación de este valor en cada pedido dividido
+					
+					// 
+					if (cantidadGLPPedido > MaxGLPofCamiones) {
+						pedidoDividido.setCantidadGLP(MaxGLPofCamiones);
+						cantidadGLPPedido -= MaxGLPofCamiones;
+					}
+					else {
+						pedidoDividido.setCantidadGLP(cantidadGLPPedido);
+						cantidadGLPPedido = 0;
+					}
+					cod ++;
+					pedidos.put(pedidoDividido.getCodigo(), pedidoDividido);
+	
+				}
+				
+				//Eliminar pedido que fue dividido
+				pedidos.remove(pedido.getKey());
+			}
+		}
 		
 	}
 	public void ordenarCamionesPorCapacidadGLP() {
@@ -145,6 +187,18 @@ public class Astar {
 			
 		}
 		return "a";
+	}
+	public String obtenerCamionBestFit2(double cargaGLP) {
+		//Retorna codigo de camion que mejor satisface la cargaGLP necesaria
+		double bestCargaGLP = 9999; //Variable auxiliar para guardar en cada iteración la mejor cargaGLP encontrada
+		Map.Entry<String, Camion> bestBook = null; //VAriable auxiliar para guardar mejor entrada(String, Camion)
+		for (Map.Entry<String, Camion> book: flota.entrySet()) {
+			double cargaGLPofBook = book.getValue().getTipo().getPesoGLP();
+			if (cargaGLPofBook >= cargaGLP && bestCargaGLP > cargaGLPofBook) {
+				bestBook = book;
+			}
+		}
+		return bestBook.getKey();
 	}
 	public Camino calcularCaminoMasCorto(int posIniX, int posIniY, int posFinX, int posFinY/*, int[][]mapaObstaculo*/) {
 		mapa.setPosicionInicial(posIniX, posIniY);
