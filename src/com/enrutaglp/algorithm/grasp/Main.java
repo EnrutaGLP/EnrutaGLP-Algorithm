@@ -12,10 +12,12 @@ import com.enrutaglp.utils.Utils;
 public class Main {
 	
 	public static void main(String args[]) {
+		System.out.println("grasp is running");
 		Map<String,Pedido>pedidos = Utils.leerPedidos();
 		pedidos = Utils.particionarPedidos(pedidos);
 		List<TipoCamion>tiposCamiones = Utils.generarTiposCamiones();
 		Map<String,Camion>flota = Utils.generarFlota(tiposCamiones,0,0);
+		//cambiar esta cosa
 		Grasp grasp = new Grasp(pedidos,flota.get("TA01"),"12/09/2021", "20:00",1,1000,1000);
 		Ruta ruta = grasp.run(10);
 	}
