@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.enrutaglp.algorithm.Genetic;
+import com.enrutaglp.model.Bloqueo;
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
 import com.enrutaglp.model.TipoCamion;

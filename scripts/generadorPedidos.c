@@ -16,9 +16,8 @@ const char NOMBRES_EMPRESAS[NUM_EMPRESAS][20] = {
     "PEPSI",
     "YAHOO"
 };
-int dimX;
-int dimY;
-
+int dimX = 70;
+int dimY = 50;
 void generarPedido(FILE *arch){
     fprintf(arch,"%s,%d,%d,%02d/%02d/%d,%02d:00,%d\n",
             NOMBRES_EMPRESAS[rand()%(NUM_EMPRESAS)],
@@ -32,16 +31,17 @@ void generarPedido(FILE *arch){
             );
 }
 int main(int argc, char *argv[]){
-    if(argc<4){
-        printf("Debe ingresar los argumentos: numPedidos dimXCiudad dimYCiudad");
+    if(argc<3){
+        printf("Debe ingresar los argumentos: numPedidos numMuestra");
         exit(1);
     }
     int numPedidos = atoi(argv[1]); 
-    dimX = atoi(argv[2]);
-    dimY = atoi(argv[3]);
-    srand(time(NULL)); 
+    int numMuestra = atoi(argv[2]);
+    char fileName[50];
+    srand(time(NULL) + numPedidos + numMuestra); 
+    sprintf(fileName,"../parametros/muestra%d_%d.txt",numPedidos,numMuestra);
     //Abrir archivo
-    FILE* arch = fopen("pedidos.txt", "w");
+    FILE* arch = fopen(fileName, "w");
     if(arch == NULL){
         printf("No se pudo abrir el archivo");
         exit(1);

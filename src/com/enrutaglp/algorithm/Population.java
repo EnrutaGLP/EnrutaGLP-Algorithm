@@ -1,8 +1,10 @@
 package com.enrutaglp.algorithm;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -20,7 +22,8 @@ public class Population {
 	private double wA; 
 	private double wB; 
 	private double wC; 
-	
+	private int tournamentSize = 10;
+	private double probability = 0.8;
 	public Population(int mu, int epsilon, Map<String,Pedido>pedidos, Map<String,Camion>flota,
 			double wA,double wB, double wC) {
 		this.mu = mu; 
@@ -42,7 +45,18 @@ public class Population {
 		this.size = mu;
 	}
 
-	public void applySurvivorSelection() {
+	public void applySurvivorSelection() { 
+		while(size>mu) {
+			
+			final int[] ints = new Random().ints(0, size).distinct().limit(tournamentSize).toArray();
+			List<Individual> selectedForTournament = new ArrayList<Individual>();
+			for(int i=0;i<tournamentSize;i++) {
+				selectedForTournament.add(individuals.get(i));
+			}
+			Collections.sort(selectedForTournament);
+			
+			
+		}
 		
 	}
 	

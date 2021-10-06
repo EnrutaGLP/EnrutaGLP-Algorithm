@@ -18,7 +18,7 @@ import com.enrutaglp.model.EntregaPedido;
 import com.enrutaglp.model.Pedido;
 import com.enrutaglp.utils.Utils;
 
-public class Individual {
+public class Individual implements Comparable<Individual> {
 
 	private Map<String, List<EntregaPedido>> entregas;
 	private Map<String, Map<String, Integer>> chromosome;
@@ -208,6 +208,16 @@ public class Individual {
 			fitness += ruta.getCostoRuta();
 		}
 		return fitness;
+	}
+
+	@Override
+	public int compareTo(Individual o) {
+		if(this.getFitness()>o.getFitness()) {
+			return 1; 
+		}
+		else {
+			return -1;
+		}
 	}
 
 }
