@@ -27,7 +27,7 @@ public class Utils {
 	public static Map<String,Pedido> leerPedidos() {
 		Map<String,Pedido> pedidos = new HashMap<String,Pedido>();
 		
-		String filePath = new File("").getAbsolutePath().concat("\\parametros\\pedidos.txt"); 
+		String filePath = new File("").getAbsolutePath().concat("//parametros//pedidos.txt"); 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			String line;

@@ -26,7 +26,7 @@ public class Ruta implements Comparable<Ruta> {
 		this.pedidos = new HashMap<String, Pedido>();
 		this.nodos = new ArrayList<Punto>();
 		this.costoRuta = 0;
-		Punto planta = new Punto(0, 0, 0);
+		Punto planta = new Punto(12, 8, 0);
 		this.nodos.add(planta);
 		
 		this.camion = new Camion(camion);
@@ -50,17 +50,17 @@ public class Ruta implements Comparable<Ruta> {
 				consumoPetroleo += this.camion.calcularConsumoPetroleo(distanciaPuntos);
 			}
 			
-			double noEntregaATiempo = 0;
+			double glpNoEntregado = 0;
 			double tiempoAdicional = 0;
 			for(String key: pedidosOriginales.keySet()) {
-				if(!pedidos.containsKey(key)) {
-					noEntregaATiempo += 1;
-					double duracion = Duration.between(this.fechaHoraTranscurrida, pedidosOriginales.get(key).getFechaHoraLimite() ).toHours();
-					tiempoAdicional += duracion;
+				
+				if(!this.pedidos.containsKey(key)) {
+					glpNoEntregado += pedidosOriginales.get(key).getCantidadGLP();
+					//solo en caso el tiempo limite sea menor al tiempo actual
 				}
 			}
 			
-			this.costoRuta = wa*consumoPetroleo + wb*noEntregaATiempo + wc*tiempoAdicional;
+			this.costoRuta = wa*consumoPetroleo + wb*glpNoEntregado ;
 			return this.costoRuta;
 		}catch(Exception e) {
 			return 0;
@@ -137,7 +137,7 @@ public class Ruta implements Comparable<Ruta> {
 	}
 	
 	public void insertarPuntoPlanta() {
-		Punto punto = new Punto(0,0, this.nodos.size());
+		Punto punto = new Punto(12,8, this.nodos.size());
 		this.nodos.add(punto);
 		this.camion.setCargaActualGLP(this.camion.getTipo().getCapacidadGLP());
 		this.camion.setCargaActualPetroleo(this.camion.getTipo().getCapacidadTanque());
@@ -157,9 +157,7 @@ public class Ruta implements Comparable<Ruta> {
 			Punto punto = new Punto(pedido.getUbicacionX(),
 					pedido.getUbicacionY(), this.nodos.size(),pedido.getCodigo());
 			
-			Punto planta = new Punto(0, 0, 5000);
-			
-			
+			Punto planta = new Punto(12, 8, 5000);
 			
 			double distanciaPuntosActualPedido = this.calcularDistanciaPuntos(this.nodos.get(this.nodos.size()-1),
 										punto);
