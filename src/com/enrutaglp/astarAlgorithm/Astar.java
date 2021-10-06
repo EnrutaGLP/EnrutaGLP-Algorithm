@@ -53,6 +53,9 @@ public class Astar {
 		fechaIniSimulacion=fechaYHoraIni;
 		plantaPrincipal=planta;
 	}
+	public void setPedidos(Map<String,Pedido> ped) {
+		this.pedidos=ped;
+	}
 	public CamionesImportantes hallarCamionesImportantes() {
 		double velocidadMinima=9999999;
 		double capacidadMaxima=-1;
@@ -122,11 +125,11 @@ public class Astar {
 	public void ordenarCamionesPorCapacidadGLP() {
 		
 	}
-	public void resolverPedidos() {
-		camionesImportantes=hallarCamionesImportantes();
+	public String resolverPedidos() {
+		//camionesImportantes=hallarCamionesImportantes();
 		float velocidadMasBaja=(float)camionesImportantes.getCamionMasLento().getTipo().getVelocidadPromedio();
 		if(camionesImportantes.getCamionMasLento()==null) {
-			return;
+			return " ";
 		}
 		validarPedidos();
 		
@@ -254,6 +257,12 @@ public class Astar {
 		}
 		System.out.println(entregaPedidosImprimir.size());
 		
+		String datosAEvaluar="";
+		datosAEvaluar.concat(String.valueOf(petroleoTotal)).concat(",").
+		concat(String.valueOf(glpNoEntregado)).concat(",").concat(String.valueOf(glpTotalPedidos)).
+		concat(",").concat(String.valueOf(pedidosNoEntregados)).concat(",").
+		concat(String.valueOf(pedidosTotales)).concat("\n");
+		return datosAEvaluar;
 	}
 	public String obtenerCamionBestFit(double cargaGLP) {//suponiendo que ya está ordenado ascendentemente
 		Iterator<Map.Entry<String,Camion>> entries = flota.entrySet().iterator();
