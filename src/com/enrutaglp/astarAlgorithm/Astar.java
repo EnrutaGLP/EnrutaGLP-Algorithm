@@ -130,6 +130,11 @@ public class Astar {
 		}
 		validarPedidos();
 		
+		float petroleoTotal = 0;
+		double glpNoEntregado = 0;
+		double glpTotalPedidos = 0;
+		int pedidosNoEntregados = 0;
+		int pedidosTotales = 0;
 		int tamCamino=0;
 		float horasParaLlegar=0;
 		int horasInt=0;
@@ -201,11 +206,13 @@ public class Astar {
 			hashCamion=obtenerCamionBestFit2(pedidoEnrutado.getPedido().getCantidadGLP(),hashCamionesMovimiento);
 			if(hashCamion==" ") {//colapso logistico
 				esColapso=true;
+				glpNoEntregado += pedidoEnrutado.getPedido().getCantidadGLP();
 				//break;
 			}else {
 				hashCamionesMovimiento.add(hashCamion);
 				
 				consumoPetroleo=flota.get(hashCamion).calcularConsumoPetroleo(tamCamino-1);
+				petroleoTotal += consumoPetroleo*2;
 				if((consumoPetroleo+consumoPetroleo)>flota.get(hashCamion).getCargaActualPetroleo()) {
 					continue;//se debe añadir como pedido imposible
 					//para luego validad si los camiones con más capacidad pueden manejar el pedido
