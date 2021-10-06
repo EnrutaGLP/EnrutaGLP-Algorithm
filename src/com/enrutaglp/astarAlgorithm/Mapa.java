@@ -16,7 +16,7 @@ public class Mapa{
 		this.anchoMapa=ancho;
 		this.alturaMapa=alto;
 		this.mapaObstaculos=new int[ancho+1][alto+1];
-		this.mapaObstaculos[20][0]=1;
+		/*this.mapaObstaculos[20][0]=1;
 		this.mapaObstaculos[20][1]=1;
 		this.mapaObstaculos[20][11]=1;
 		this.mapaObstaculos[20][12]=1;
@@ -40,7 +40,7 @@ public class Mapa{
 		this.mapaObstaculos[20][30]=1;
 		this.mapaObstaculos[20][31]=1;
 		this.mapaObstaculos[20][32]=1;
-		this.mapaObstaculos[20][33]=1;
+		this.mapaObstaculos[20][33]=1;*/
 		crearMapa();
 		bordeMapa();
 	}

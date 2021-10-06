@@ -201,7 +201,7 @@ public class Astar {
 			hashCamion=obtenerCamionBestFit2(pedidoEnrutado.getPedido().getCantidadGLP(),hashCamionesMovimiento);
 			if(hashCamion==" ") {//colapso logistico
 				esColapso=true;
-				break;
+				//break;
 			}else {
 				hashCamionesMovimiento.add(hashCamion);
 				
@@ -245,7 +245,6 @@ public class Astar {
 			System.out.println(ep.getCantidadEntregada());
 			System.out.println(ep.getCamion().getCodigo());
 		}
-		System.out.println(esColapso);
 		System.out.println(entregaPedidosImprimir.size());
 		
 	}
