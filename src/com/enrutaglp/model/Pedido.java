@@ -28,6 +28,19 @@ public class Pedido {
 		this.entregas = new ArrayList<EntregaPedido>();
 	}
 
+	public Pedido(Pedido pedido) {
+		/*if(pedido==null) {
+			return;
+		}*/
+		this.codigo = pedido.getCodigo(); 
+		this.cliente = pedido.getCliente(); 
+		this.cantidadGLP = pedido.getCantidadGLP(); 
+		this.ubicacionX = pedido.getUbicacionX(); 
+		this.ubicacionY = pedido.getUbicacionY(); 
+		this.fechaHoraLimite = pedido.getFechaHoraLimite();
+		this.entregas = new ArrayList<EntregaPedido>();
+	}
+	
 	public String getCliente() {
 		return cliente;
 	}

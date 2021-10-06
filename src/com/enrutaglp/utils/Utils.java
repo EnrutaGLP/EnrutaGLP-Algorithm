@@ -3,6 +3,8 @@ package com.enrutaglp.utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,12 +17,13 @@ import java.util.concurrent.ThreadLocalRandom;
 import com.enrutaglp.algorithm.Individual;
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
+import com.enrutaglp.model.Punto;
 import com.enrutaglp.model.TipoCamion;
 
 public class Utils {
 	
 	public static int maxCapacidadCamion = 25;
-	
+
 	public static Map<String,Pedido> leerPedidos() {
 		Map<String,Pedido> pedidos = new HashMap<String,Pedido>();
 		
@@ -54,9 +57,9 @@ public class Utils {
 	public static List<TipoCamion> generarTiposCamiones(){
 		List<TipoCamion>tipos = new ArrayList<TipoCamion>();
 		tipos.add(new TipoCamion("TA",2.5,25,12.5,25,50,2));
-		tipos.add(new TipoCamion("TB",2.0,15,7.5,25,50,2));
-		tipos.add(new TipoCamion("TC",1.5,10,5,25,50,2));
-		tipos.add(new TipoCamion("TD",1.0,5,2.5,25,50,2));
+		tipos.add(new TipoCamion("TB",2.0,15,7.5,25,50,4));
+		tipos.add(new TipoCamion("TC",1.5,10,5,25,50,4));
+		tipos.add(new TipoCamion("TD",1.0,5,2.5,25,50,10));
 		return tipos;
 	}
 	
@@ -77,7 +80,6 @@ public class Utils {
 	public static LocalDateTime getRandomDateTime(LocalDateTime lowerDateTime,LocalDateTime upperDateTime) {
 		DateTimeFormatter datetimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 		DecimalFormat decimalFormatter = new DecimalFormat("00");
-		
 		int randYear = ThreadLocalRandom.current().nextInt(lowerDateTime.getYear(), upperDateTime.getYear() + 1);
 		int randMonth = ThreadLocalRandom.current().nextInt(lowerDateTime.getMonthValue(), upperDateTime.getMonthValue() + 1);
 		int randDay = ThreadLocalRandom.current().nextInt(lowerDateTime.getDayOfMonth(), upperDateTime.getDayOfMonth() + 1);
@@ -87,9 +89,18 @@ public class Utils {
 									decimalFormatter.format(randYear) + " " + decimalFormatter.format(randHour) + ":00",datetimeFormatter);
 	}
 	
-	//Diego
-	public static void printSolution(int nbIter,Individual best) {
+	public static void printSolution(int nbIter,Individual individual,PrintWriter printWriter) {
+		printWriter.println("Generacion " + nbIter + " Fitness: " + individual.getFitness());
+		printWriter.println("------------------------------------------------------------\n");
 		
+		for(String camion : individual.getRutas().keySet()) {
+			printWriter.print(camion + ": ");
+			for(Punto punto : individual.getRutas().get(camion).getNodos()) {
+				printWriter.print("("+punto.getUbicacionX()+","+punto.getUbicacionY()+") ");
+			}
+			printWriter.println();
+		}
+		printWriter.println("------------------------------------------------------------\n");
 	}
 	
 }

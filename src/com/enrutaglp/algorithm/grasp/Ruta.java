@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ public class Ruta implements Comparable<Ruta> {
 		Punto planta = new Punto(0, 0, 0);
 		this.nodos.add(planta);
 		
-		this.camion = camion;
+		this.camion = new Camion(camion);
 		this.fechaHoraTranscurrida = LocalDateTime.parse(fechaActual + " " + horaActual,formatter);
 	}
 	
@@ -42,25 +43,29 @@ public class Ruta implements Comparable<Ruta> {
 	}
 
 	public double calcularCostoRuta(Map<String, Pedido> pedidosOriginales,double wa, double wb, double wc) {
-		
-		double consumoPetroleo = 0;
-		for (int i = 1; i < this.nodos.size(); i++) {
-			double distanciaPuntos = this.calcularDistanciaPuntos(this.nodos.get(i),this.nodos.get(i-1));
-			consumoPetroleo += this.camion.calcularConsumoPetroleo(distanciaPuntos);
-		}
-		
-		double noEntregaATiempo = 0;
-		double tiempoAdicional = 0;
-		for(String key: pedidosOriginales.keySet()) {
-			if(!pedidos.containsKey(key)) {
-				noEntregaATiempo += 1;
-				double duracion = Duration.between(this.fechaHoraTranscurrida, pedidosOriginales.get(key).getFechaHoraLimite() ).toHours();
-				tiempoAdicional += duracion;
+		try {
+			double consumoPetroleo = 0;
+			for (int i = 1; i < this.nodos.size(); i++) {
+				double distanciaPuntos = this.calcularDistanciaPuntos(this.nodos.get(i),this.nodos.get(i-1));
+				consumoPetroleo += this.camion.calcularConsumoPetroleo(distanciaPuntos);
 			}
+			
+			double noEntregaATiempo = 0;
+			double tiempoAdicional = 0;
+			for(String key: pedidosOriginales.keySet()) {
+				if(!pedidos.containsKey(key)) {
+					noEntregaATiempo += 1;
+					double duracion = Duration.between(this.fechaHoraTranscurrida, pedidosOriginales.get(key).getFechaHoraLimite() ).toHours();
+					tiempoAdicional += duracion;
+				}
+			}
+			
+			this.costoRuta = wa*consumoPetroleo + wb*noEntregaATiempo + wc*tiempoAdicional;
+			return this.costoRuta;
+		}catch(Exception e) {
+			return 0;
 		}
 		
-		this.costoRuta = wa*consumoPetroleo + wb*noEntregaATiempo + wc*tiempoAdicional;
-		return this.costoRuta;
 	}
 	
 	public Camion getCamion() {
@@ -72,7 +77,7 @@ public class Ruta implements Comparable<Ruta> {
 	}
 
 	public void copiarRuta(Ruta ruta) {
-		this.camion = ruta.getCamion();
+		this.camion = new Camion(ruta.getCamion());
 		this.fechaHoraTranscurrida = ruta.getFechaHoraTranscurrida();
 		this.setPedidos(ruta.getPedidos());
 		this.setNodos(ruta.getNodos());
@@ -91,7 +96,13 @@ public class Ruta implements Comparable<Ruta> {
 	}
 
 	public void setNodos(List<Punto> nodos) {
-		this.nodos = nodos;
+		this.nodos = new ArrayList<Punto>();
+		Iterator<Punto> iterator = nodos.iterator();
+		 
+		while(iterator.hasNext())
+		{
+			this.nodos.add(((Punto)iterator.next()).clone());  
+		}
 	}
 
 
@@ -101,15 +112,19 @@ public class Ruta implements Comparable<Ruta> {
 	}
 
 	public void setPedidos(Map<String, Pedido> pedidos) {
-		this.pedidos = pedidos;
+		Map<String,Pedido> copia = new HashMap<String, Pedido>(); 
+		for(String key: pedidos.keySet()) {
+			copia.put(key,new Pedido(pedidos.get(key)));
+		}
+		this.pedidos = copia;
 	}
 
 
 	
 	public void insertarPedido(Pedido pedido) {
-		pedidos.put(pedido.getCodigo(), pedido);
+		pedidos.put(pedido.getCodigo(), new Pedido(pedido));
 		Punto punto = new Punto(pedido.getUbicacionX(),
-							pedido.getUbicacionY(), this.nodos.size());
+							pedido.getUbicacionY(), this.nodos.size(),pedido.getCodigo());
 		this.nodos.add(punto);
 		
 		this.camion.setCargaActualGLP(this.camion.getCargaActualGLP() - pedido.getCantidadGLP());	
@@ -138,32 +153,40 @@ public class Ruta implements Comparable<Ruta> {
 		//el camion debe tener combustible para ir al pedido y regresar a la planta
 		//el camion debe tener GLP para el pedido
 		//el camion debe entregar antes de la hora maxima
-		Punto punto = new Punto(pedido.getUbicacionX(),
-				pedido.getUbicacionY(), this.nodos.size());
-		
-		Punto planta = new Punto(0, 0, 5000);
-		
-		
-		
-		double distanciaPuntosActualPedido = this.calcularDistanciaPuntos(this.nodos.get(this.nodos.size()-1),
-									punto);
-		
-		double distanciaPuntosPedidoPlanta = this.calcularDistanciaPuntos(planta,
-									punto);
-		
-		double consumoPetroleo = this.camion.calcularConsumoPetroleo(distanciaPuntosActualPedido+distanciaPuntosPedidoPlanta);
-		
-		//vdt = 
-		int tiempo = (int) (distanciaPuntosActualPedido/this.camion.getTipo().getVelocidadPromedio());
-		
-		LocalDateTime fechaHoraEntrega = this.fechaHoraTranscurrida.plusHours(tiempo);
-		
-		if((this.camion.getCargaActualGLP()>=pedido.getCantidadGLP()) & (this.camion.getCargaActualPetroleo()>=consumoPetroleo) & (fechaHoraEntrega.isBefore(pedido.getFechaHoraLimite()))) {
-			return true;
+		try {
+			Punto punto = new Punto(pedido.getUbicacionX(),
+					pedido.getUbicacionY(), this.nodos.size(),pedido.getCodigo());
+			
+			Punto planta = new Punto(0, 0, 5000);
+			
+			
+			
+			double distanciaPuntosActualPedido = this.calcularDistanciaPuntos(this.nodos.get(this.nodos.size()-1),
+										punto);
+			
+			double distanciaPuntosPedidoPlanta = this.calcularDistanciaPuntos(planta,
+										punto);
+			
+			double consumoPetroleo = this.camion.calcularConsumoPetroleo(distanciaPuntosActualPedido+distanciaPuntosPedidoPlanta);
+			
+			//vdt = 
+			int tiempo = (int) (distanciaPuntosActualPedido/this.camion.getTipo().getVelocidadPromedio());
+			
+			LocalDateTime fechaHoraEntrega = this.fechaHoraTranscurrida.plusHours(tiempo);
+			
+			if((this.camion.getCargaActualGLP()>=pedido.getCantidadGLP()) &&
+					(this.camion.getCargaActualPetroleo()>=consumoPetroleo) &&
+					(fechaHoraEntrega.isBefore(pedido.getFechaHoraLimite()))) {
+				return true;
+			}
+			
+			
+			return false;
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			return false;
 		}
-		
-		
-		return false;
 	}
 	
 	public double calcularDistanciaPuntos(Punto i, Punto j) {
@@ -172,7 +195,7 @@ public class Ruta implements Comparable<Ruta> {
 	  double x2 = j.getUbicacionX(); 
 	  double y2 = j.getUbicacionY();
 	  
-	  return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+	  return Math.abs(y2 - y1)+ Math.abs(x2 - x1);
 	}
 
 	@Override
@@ -186,5 +209,7 @@ public class Ruta implements Comparable<Ruta> {
 		}
 
 	}
+	
+	
 	
 }
