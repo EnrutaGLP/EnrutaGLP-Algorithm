@@ -3,13 +3,16 @@ package com.enrutaglp.astarAlgorithm;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Collections;
-import java.util.HashMap;
 
 import com.enrutaglp.model.Camion;
 import com.enrutaglp.model.Pedido;
 import com.enrutaglp.model.Planta;
+import com.enrutaglp.model.EntregaPedido;
+
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Astar { 
@@ -165,18 +168,60 @@ public class Astar {
 		
 		//ArrayList<Nodo> camionesEnMovimiento;
 		//camionesEnMovimiento=new ArrayList<Nodo>();
+		Map<String,EntregaPedido> entregaPedidos=new HashMap<String, EntregaPedido>();
 		ArrayList<String> hashCamionesMovimiento=new ArrayList<String>();
-		double heuristica=Float.MAX_VALUE;
-		double heuristica2=0;
-		double heuristicaDesdeIni=0;
-		Nodo camionMasCerca=new Nodo(0,0);
-		boolean usoCamionMov=false;
+		ArrayList<Integer> indiceCamionesADejarMover=new ArrayList<Integer>();
 		String hashCamion;
+		float velocidadCamion;
+		double consumoPetroleo=0;
+		LocalDateTime horaEntrega;
+
+		
+		//Se supone que ningún camión se va a desviar de su ruta original hasta entregar su pedido
 		for(PedidoPreEnrutado pedidoEnrutado:pedidosPreEnrutados) {			
 			if(hashCamionesMovimiento.size()>0) {
-				
+				for(int i=0;i<hashCamionesMovimiento.size();i++) {
+					int estaEnMovimiento=posicionCamion(pedidoEnrutado.getFechaMaximaEntrega(),
+							entregaPedidos.get(hashCamionesMovimiento.get(i)));
+					if(estaEnMovimiento==0) {//redirigir un camion que está regresando
+						
+					}else if(estaEnMovimiento==1) {
+						indiceCamionesADejarMover.add(i);
+					}
+				}
+				for(int j=indiceCamionesADejarMover.size()-1;j>=0;j--) {//se quita de la lista los camiones que ya llegaron a la planta principal
+					hashCamionesMovimiento.remove(j);
+				}
+				indiceCamionesADejarMover.clear();
 			}else {
+				hashCamion=obtenerCamionBestFit(pedidoEnrutado.getPedido().getCantidadGLP());
+				hashCamionesMovimiento.add(hashCamion);
 				
+				consumoPetroleo=flota.get(hashCamion).calcularConsumoPetroleo(tamCamino-1);
+				if((consumoPetroleo+consumoPetroleo)>flota.get(hashCamion).getCargaActualPetroleo()) {
+					continue;//se debe añadir como pedido imposible
+					//para luego validad si los camiones con más capacidad pueden manejar el pedido
+				}
+				
+				velocidadCamion=(float)flota.get(hashCamion).getTipo().getVelocidadPromedio();
+				tamCamino=pedidoEnrutado.getCamino().getTamano();
+				horasParaLlegar=tamCamino/velocidadCamion;
+				horasInt=Math.round(horasParaLlegar);
+				horasDecimal=horasParaLlegar-horasInt;
+				minInt=(int)Math.ceil(horasDecimal*60);
+				
+				horaEntrega=pedidoEnrutado.getFechaMaximaEntrega().plusHours(horasInt);
+				horaEntrega=horaEntrega.plusMinutes(minInt);
+				
+				flota.get(hashCamion).setCargaActualPetroleo(flota.get(hashCamion).getCargaActualPetroleo()-consumoPetroleo);
+				flota.get(hashCamion).setCargaActualGLP(flota.get(hashCamion).getCargaActualGLP()-pedidoEnrutado.getPedido().getCantidadGLP());
+				
+				
+				
+				EntregaPedido entregaPed=new EntregaPedido(pedidoEnrutado.getPedido().getCantidadGLP(),
+						horaEntrega,pedidoEnrutado.getFechaMaximaEntrega(),consumoPetroleo,flota.get(hashCamion),
+						pedidoEnrutado.getPedido());
+				entregaPedidos.put(hashCamion, entregaPed);
 			}
 		}
 	}
@@ -187,6 +232,29 @@ public class Astar {
 			
 		}
 		return "a";
+	}
+	public int posicionCamion(LocalDateTime horaEvaluacion, EntregaPedido entregaPedido) {
+		//-1 si aún no llega, 0 si ya lo entrego y/o anda de vuelta, 1 si ya volvió a la planta principal
+		if(entregaPedido.getHoraEntregada().isBefore(horaEvaluacion) || entregaPedido.getHoraEntregada().isEqual(horaEvaluacion)) {//ya se entrego
+			//saber si ya volvio a la planta principal
+			
+			//falta actualizar las cargas de petroleo y glp
+			//se actualiza en la funcion de arriba si aún no vuelve a la planta principal
+			//falta actualizar las cargas si es que ya llego a la planta principal
+			
+			LocalDateTime aux=entregaPedido.getHoraSalida();
+			
+			Duration duration=Duration.between(entregaPedido.getHoraEntregada(), aux);
+			long seconds=Math.abs(duration.getSeconds());		
+			aux=aux.plusSeconds(seconds);
+			if(horaEvaluacion.isAfter(aux)||horaEvaluacion.isEqual(aux)) {
+				return 1;
+			}else {
+				return 0;
+			}
+		}else {//aun no se entrega
+			return -1;
+		}
 	}
 	public String obtenerCamionBestFit2(double cargaGLP) {
 		//Retorna codigo de camion que mejor satisface la cargaGLP necesaria
