@@ -22,7 +22,7 @@ import com.enrutaglp.utils.Utils;
 public class Main {
 	
 	public static void main(String args[]) throws IOException {
-		Map<String,Pedido>pedidos = Utils.leerPedidos();
+		Map<String,Pedido>pedidos = null;
 		List<TipoCamion>tiposCamiones = Utils.generarTiposCamiones();
 		Map<String,Camion>flota = Utils.generarFlota(tiposCamiones,0,0);
 		String fechaIni="12/09/2021";
@@ -51,11 +51,13 @@ public class Main {
 			is = new FileOutputStream(statText);
 			OutputStreamWriter osw = new OutputStreamWriter(is);
 			Writer w=new BufferedWriter(osw);
-			while(i<=50) {					
+			while(i<=3) {					
 				nombreArchivoPedidos=nombreArchivo10.concat(String.valueOf(i)).concat(".txt");
+				System.out.println(nombreArchivoPedidos);
 				pedidos=Utils.leerPedidosParametro(nombreArchivoPedidos);
 				astar.setPedidos(pedidos);
 				respuesta=astar.resolverPedidos();
+				System.out.print(respuesta);
 				w.write(respuesta);
 				i++;
 			}
@@ -67,7 +69,7 @@ public class Main {
 			return;
 		}
 		i=1;
-		
+		/*
 		try {
 			File statText2=new File(filePathMuestra100);
 			FileOutputStream is2;
@@ -111,6 +113,7 @@ public class Main {
 			System.out.println("Error al crear archivor reporte muestra 200");
 			return;
 		}
+		*/
 		
 		/*astar.calcularCaminoMasCorto(5,5,20,41);
 		astar.pintarCamino();
@@ -118,5 +121,6 @@ public class Main {
 		astar.calcularCaminoMasCorto(15,15,20,45);
 		astar.pintarCamino();
 		astar.resetearMapa();*/
+		
 	}
 }

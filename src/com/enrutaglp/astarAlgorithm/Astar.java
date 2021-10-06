@@ -126,7 +126,7 @@ public class Astar {
 		
 	}
 	public String resolverPedidos() {
-		//camionesImportantes=hallarCamionesImportantes();
+		camionesImportantes=hallarCamionesImportantes();
 		float velocidadMasBaja=(float)camionesImportantes.getCamionMasLento().getTipo().getVelocidadPromedio();
 		if(camionesImportantes.getCamionMasLento()==null) {
 			return " ";
@@ -155,6 +155,10 @@ public class Astar {
 			
 			PedidoPreEnrutado pedidoPreEnruta=new PedidoPreEnrutado(entry.getValue(), camino);
 			tamCamino=camino.getTamano();
+			
+			glpTotalPedidos+=entry.getValue().getCantidadGLP();
+			pedidosTotales++;
+			
 			horasParaLlegar=tamCamino/velocidadMasBaja;
 			horasInt=Math.round(horasParaLlegar);
 			horasDecimal=horasParaLlegar-horasInt;
@@ -192,16 +196,22 @@ public class Astar {
 		for(PedidoPreEnrutado pedidoEnrutado:pedidosPreEnrutados) {			
 			if(hashCamionesMovimiento.size()>0) {
 				for(int i=0;i<hashCamionesMovimiento.size();i++) {
-					int estaEnMovimiento=posicionCamion(pedidoEnrutado.getFechaMaximaEntrega(),
-							entregaPedidos.get(hashCamionesMovimiento.get(i)));
-					if(estaEnMovimiento==0) {//redirigir un camion que está regresando
-						indiceCamionesADejarMover.add(i);
-					}else if(estaEnMovimiento==1) {
-						indiceCamionesADejarMover.add(i);
+					if(entregaPedidos.get(hashCamionesMovimiento.get(i)) == null) {
+						continue;
+					}else {
+						int estaEnMovimiento=posicionCamion(pedidoEnrutado.getFechaMaximaEntrega(),
+								entregaPedidos.get(hashCamionesMovimiento.get(i)));
+						if(estaEnMovimiento==0) {//redirigir un camion que está regresando
+							//indiceCamionesADejarMover.add(i);
+						}else if(estaEnMovimiento==1) {
+							indiceCamionesADejarMover.add(i);
+						}
 					}
 				}
 				for(int j=indiceCamionesADejarMover.size()-1;j>=0;j--) {//se quita de la lista los camiones que ya llegaron a la planta principal
 					int indexABorrar=indiceCamionesADejarMover.get(j);
+					flota.get(hashCamionesMovimiento.get(indexABorrar)).setCargaActualGLP(flota.get(hashCamionesMovimiento.get(indexABorrar)).getTipo().getCapacidadGLP());
+					flota.get(hashCamionesMovimiento.get(indexABorrar)).setCargaActualPetroleo(flota.get(hashCamionesMovimiento.get(indexABorrar)).getTipo().getCapacidadTanque());
 					hashCamionesMovimiento.remove(indexABorrar);
 				}
 				indiceCamionesADejarMover.clear();
@@ -210,6 +220,7 @@ public class Astar {
 			if(hashCamion==" ") {//colapso logistico
 				esColapso=true;
 				glpNoEntregado += pedidoEnrutado.getPedido().getCantidadGLP();
+				pedidosNoEntregados++;
 				//break;
 			}else {
 				hashCamionesMovimiento.add(hashCamion);
@@ -245,20 +256,8 @@ public class Astar {
 			}
 		}
 		
-		Iterator<Map.Entry<String,EntregaPedido>> entriesEntregaPedido = entregaPedidos.entrySet().iterator();
-		
-		for(EntregaPedido ep:entregaPedidosImprimir) {
-			System.out.println("------------------");
-			System.out.println(ep.getHoraSalida());
-			System.out.println(ep.getHoraEntregada());
-			System.out.println(ep.getPedido().getCliente());
-			System.out.println(ep.getCantidadEntregada());
-			System.out.println(ep.getCamion().getCodigo());
-		}
-		System.out.println(entregaPedidosImprimir.size());
-		
-		String datosAEvaluar="";
-		datosAEvaluar.concat(String.valueOf(petroleoTotal)).concat(",").
+		String datosAEvaluar=String.valueOf(petroleoTotal);
+		datosAEvaluar.concat(",").
 		concat(String.valueOf(glpNoEntregado)).concat(",").concat(String.valueOf(glpTotalPedidos)).
 		concat(",").concat(String.valueOf(pedidosNoEntregados)).concat(",").
 		concat(String.valueOf(pedidosTotales)).concat("\n");
