@@ -51,13 +51,13 @@ public class Main {
 			is = new FileOutputStream(statText);
 			OutputStreamWriter osw = new OutputStreamWriter(is);
 			Writer w=new BufferedWriter(osw);
-			while(i<=3) {					
+			while(i<=50) {					
 				nombreArchivoPedidos=nombreArchivo10.concat(String.valueOf(i)).concat(".txt");
 				System.out.println(nombreArchivoPedidos);
 				pedidos=Utils.leerPedidosParametro(nombreArchivoPedidos);
 				astar.setPedidos(pedidos);
 				respuesta=astar.resolverPedidos();
-				System.out.print(respuesta);
+				System.out.println(respuesta);
 				w.write(respuesta);
 				i++;
 			}
@@ -69,7 +69,7 @@ public class Main {
 			return;
 		}
 		i=1;
-		/*
+		
 		try {
 			File statText2=new File(filePathMuestra100);
 			FileOutputStream is2;
@@ -78,9 +78,11 @@ public class Main {
 			Writer w2=new BufferedWriter(osw2);
 			while(i<=50) {					
 				nombreArchivoPedidos=nombreArchivo100.concat(String.valueOf(i)).concat(".txt");
+				System.out.println(nombreArchivoPedidos);
 				pedidos=Utils.leerPedidosParametro(nombreArchivoPedidos);
 				astar.setPedidos(pedidos);
 				respuesta=astar.resolverPedidos();
+				System.out.println(respuesta);
 				w2.write(respuesta);
 				i++;
 			}
@@ -100,9 +102,11 @@ public class Main {
 			Writer w3=new BufferedWriter(osw3);
 			while(i<=50) {					
 				nombreArchivoPedidos=nombreArchivo200.concat(String.valueOf(i)).concat(".txt");
+				System.out.println(nombreArchivoPedidos);
 				pedidos=Utils.leerPedidosParametro(nombreArchivoPedidos);
 				astar.setPedidos(pedidos);
 				respuesta=astar.resolverPedidos();
+				System.out.println(respuesta);
 				w3.write(respuesta);
 				i++;
 			}
@@ -113,7 +117,7 @@ public class Main {
 			System.out.println("Error al crear archivor reporte muestra 200");
 			return;
 		}
-		*/
+		
 		
 		/*astar.calcularCaminoMasCorto(5,5,20,41);
 		astar.pintarCamino();

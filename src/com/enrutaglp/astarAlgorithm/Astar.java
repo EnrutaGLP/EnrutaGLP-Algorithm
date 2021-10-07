@@ -256,11 +256,10 @@ public class Astar {
 			}
 		}
 		
-		String datosAEvaluar=String.valueOf(petroleoTotal);
-		datosAEvaluar.concat(",").
-		concat(String.valueOf(glpNoEntregado)).concat(",").concat(String.valueOf(glpTotalPedidos)).
-		concat(",").concat(String.valueOf(pedidosNoEntregados)).concat(",").
-		concat(String.valueOf(pedidosTotales)).concat("\n");
+		String datosAEvaluar=String.valueOf(petroleoTotal) + ";" + String.valueOf(glpNoEntregado) + ";"
+				+ String.valueOf(glpTotalPedidos) + ";" + String.valueOf(pedidosNoEntregados)
+				+ ";" + String.valueOf(pedidosTotales) + "\n";
+		
 		return datosAEvaluar;
 	}
 	public String obtenerCamionBestFit(double cargaGLP) {//suponiendo que ya está ordenado ascendentemente
