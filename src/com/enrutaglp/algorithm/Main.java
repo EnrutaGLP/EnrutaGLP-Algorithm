@@ -19,6 +19,6 @@ public class Main {
 		Map<String,Camion>flota = Utils.generarFlota(tiposCamiones,0,0);
 		List<Bloqueo> bloqueos = Utils.leerBloqueos();
 		Genetic genetic = new Genetic(10,50,pedidos,flota);
-		genetic.run(50,2,1,1000,1000);
+		genetic.run(5,2,1,1000,1000);
 	}
 }

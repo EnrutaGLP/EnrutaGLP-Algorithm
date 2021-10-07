@@ -22,8 +22,7 @@ public class Population {
 	private double wA; 
 	private double wB; 
 	private double wC; 
-	private int tournamentSize = 10;
-	private double probability = 0.8;
+	private double probability = 0.5;
 	public Population(int mu, int epsilon, Map<String,Pedido>pedidos, Map<String,Camion>flota,
 			double wA,double wB, double wC) {
 		this.mu = mu; 
@@ -46,31 +45,48 @@ public class Population {
 	}
 
 	public void applySurvivorSelection() { 
+		int tournamentSize = mu/3;
 		while(size>mu) {
 			
 			final int[] ints = new Random().ints(0, size).distinct().limit(tournamentSize).toArray();
 			List<Individual> selectedForTournament = new ArrayList<Individual>();
 			for(int i=0;i<tournamentSize;i++) {
-				selectedForTournament.add(individuals.get(i));
+				selectedForTournament.add(individuals.get(ints[i]));
 			}
 			Collections.sort(selectedForTournament);
-			
-			
+			double factor = 1; 
+			double currentProb = probability;
+			List<Individual> selectedForRemoval = new ArrayList<Individual>();
+			for(int i=0;i<tournamentSize;i++) {
+				factor *= Math.pow(1-probability, i);
+				currentProb *= factor;
+				double randomValue = ThreadLocalRandom.current().nextDouble(0, 1);
+				if(selectedForTournament.get(i) != best && randomValue > currentProb) {
+					selectedForRemoval.add(selectedForTournament.get(i));
+					size--; 
+				}
+				if(size==mu)break;
+			}
+			//Remover individuos que fueron elegidos
+			individuals.removeAll(selectedForRemoval);
 		}
 		
 	}
 	
+	
+	
 	public boolean addIndividual(Individual individual) {
+		boolean isBest = false;
 		individuals.add(individual);
 		size++;
+		if(best == null || best.getFitness() > individual.getFitness()) {
+			best = individual;
+			isBest = true; 
+		}
 		if(size>(mu+epsilon)) {
 			applySurvivorSelection();
 		}
-		if(best == null || best.getFitness() > individual.getFitness()) {
-			best = individual;
-			return true; 
-		}
-		return false;
+		return isBest;
 	}
 	
 	public Individual getBinaryTournament(double wA, double wB, double wC) {
