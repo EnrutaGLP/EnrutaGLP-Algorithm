@@ -27,6 +27,9 @@ public class Grasp {
 	private int cantPedidosNoEntregados;
 	private double glpNoEntregado;
 	private double petroleoConsumido;
+	private double distanciaRecorrida;
+
+	
 	public int getCantPedidosNoEntregados() {
 		return cantPedidosNoEntregados;
 	}
@@ -58,10 +61,6 @@ public class Grasp {
 	public void setDistanciaRecorrida(double distanciaRecorrida) {
 		this.distanciaRecorrida = distanciaRecorrida;
 	}
-
-
-
-	private double distanciaRecorrida;
 	
 	public Grasp(Map<String, Pedido> pedidos, Camion camion, String fechaActual, String horaActual, double wa, double wb, double wc) {
 		this.pedidos = generarCopia(pedidos);
