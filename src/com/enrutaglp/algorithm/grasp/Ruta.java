@@ -198,7 +198,6 @@ public class Ruta implements Comparable<Ruta> {
 
 	@Override
 	public int compareTo(Ruta o) {
-		// TODO Auto-generated method stub
 		if (this.getCostoRuta()>o.getCostoRuta()){
 			return 1;
 		}
