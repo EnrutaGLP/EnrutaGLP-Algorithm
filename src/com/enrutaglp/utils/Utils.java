@@ -45,7 +45,26 @@ public class Utils {
 		}
 		return pedidos;
 	}
-	
+	public static Map<String,Pedido> leerPedidosParametro(String nombreArchivo){
+		Map<String,Pedido> pedidos = new HashMap<String,Pedido>();
+		
+		String filePath = new File("").getAbsolutePath().concat("\\parametros\\").concat(nombreArchivo);
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			String line;
+			int i = 0; 
+			while((line = br.readLine()) != null) {
+				String[]values = line.split(",");
+				Pedido pedido = new Pedido(String.valueOf(i),values[0],Double.parseDouble(values[5]),Integer.parseInt(values[1]),
+						Integer.parseInt(values[2]),values[3],values[4]);
+				pedidos.put(pedido.getCodigo(), pedido);
+				i++;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return pedidos;
+	}
 	public static Map<String,Pedido> particionarPedidos(Map<String,Pedido>pedidos){
 		
 		return pedidos;
