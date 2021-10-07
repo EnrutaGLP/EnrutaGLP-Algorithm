@@ -14,16 +14,54 @@ import com.enrutaglp.model.Punto;
 
 public class Grasp {
 	
-	Map<String, Pedido> pedidos;
-	List<Punto> nodosRecorridos;
-	int numCandidatos;
-	int k;
-	Camion camion;
-	String fechaActual; 
-	String horaActual;
-	double wa;
-	double wb;
-	double wc;
+	private Map<String, Pedido> pedidos;
+	private List<Punto> nodosRecorridos;
+	private int numCandidatos;
+	private int k;
+	private Camion camion;
+	private String fechaActual; 
+	private String horaActual;
+	private double wa;
+	private double wb;
+	private double wc;
+	private int cantPedidosNoEntregados;
+	private double glpNoEntregado;
+	private double petroleoConsumido;
+	public int getCantPedidosNoEntregados() {
+		return cantPedidosNoEntregados;
+	}
+
+	public void setCantPedidosNoEntregados(int cantPedidosNoEntregados) {
+		this.cantPedidosNoEntregados = cantPedidosNoEntregados;
+	}
+
+	public double getGlpNoEntregado() {
+		return glpNoEntregado;
+	}
+
+	public void setGlpNoEntregado(double glpNoEntregado) {
+		this.glpNoEntregado = glpNoEntregado;
+	}
+
+	public double getPetroleoConsumido() {
+		return petroleoConsumido;
+	}
+
+	public void setPetroleoConsumido(double petroleoConsumido) {
+		this.petroleoConsumido = petroleoConsumido;
+	}
+
+	public double getDistanciaRecorrida() {
+		return distanciaRecorrida;
+	}
+
+	public void setDistanciaRecorrida(double distanciaRecorrida) {
+		this.distanciaRecorrida = distanciaRecorrida;
+	}
+
+
+
+	private double distanciaRecorrida;
 	
 	public Grasp(Map<String, Pedido> pedidos, Camion camion, String fechaActual, String horaActual, double wa, double wb, double wc) {
 		this.pedidos = generarCopia(pedidos);
@@ -35,6 +73,10 @@ public class Grasp {
 		this.wa = wa;
 		this.wb = wb;
 		this.wc = wc;
+		this.cantPedidosNoEntregados = 0;
+		this.glpNoEntregado = 0;
+		this.petroleoConsumido = 0;
+		this.distanciaRecorrida = 0;
 	}
 
 	public Ruta construirSolucion() {	
@@ -187,6 +229,12 @@ public class Grasp {
 				nbIterNoImp ++;
 			}
 		}
+		
+		this.cantPedidosNoEntregados = mejorRuta.getCantPedidosNoEntregados();
+		this.glpNoEntregado = mejorRuta.getGlpNoEntregado();
+		this.distanciaRecorrida = mejorRuta.getDistanciaRecorrida();
+		this.petroleoConsumido = mejorRuta.getPetroleoConsumido();
+		
 		return mejorRuta;
 	}
 	
@@ -197,7 +245,6 @@ public class Grasp {
 		
 		return ruta;	
 	}
-	
-	
+		
 	
 }
