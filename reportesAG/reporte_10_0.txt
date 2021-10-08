@@ -1,0 +1,129 @@
+Generacion 0 Fitness: 25.49666666666667 Cantidad de petroleo consumido: 25.49666666666667 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD06: (cantidad de pedidos asignados 1)(12,8) (6,28) (12,8) 
+TD02: (cantidad de pedidos asignados 1)(12,8) (57,30) (12,8) 
+TB04: (cantidad de pedidos asignados 2)(12,8) (59,3) (60,45) (12,8) 
+TC01: (cantidad de pedidos asignados 2)(12,8) (23,48) (25,5) (12,8) 
+TD10: (cantidad de pedidos asignados 2)(12,8) (30,9) (12,8) (45,27) (12,8) 
+TB01: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TD08: (cantidad de pedidos asignados 1)(12,8) (28,4) (12,8) 
+------------------------------------------------------------
+
+Generacion 1 Fitness: 23.240000000000002 Cantidad de petroleo consumido: 23.240000000000002 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 4)(12,8) (60,45) (25,5) (12,8) (6,28) (12,8) (12,8) (45,27) (12,8) 
+TD03: (cantidad de pedidos asignados 1)(12,8) (57,30) (12,8) 
+TC04: (cantidad de pedidos asignados 1)(12,8) (28,4) (12,8) 
+TC03: (cantidad de pedidos asignados 1)(12,8) (30,9) (12,8) 
+TB03: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TB01: (cantidad de pedidos asignados 1)(12,8) (59,3) (12,8) 
+TD10: (cantidad de pedidos asignados 1)(12,8) (23,48) (12,8) 
+------------------------------------------------------------
+
+Generacion 2 Fitness: 23.240000000000002 Cantidad de petroleo consumido: 23.240000000000002 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 4)(12,8) (6,28) (12,8) (45,27) (12,8) (60,45) (25,5) (12,8) 
+TD03: (cantidad de pedidos asignados 1)(12,8) (57,30) (12,8) 
+TC04: (cantidad de pedidos asignados 1)(12,8) (28,4) (12,8) 
+TC03: (cantidad de pedidos asignados 1)(12,8) (30,9) (12,8) 
+TB03: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TB01: (cantidad de pedidos asignados 1)(12,8) (59,3) (12,8) 
+TD10: (cantidad de pedidos asignados 1)(12,8) (23,48) (12,8) 
+------------------------------------------------------------
+
+Generacion 3 Fitness: 21.486666666666665 Cantidad de petroleo consumido: 21.486666666666665 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 2)(12,8) (6,28) (25,5) (12,8) 
+TD03: (cantidad de pedidos asignados 2)(12,8) (23,48) (12,8) (57,30) (12,8) 
+TC03: (cantidad de pedidos asignados 1)(12,8) (60,45) (12,8) 
+TC02: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TD10: (cantidad de pedidos asignados 2)(12,8) (59,3) (12,8) (45,27) (12,8) 
+TB01: (cantidad de pedidos asignados 2)(12,8) (30,9) (28,4) (12,8) 
+------------------------------------------------------------
+
+Generacion 4 Fitness: 21.486666666666665 Cantidad de petroleo consumido: 21.486666666666665 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 2)(12,8) (6,28) (25,5) (12,8) 
+TD03: (cantidad de pedidos asignados 2)(12,8) (23,48) (12,8) (57,30) (12,8) 
+TC03: (cantidad de pedidos asignados 1)(12,8) (60,45) (12,8) 
+TC02: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TD10: (cantidad de pedidos asignados 2)(12,8) (59,3) (12,8) (45,27) (12,8) 
+TB01: (cantidad de pedidos asignados 2)(12,8) (30,9) (28,4) (12,8) 
+------------------------------------------------------------
+
+Generacion 5 Fitness: 20.333333333333336 Cantidad de petroleo consumido: 20.333333333333336 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 4)(12,8) (60,45) (25,5) (12,8) (6,28) (12,8) (45,27) (12,8) 
+TD03: (cantidad de pedidos asignados 1)(12,8) (57,30) (12,8) 
+TC04: (cantidad de pedidos asignados 2)(12,8) (28,4) (5,48) (12,8) 
+TC03: (cantidad de pedidos asignados 1)(12,8) (30,9) (12,8) 
+TB01: (cantidad de pedidos asignados 1)(12,8) (59,3) (12,8) 
+TD10: (cantidad de pedidos asignados 1)(12,8) (23,48) (12,8) 
+------------------------------------------------------------
+
+Generacion 6 Fitness: 15.396666666666668 Cantidad de petroleo consumido: 15.396666666666668 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 4)(12,8) (6,28) (12,8) (45,27) (12,8) (60,45) (25,5) (12,8) 
+TD03: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TB01: (cantidad de pedidos asignados 3)(12,8) (59,3) (57,30) (28,4) (12,8) 
+TD10: (cantidad de pedidos asignados 1)(12,8) (23,48) (12,8) 
+TD08: (cantidad de pedidos asignados 1)(12,8) (30,9) (12,8) 
+------------------------------------------------------------
+
+Generacion 7 Fitness: 15.396666666666668 Cantidad de petroleo consumido: 15.396666666666668 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 4)(12,8) (6,28) (12,8) (45,27) (12,8) (60,45) (25,5) (12,8) 
+TD03: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TB01: (cantidad de pedidos asignados 3)(12,8) (59,3) (57,30) (28,4) (12,8) 
+TD10: (cantidad de pedidos asignados 1)(12,8) (23,48) (12,8) 
+TD08: (cantidad de pedidos asignados 1)(12,8) (30,9) (12,8) 
+------------------------------------------------------------
+
+Generacion 8 Fitness: 15.396666666666668 Cantidad de petroleo consumido: 15.396666666666668 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 4)(12,8) (6,28) (12,8) (45,27) (12,8) (60,45) (25,5) (12,8) 
+TD03: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TB01: (cantidad de pedidos asignados 3)(12,8) (59,3) (57,30) (28,4) (12,8) 
+TD10: (cantidad de pedidos asignados 1)(12,8) (23,48) (12,8) 
+TD08: (cantidad de pedidos asignados 1)(12,8) (30,9) (12,8) 
+------------------------------------------------------------
+
+Generacion 9 Fitness: 15.396666666666668 Cantidad de petroleo consumido: 15.396666666666668 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 4)(12,8) (60,45) (25,5) (12,8) (6,28) (12,8) (12,8) (12,8) (45,27) (12,8) 
+TD03: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TB01: (cantidad de pedidos asignados 3)(12,8) (59,3) (57,30) (28,4) (12,8) 
+TD10: (cantidad de pedidos asignados 1)(12,8) (23,48) (12,8) 
+TD08: (cantidad de pedidos asignados 1)(12,8) (30,9) (12,8) 
+------------------------------------------------------------
+
+Generacion 10 Fitness: 15.396666666666668 Cantidad de petroleo consumido: 15.396666666666668 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 4)(12,8) (60,45) (25,5) (12,8) (6,28) (12,8) (12,8) (12,8) (45,27) (12,8) 
+TD03: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TB01: (cantidad de pedidos asignados 3)(12,8) (59,3) (57,30) (28,4) (12,8) 
+TD10: (cantidad de pedidos asignados 1)(12,8) (23,48) (12,8) 
+TD08: (cantidad de pedidos asignados 1)(12,8) (30,9) (12,8) 
+------------------------------------------------------------
+
+Generacion 11 Fitness: 15.396666666666668 Cantidad de petroleo consumido: 15.396666666666668 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+TD04: (cantidad de pedidos asignados 4)(12,8) (60,45) (25,5) (12,8) (6,28) (12,8) (12,8) (12,8) (45,27) (12,8) 
+TD03: (cantidad de pedidos asignados 1)(12,8) (5,48) (12,8) 
+TB01: (cantidad de pedidos asignados 3)(12,8) (59,3) (57,30) (28,4) (12,8) 
+TD10: (cantidad de pedidos asignados 1)(12,8) (23,48) (12,8) 
+TD08: (cantidad de pedidos asignados 1)(12,8) (30,9) (12,8) 
+------------------------------------------------------------
+
