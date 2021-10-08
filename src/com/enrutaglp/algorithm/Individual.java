@@ -26,6 +26,8 @@ public class Individual implements Comparable<Individual> {
 	private Map<String, Map<String, Pedido>> asignacionesCamiones;
 	private List<Camion> camiones;
 	private double consumoTotalPetroleo = 0; // suma de consumo de todas las entregas
+	private int cantidadPedidosNoEntregados;
+	private double cantidadGlpNoEntregado;
 	private byte seEstanEntregandoATiempo = 1; // 1 si todos se entregan a tiempo, 0 si no
 	private int minutosAdicional = 0; // suma de minutos en los que no se entregan a tiempo los pedido
 	private double fitness;
@@ -117,6 +119,22 @@ public class Individual implements Comparable<Individual> {
 		this.fitness = fitness;
 	}
 
+	public int getCantidadPedidosNoEntregados() {
+		return cantidadPedidosNoEntregados;
+	}
+
+	public void setCantidadPedidosNoEntregados(int cantidadPedidosNoEntregados) {
+		this.cantidadPedidosNoEntregados = cantidadPedidosNoEntregados;
+	}
+
+	public double getCantidadGlpNoEntregado() {
+		return cantidadGlpNoEntregado;
+	}
+
+	public void setCantidadGlpNoEntregado(double cantidadGlpNoEntregado) {
+		this.cantidadGlpNoEntregado = cantidadGlpNoEntregado;
+	}
+
 	public void insertarEntregaPedido(EntregaPedido entregaPedido) {
 
 		List<EntregaPedido> entregasPedidos = this.entregas.get(entregaPedido.getPedido().getCodigo());
@@ -200,12 +218,17 @@ public class Individual implements Comparable<Individual> {
 
 	public double calcularFitness(double wA, double wB, double wC, Map<String, Camion> flota) {
 		fitness = 0.0;
+		cantidadPedidosNoEntregados = 0; 
+		consumoTotalPetroleo = 0.0; 
 		rutas = new HashMap<String, Ruta>();
 		for (Map.Entry<String, Map<String, Pedido>> entry : asignacionesCamiones.entrySet()) {
 			Grasp grasp = new Grasp(entry.getValue(), flota.get(entry.getKey()), "12/09/2021", "20:00", wA, wB, wC);
 			Ruta ruta = grasp.run(10);
 			rutas.put(entry.getKey(), ruta);
 			fitness += ruta.getCostoRuta();
+			consumoTotalPetroleo += ruta.getPetroleoConsumido(); 
+			cantidadPedidosNoEntregados += ruta.getCantPedidosNoEntregados();
+			
 		}
 		return fitness;
 	}
