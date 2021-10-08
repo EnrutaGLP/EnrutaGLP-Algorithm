@@ -1,5 +1,0 @@
-dimensiones: 20,20
-planta_principal: 0,0
-planta_intermedia_1: 1,10
-planta_intermedia_2: 4,19
-planta_intermedia_3: 15,14
