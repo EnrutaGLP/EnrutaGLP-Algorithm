@@ -1,0 +1,30 @@
+Generacion 0 Fitness: 0.0 Cantidad de petroleo consumido: 0.0 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+Generacion 1 Fitness: 0.0 Cantidad de petroleo consumido: 0.0 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+Generacion 2 Fitness: 0.0 Cantidad de petroleo consumido: 0.0 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+Generacion 3 Fitness: 0.0 Cantidad de petroleo consumido: 0.0 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+Generacion 4 Fitness: 0.0 Cantidad de petroleo consumido: 0.0 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+------------------------------------------------------------
+
+Generacion 5 Fitness: 0.0 Cantidad de petroleo consumido: 0.0 Cantidad de glp no entregado: 0.0 Numero de pedidos no entregados: 0
+------------------------------------------------------------
+
+------------------------------------------------------------
+

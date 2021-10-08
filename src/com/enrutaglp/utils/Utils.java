@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.enrutaglp.algorithm.Global;
 import com.enrutaglp.algorithm.Individual;
 import com.enrutaglp.model.Bloqueo;
 import com.enrutaglp.model.Camion;
@@ -28,7 +29,7 @@ public class Utils {
 	public static Map<String,Pedido> leerPedidos() {
 		Map<String,Pedido> pedidos = new HashMap<String,Pedido>();
 		
-		String filePath = new File("").getAbsolutePath().concat("\\parametros\\muestra10_1.txt"); 
+		String filePath = new File("").getAbsolutePath().concat("\\parametros\\muestra100_10.txt"); 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			String line;
@@ -53,13 +54,16 @@ public class Utils {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			String line;
 			int i = 0; 
+			double totalGlp = 0.0;
 			while((line = br.readLine()) != null) {
 				String[]values = line.split(",");
 				Pedido pedido = new Pedido(String.valueOf(i),values[0],Double.parseDouble(values[5]),Integer.parseInt(values[1]),
 						Integer.parseInt(values[2]),values[3],values[4]);
 				pedidos.put(pedido.getCodigo(), pedido);
+				totalGlp += pedido.getCantidadGLP();
 				i++;
 			}
+			Global.CantidadTotalGlp = totalGlp;
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -142,7 +146,10 @@ public class Utils {
 	}
 	
 	public static void printSolution(int nbIter,Individual individual,PrintWriter printWriter) {
-		printWriter.println("Generacion " + nbIter + " Fitness: " + individual.getFitness());
+		printWriter.println("Generacion " + nbIter + " Fitness: " + individual.getFitness()+ 
+				 			" Cantidad de petroleo consumido: " + individual.getConsumoTotalPetroleo() +
+				 			" Cantidad de glp no entregado: " + individual.getCantidadGlpNoEntregado() +
+				 			" Numero de pedidos no entregados: " + individual.getCantidadPedidosNoEntregados());
 		printWriter.println("------------------------------------------------------------\n");
 		
 		for(String camion : individual.getRutas().keySet()) {
@@ -155,4 +162,11 @@ public class Utils {
 		printWriter.println("------------------------------------------------------------\n");
 	}
 	
+	public static double calcularTotalGlpPedidos(List<Pedido>pedidos) {
+		double total = 0.0;
+		for(int i=0;i<pedidos.size();i++) {
+			total += pedidos.get(i).getCantidadGLP();
+		}
+		return total; 
+	}
 }

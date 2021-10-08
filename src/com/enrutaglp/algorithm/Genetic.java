@@ -1,5 +1,6 @@
 package com.enrutaglp.algorithm;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.List;
@@ -28,11 +29,12 @@ public class Genetic {
 		this.flota = flota; 
 	}
 	
-	public void run(int maxIterNoImp, int numChildrenToGenerate, double wA, double wB, double wC) {
+	public Individual run(int maxIterNoImp, int numChildrenToGenerate, double wA, double wB, double wC, String nombreArchivo) {
 		FileWriter fileWriter = null; 
 		PrintWriter printWriter = null;
 		try {
-			fileWriter = new FileWriter("reporteSolucion.txt");
+			String nombreCompletoArchivo= new File("").getAbsolutePath().concat("\\reportesAG\\" +nombreArchivo);
+			fileWriter = new FileWriter(nombreCompletoArchivo);
 		    printWriter = new PrintWriter(fileWriter);
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -45,7 +47,7 @@ public class Genetic {
 		population = new Population(10,20,pedidos,flota,wA,wB,wC);
 		boolean genNewBest; 
 		for(int nbIter = 0; nbIterNoImp <= maxIterNoImp; nbIter++) {
- 			System.out.println("Generacion " + nbIter);
+ 			//System.out.println("Generacion " + nbIter);
 			genNewBest = false;
 			for(int i=0;i<numChildrenToGenerate;i++) {
 				//Parent selection and crossover 
@@ -58,11 +60,12 @@ public class Genetic {
 				boolean isNewBest = population.addIndividual(childInd1) || population.addIndividual(childInd2);
 				genNewBest = (isNewBest)? isNewBest:genNewBest;
 			}
-			Utils.printSolution(nbIter, population.getBest(),printWriter);
+			//Utils.printSolution(nbIter, population.getBest(),printWriter);
 			if(genNewBest) nbIterNoImp = 1; 
 			else nbIterNoImp++; 
 		}
 	    printWriter.close();
+	    return population.getBest();
 	}
 	
 	public Individual crossover(Individual ind1, Individual ind2) {
