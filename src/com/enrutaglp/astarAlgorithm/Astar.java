@@ -184,6 +184,7 @@ public class Astar {
 		ArrayList<String> hashCamionesMovimiento=new ArrayList<String>();
 		ArrayList<Integer> indiceCamionesADejarMover=new ArrayList<Integer>();
 		ArrayList<EntregaPedido> entregaPedidosImprimir=new ArrayList<EntregaPedido>();
+		ArrayList<Camino> caminosImprimir=new ArrayList<Camino>();
 		String hashCamion;
 		float velocidadCamion;
 		double consumoPetroleo=0;
@@ -252,9 +253,11 @@ public class Astar {
 				//hashCamion=hashCamion+"numPedAtendidos";
 				entregaPedidos.put(hashCamion, entregaPed);
 				entregaPedidosImprimir.add(entregaPed);
+				caminosImprimir.add(pedidoEnrutado.getCamino());
 				numPedAtendidos++;
 			}
 		}
+
 		
 		String datosAEvaluar=String.valueOf(petroleoTotal) + ";" + String.valueOf(glpNoEntregado) + ";"
 				+ String.valueOf(glpTotalPedidos) + ";" + String.valueOf(pedidosNoEntregados)
