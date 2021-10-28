@@ -155,6 +155,9 @@ public class Individual implements Comparable<Individual> {
 		for (int i = 0; i < listaPedidos.size(); i++) {
 			String key = listaPedidos.get(i).getCodigo();
 			int randomCamionIndex = ThreadLocalRandom.current().nextInt(0, listaFlota.size());
+			
+			//System.out.println(randomCamionIndex);
+			
 			Map<String, Integer> value = new HashMap<String, Integer>();
 			String codigoCamion = listaFlota.get(randomCamionIndex).getCodigo();
 			value.put(codigoCamion, 0);
@@ -217,19 +220,26 @@ public class Individual implements Comparable<Individual> {
 	}
 
 	public double calcularFitness(double wA, double wB, double wC, Map<String, Camion> flota) {
-		fitness = 0.0;
-		cantidadPedidosNoEntregados = 0; 
-		consumoTotalPetroleo = 0.0; 
+		this.fitness = 0.0;
+		this.cantidadPedidosNoEntregados = 0; 
+		this.consumoTotalPetroleo = 0.0; 
 		rutas = new HashMap<String, Ruta>();
 		for (Map.Entry<String, Map<String, Pedido>> entry : asignacionesCamiones.entrySet()) {
+			
 			Grasp grasp = new Grasp(entry.getValue(), flota.get(entry.getKey()), "12/09/2021", "20:00", wA, wB, wC);
+			
 			Ruta ruta = grasp.run(10);
+			
 			rutas.put(entry.getKey(), ruta);
+			
 			fitness += ruta.getCostoRuta();
+			
 			consumoTotalPetroleo += ruta.getPetroleoConsumido(); 
+			
 			cantidadPedidosNoEntregados += ruta.getCantPedidosNoEntregados();
 			
 		}
+		
 		return fitness;
 	}
 

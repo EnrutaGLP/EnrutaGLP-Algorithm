@@ -89,6 +89,8 @@ public class Grasp {
 			//generas N max candidatos aleatoriamente (nodosRecorridos)
 			List<Ruta> rutasCandidatos = this.generarCandidatos(ruta, pedidosSolucion);
 			//seleccionas 1 de los X mejores candidatos de los N generados
+			assert rutasCandidatos.size() >0 : "Existe al menos una ruta de candidatos";
+			
 			
 			Ruta rutaSeleccionada = this.seleccionarCandidato(rutasCandidatos);
 			
@@ -187,6 +189,8 @@ public class Grasp {
 			rutaGenerada.calcularCostoRuta(this.pedidos, this.wa, this.wb, this.wc);
 			rutasCandidatos.add(rutaGenerada);
 		}
+		
+		assert rutasCandidatos.size() == this.numCandidatos : "El numero de cantidatos generados no es el que se requiere";
 		
 		return rutasCandidatos;
 	}

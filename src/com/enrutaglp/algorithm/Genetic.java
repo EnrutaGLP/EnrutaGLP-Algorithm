@@ -33,7 +33,7 @@ public class Genetic {
 		FileWriter fileWriter = null; 
 		PrintWriter printWriter = null;
 		try {
-			String nombreCompletoArchivo= new File("").getAbsolutePath().concat("\\reportesAG\\" +nombreArchivo);
+			String nombreCompletoArchivo= new File("").getAbsolutePath().concat("//reportesAG//" +nombreArchivo);
 			fileWriter = new FileWriter(nombreCompletoArchivo);
 		    printWriter = new PrintWriter(fileWriter);
 		} catch(Exception e) {
@@ -45,6 +45,7 @@ public class Genetic {
 		Individual childInd1,childInd2; 
 		//Initialize population
 		population = new Population(10,20,pedidos,flota,wA,wB,wC);
+		
 		boolean genNewBest; 
 		for(int nbIter = 0; nbIterNoImp <= maxIterNoImp; nbIter++) {
  			//System.out.println("Generacion " + nbIter);
@@ -52,6 +53,7 @@ public class Genetic {
 			for(int i=0;i<numChildrenToGenerate;i++) {
 				//Parent selection and crossover 
 				childInd1 = crossover(population.getBinaryTournament(wA, wB, wC),population.getBinaryTournament(wA, wB, wC));
+				
 				//Apply mutation
 				childInd2 = mutate(childInd1,percentGenesToMutate);
 				//Evaluate new individuals
