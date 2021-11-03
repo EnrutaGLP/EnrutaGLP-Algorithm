@@ -100,7 +100,18 @@ public class Population {
 		Individual ind1 = individuals.get(place1); 
 		Individual ind2 = individuals.get(place2); 
 		//return the one with the lowest fitness 
-		Individual ind3 = (ind1.calcularFitness(wA, wB, wC,flota)>ind2.calcularFitness(wA, wB, wC,flota) )? ind2 : ind1;
+		
+		double fitness1 = ind1.calcularFitness(wA, wB, wC,flota);
+		//System.out.println("Todo correcto hasta aqui fitness1");
+		
+		double fitness2 = ind2.calcularFitness(wA, wB, wC,flota);
+		//System.out.println("Todo correcto hasta aqui fitness2");
+		//System.out.println("Todo correcto hasta aqui");
+		//System.exit(0);	
+
+		
+		Individual ind3 = (fitness1 > fitness2)? ind2 : ind1;
+		
 		return ind3;
 	}
 

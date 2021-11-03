@@ -29,7 +29,7 @@ public class Utils {
 	public static Map<String,Pedido> leerPedidos() {
 		Map<String,Pedido> pedidos = new HashMap<String,Pedido>();
 		
-		String filePath = new File("").getAbsolutePath().concat("\\parametros\\muestra100_10.txt"); 
+		String filePath = new File("").getAbsolutePath().concat("//parametros//muestra100_10.txt"); 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			String line;
@@ -49,7 +49,7 @@ public class Utils {
 	public static Map<String,Pedido> leerPedidosParametro(String nombreArchivo){
 		Map<String,Pedido> pedidos = new HashMap<String,Pedido>();
 		
-		String filePath = new File("").getAbsolutePath().concat("\\parametros\\").concat(nombreArchivo);
+		String filePath = new File("").getAbsolutePath().concat("//parametros//").concat(nombreArchivo);
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			String line;

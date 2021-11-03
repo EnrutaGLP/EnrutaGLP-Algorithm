@@ -43,7 +43,7 @@ public class Punto {
 		this.ubicacionY = ubicacionY;
 		this.orden = orden;
 		
-		if((this.ubicacionX==0)&(this.ubicacionY==0)) {
+		if((this.ubicacionX==12)&(this.ubicacionY==8)) {
 			this.setPlanta(true);
 		}
 		else {
@@ -57,7 +57,7 @@ public class Punto {
 		this.ubicacionY = ubicacionY;
 		this.orden = orden;
 		
-		if((this.ubicacionX==0)&(this.ubicacionY==0)) {
+		if((this.ubicacionX==12)&(this.ubicacionY==8)) {
 			this.setPlanta(true);
 		}
 		else {
@@ -73,7 +73,7 @@ public class Punto {
 	public void setUbicacionX(int ubicacionX) {
 		this.ubicacionX = ubicacionX;
 		
-		if((this.ubicacionX==0)&(this.ubicacionY==0)) {
+		if((this.ubicacionX==12)&(this.ubicacionY==8)) {
 			this.setPlanta(true);
 		}
 		else {
@@ -89,7 +89,7 @@ public class Punto {
 	public void setUbicacionY(int ubicacionY) {
 		this.ubicacionY = ubicacionY;
 		
-		if((this.ubicacionX==0)&(this.ubicacionY==0)) {
+		if((this.ubicacionX==12)&(this.ubicacionY==8)) {
 			this.setPlanta(true);
 		}
 		else {

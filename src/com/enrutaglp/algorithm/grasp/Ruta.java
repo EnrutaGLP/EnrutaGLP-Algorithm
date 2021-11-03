@@ -43,6 +43,9 @@ public class Ruta implements Comparable<Ruta> {
 	
 	
 	public double getCostoRuta() {
+
+		//System.out.println(costoRuta);
+			
 		return costoRuta;
 	}
 
@@ -217,38 +220,34 @@ public class Ruta implements Comparable<Ruta> {
 		//el camion debe tener combustible para ir al pedido y regresar a la planta
 		//el camion debe tener GLP para el pedido
 		//el camion debe entregar antes de la hora maxima
-		try {
-			Punto punto = new Punto(pedido.getUbicacionX(),
-					pedido.getUbicacionY(), this.nodos.size(),pedido.getCodigo());
-			
-			Punto planta = new Punto(12, 8, 5000);
-			
-			double distanciaPuntosActualPedido = this.calcularDistanciaPuntos(this.nodos.get(this.nodos.size()-1),
-										punto);
-			
-			double distanciaPuntosPedidoPlanta = this.calcularDistanciaPuntos(planta,
-										punto);
-			
-			double consumoPetroleo = this.camion.calcularConsumoPetroleo(distanciaPuntosActualPedido+distanciaPuntosPedidoPlanta);
-			
-			//vdt = 
-			int tiempo = (int) (distanciaPuntosActualPedido/this.camion.getTipo().getVelocidadPromedio());
-			
-			LocalDateTime fechaHoraEntrega = this.fechaHoraTranscurrida.plusHours(tiempo);
-			
-			if((this.camion.getCargaActualGLP()>=pedido.getCantidadGLP()) &&
-					(this.camion.getCargaActualPetroleo()>=consumoPetroleo) &&
-					(fechaHoraEntrega.isBefore(pedido.getFechaHoraLimite()))) {
-				return true;
-			}
-			
-			
-			return false;
-			
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-			return false;
+		Punto punto = new Punto(pedido.getUbicacionX(),
+				pedido.getUbicacionY(), this.nodos.size(),pedido.getCodigo());
+		
+		Punto planta = new Punto(12, 8, 5000);
+		
+		double distanciaPuntosActualPedido = this.calcularDistanciaPuntos(this.nodos.get(this.nodos.size()-1),
+									punto);
+		
+		double distanciaPuntosPedidoPlanta = this.calcularDistanciaPuntos(planta,
+									punto);
+		
+		double consumoPetroleo = this.camion.calcularConsumoPetroleo(distanciaPuntosActualPedido+distanciaPuntosPedidoPlanta);
+		
+		//vdt = 
+		int tiempo = (int) (distanciaPuntosActualPedido/this.camion.getTipo().getVelocidadPromedio());
+		
+		LocalDateTime fechaHoraEntrega = this.fechaHoraTranscurrida.plusHours(tiempo);
+		
+		if((this.camion.getCargaActualGLP()>=pedido.getCantidadGLP()) &&
+				(this.camion.getCargaActualPetroleo()>=consumoPetroleo) &&
+				(fechaHoraEntrega.isBefore(pedido.getFechaHoraLimite()))) {
+			return true;
 		}
+		
+		
+		return false;
+			
+
 	}
 	
 	public double calcularDistanciaPuntos(Punto i, Punto j) {
